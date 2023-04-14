@@ -66,9 +66,6 @@ export default function pagibig() {
                     <div className='col-lg-10'></div>
                     <div className='col-lg-2'>
                         <Link href="/Configuration/pagibigadd"><button className={Styles.addButton} onClick={clearData.bind(this)} > ADD NEW </button></Link>
-
-
-
                     </div>
 
                 </div>
