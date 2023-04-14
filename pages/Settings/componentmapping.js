@@ -1,15 +1,65 @@
 
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Styles from "../../styles/employmentJobHistory.module.css";
 import { useForm } from 'react-hook-form';
 import leaveform from '../../styles/LeaveTypeForm.module.css'
-import { yupResolver } from '@hookform/resolvers/yup';
-
-import * as Yup from 'yup';
+import Layout from "@/Components/layout";
+// import { yupResolver } from '@hookform/resolvers/yup';
+// import * as Yup from 'yup';
 
 
   function ComponentMappingForm() {
+
+    const { register,handleSubmit,watch,reset,formState: { errors },} = useForm();
+    const [actionType, setActionType] = useState("insert");
+
+    useEffect(() => {
+      async function getComponentMappingByID() {
+        const id = sessionStorage.getItem("id");
+        if (id) {
+          let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
+          let res = await axios.get(
+            hostURL + "Payroll/GetComponentMappingByID?ID=" + id
+          );
+          clearForm(res.data[0]);
+        } else {
+          clearForm();
+        }
+      }
+      getComponentMappingByID();
+    }, [1]);
+
+
+
+    function clearForm(ComponentMappingData = null) {
+      debugger;
+      let details = {
+        ID: ComponentMappingData ? ComponentMappingData.id : "",
+        PayrollComponentType: ComponentMappingData? ComponentMappingData.payrollComponentType: "",
+        Code: ComponentMappingData? ComponentMappingData.code: "",
+        ComponentName: ComponentMappingData ? ComponentMappingData.componentName : "",
+        TaxFlag: ComponentMappingData ? ComponentMappingData.taxFlag : "",
+        NinetyThousandTaxExemption: ComponentMappingData ? ComponentMappingData.ninetyThousandTaxExemption : "",
+        PayrollPeriod: ComponentMappingData ? ComponentMappingData.payrollPeriod : "",
+        Effeactivedate: ComponentMappingData ? ComponentMappingData.effeactivedate : "",
+        Enable: ComponentMappingData ? ComponentMappingData.enable : "",
+        PrintOnPaySlip: ComponentMappingData ? ComponentMappingData.printOnPaySlip : ""
+      };
+      reset(details);
+      setActionType(ComponentMappingData ? "update" : "insert");
+    }
+
+
+
+
+
+
+
+
+
+
       return (
+        <Layout>
         
           <div className="container-fluid">
             <div  className="row">
@@ -240,6 +290,7 @@ import * as Yup from 'yup';
               </div>
             </div>
           </div>
+          </Layout>
       );
   }
   

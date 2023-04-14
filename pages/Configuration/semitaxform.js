@@ -9,6 +9,7 @@ function SemiTaxForm() {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     let [actionType, setActionType] = useState("insert")
     let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
+    let ID;
 
     const onSubmit = async (data) => {
         console.log(JSON.stringify(data))
@@ -31,12 +32,13 @@ function SemiTaxForm() {
             }).then((result) => {
                 if (result) {
                     axios.post(hostURL + "HR/UpdateTaxconfigarationsemimonth", data)
-                    // sessionStorage.removeItem("id")
+                    sessionStorage.removeItem("id")
                     Swal.fire({
                         icon: "success",
                         titleText: "Updated Successfully"
                     })
                     location.href = "/Configuration/semitax";
+
                 }
             })
         }
@@ -57,8 +59,18 @@ function SemiTaxForm() {
         setActionType(existingData ? "update" : "insert")
     }
 
+    async function getByID() {
+        const res = await axios.get(hostURL + "HR/GetDailyrateConfigarationByID?ID=" + ID)
+        console.log(res)
+        clearForm(res.data[0])
+    }
+
     useEffect(() => {
         clearForm()
+        ID = sessionStorage.getItem("id")
+        if (ID) {
+            getByID()
+        }
     }, [])
     return (
         <Layout>
@@ -122,7 +134,16 @@ function SemiTaxForm() {
 
                         <div className='col-lg-10'></div>
                         <div className='col-lg-1 mt-2 text-end'>
-                            <button className='btn btn-primary'>Save</button>
+                            {
+                                actionType == "insert" && (
+                                    <button type='submit' className='btn btn-primary AddButton'>Save</button>
+                                )
+                            }
+                            {
+                                actionType == "update" && (
+                                    <button type="submit" className='btn btn-primary AddButton'>Update</button>
+                                )
+                            }
                         </div>
                         <div className='col-lg-1 mt-2'>
                             <button className='btn btn-primary'>Cancel</button>
