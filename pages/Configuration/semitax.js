@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Layout from '@/Components/layout'
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 function semitax() {
     let [dashboard, setDashboard] = useState([])
@@ -11,6 +12,38 @@ function semitax() {
         console.log(res.data)
         setDashboard(res.data)
     }
+
+    const getId = async (data) => {
+        sessionStorage.setItem("id", data.id)
+    }
+
+    const removeItem = async () => {
+        sessionStorage.setItem("id", "")
+    }
+
+    const deleteAnnualtax = (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.get(hostURL + "HR/DeleteTaxconfigarationsemimonth?ID=" + id)
+                Swal.fire({
+                    icon: "success",
+                    titleText: "Deleted Successfully"
+                })
+            }
+            getData();
+        })
+
+
+    }
+
     useEffect(() => {
         getData();
     }, [])
@@ -35,7 +68,7 @@ function semitax() {
                 <div className='row'>
                     <div className='col-lg-10'></div>
                     <div className='col-lg-2 mt-2 text-end'>
-                        <Link href="/Configuration/semitaxform" className='btn btn-primary'>Add New</Link>
+                        <Link href="/Configuration/semitaxform" onClick={removeItem} className='btn btn-primary'>Add New</Link>
                     </div>
 
                     <table className='table table-hover mt-2 '>
@@ -64,8 +97,8 @@ function semitax() {
                                             <td>{data.taxdeductionamount}</td>
                                             <td>{data.year}</td>
                                             <td>
-                                                <button type='submit' className="btn btn-primary AddButton mb-1">Edit</button>
-                                                <button type='submit' className="btn btn-primary AddButton">Delete</button>
+                                                <Link href="/Configuration/semitaxform"> <button onClick={getId.bind(this, data)} type='submit' className="btn btn-primary AddButton mb-1">Edit</button></Link>
+                                                <button onClick={deleteAnnualtax.bind(this, data.id)} type='submit' className="btn btn-primary AddButton">Delete</button>
                                             </td>
                                         </tr>
                                     )
