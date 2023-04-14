@@ -8,15 +8,59 @@ import { BiInjection } from 'react-icons/bi'
 
 import Layout from '../../Components/layout.js';
 
+import * as XLSX from "xlsx";
+
 function Dashboard() {
   const count = 1;
 
   const name = "Anup";
   const email = "anup@amazeinc.in";
+
   const [viewMode, setViewMode] = useState("tab1");
+
+  const [items, setItems] = useState([]);
+
+  const readExcel = async (file) => {
+    debugger
+    const promise = new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsArrayBuffer(file);
+
+      fileReader.onload = (e) => {
+        const bufferArray = e.target.result;
+
+        const wb = XLSX.read(bufferArray, { type: "buffer" });
+
+        const wsname = wb.SheetNames[0];
+
+        const ws = wb.Sheets[wsname];
+
+        const data = XLSX.utils.sheet_to_json(ws);
+
+        resolve(data);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+    promise.then((d) => {
+      debugger
+      setItems(d);
+      console.log(d);
+    });
+
+  };
+
   return (
     <Layout>
-
+      <input
+        type="file"
+        onChange={(e) => {
+          const file = e.target.files[0];
+          readExcel(file);
+        }}
+      />
       <div className="container">
         <div className="row">
           <div className="col-md-4">
