@@ -133,7 +133,7 @@ const  Sidebar=({ children }) => {
                                 <button className={SidebarStyles.sidesubmenu}>bir2316 mapping</button>
                             </Link>
 
-                            <Link href="">
+                            <Link href="/Settings/payperiodsettingsdashboard">
                                 <button className={SidebarStyles.sidesubmenu}>payperiod setting</button>
                             </Link>
                         </div>
