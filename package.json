@@ -19,6 +19,7 @@
     "react-hook-form": "^7.43.9",
     "react-icons": "^4.8.0",
     "reactstrap": "^9.1.8",
-    "sweetalert2": "^11.7.3"
+    "sweetalert2": "^11.7.3",
+    "xlsx": "^0.18.5"
   }
 }
