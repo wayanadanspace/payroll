@@ -1,0 +1,59 @@
+#disableEnableBtn{
+    text-transform: uppercase;
+    font-weight: 400;
+    font-family: Poppins;
+    letter-spacing: .5px;
+    padding: 5px;
+    width: auto;
+    font-weight: 700;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    color: red;
+    border-radius: 5px;
+    border: red;
+}
+
+#addStaff {
+    font-style: normal;
+    font-size: 15px;
+    height: 35px;
+    letter-spacing: .658333px;
+    background: #3247d5;
+    /* box-shadow: 1px 1px 17px 1px #3247d599; */
+    border-radius: 5px solid #3247d5;
+    text-transform: uppercase;
+    width: 200px;
+}
+
+
+#staffBtn{
+    float: left;
+    font-weight: 700;
+    letter-spacing: .5px;
+    padding: 3px;
+    font-size: 15px;
+    background: #3247D5;
+    box-shadow: 1px 1px 17px 1px #3247d599;
+    border-radius: 5px solid #3247D5;
+    border: 5px solid #3247D5;
+    -webkit-text-decoration-color: #3247D5;
+    text-decoration-color: #3247d5;
+}
+
+#itemsCenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#icon{
+    font-size: x-large;
+}
+#p{
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .5;
+    color: #3247d5;
+    text-transform: uppercase;
+    padding: 10px 0 5px;
+}

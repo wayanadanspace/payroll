@@ -1,0 +1,42 @@
+#tr {
+    background-color: #02cfff;
+    font-size: 14px;
+
+}
+
+#tabBtn {
+    line-height: 8px;
+    border: 2px solid royalblue;
+    color: black;
+    background: white;
+    font-family: Poppins;
+
+
+
+}
+
+#finalPayrollTable {
+    width: 98%;
+    margin: auto;
+}
+
+#normalPayrollTable {
+    margin: auto;
+}
+
+#p {
+    font-family: Poppins;
+    font-weight: 700;
+    padding-left: 5px;
+    color: #3247d5;
+    margin-left: 20px;
+    font-size: 21px;
+}
+
+#newPayrollButton {
+    padding: 4px 55px 4px 55px;
+    line-height: 22px;
+    color: black;
+    background: white;
+
+}

@@ -1,0 +1,42 @@
+#h5 {
+    font-weight: bold;
+    font-family: Poppins;
+    color: #3247d5;
+    margin-left: 14px;
+
+}
+
+#excelButton {
+    float: right;
+    background-color: #3247d5;
+}
+
+#addButton {
+    background-color: #3247d5;
+}
+
+#actionButton {
+
+    text-shadow: none;
+    letter-spacing: .5px;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    background-color: #3247d5;
+    color: #fff;
+    font-weight: 500px;
+    width: 80px;
+    line-height: 9px;
+
+
+}
+
+#table {
+    font-size: 14px;
+    justify-content: center;
+    border-radius: 1px;
+    overflow: hidden;
+    width: 98%;
+    margin-left: 8px;
+
+}

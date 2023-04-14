@@ -1,0 +1,22 @@
+#card {
+    width: 68%;
+    margin: auto;
+    margin-top: 50px;
+    border: none;
+    font-size: 13px;
+    border-radius: 4px;
+
+}
+
+.img {
+    float: right;
+}
+
+.loginLink {
+    text-decoration: none;
+    font-weight: 30px;
+}
+
+#loginButton {
+    float: right;
+}

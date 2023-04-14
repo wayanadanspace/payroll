@@ -1,0 +1,29 @@
+#commonBtn{
+    box-sizing: border-box;
+    color: #fff;
+    background: #3247d5;
+    border-radius: 5px solid #3247d5;
+    text-transform: uppercase;
+    width: 130px;
+    height: 40px;
+}
+#title{
+    padding-left: 5px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #3247d5;
+    font-style: normal;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+#tabBtn{
+    color: #3247d5;
+    background: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 2px solid #3247d5;
+    width: 175px;
+    height: 40px;
+}

@@ -1,0 +1,173 @@
+
+/* Extra small devices (phones) */
+@media only screen and (max-width: 575px) {
+    /* Styles for phones */.sidenav {
+    height: 88vh;
+    font: bolder;
+    background: rgb(255, 255, 255);
+    color: #949393;
+    font-size: 13px;
+    display: block;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    text-transform: uppercase;
+    white-space:normal;
+   
+}
+
+.Menu {
+    color: black;
+    text-decoration: none;
+    background-color: white;
+    font-family: Georgia, serif;white-space: normal;
+}
+.MenuItem{
+font-size: 10px;white-space: normal;
+}
+
+.dashLink {
+    text-decoration: none;
+    font: bolder;
+    background: rgb(255, 255, 255);
+    color: #949393;
+    font-size: 13px;
+    display: block;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    text-transform: uppercase;
+    white-space: normal;
+}
+
+  }
+  
+  /* Small devices (tablets) */
+  @media only screen and (min-width: 576px) and (max-width: 767px) {
+    /* Styles for tablets */
+    .sidenav {
+        height: 88vh;
+        font: bolder;
+        background: rgb(255, 255, 255);
+        color: #949393;
+        font-size: 13px;
+        display: block;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 600;
+        text-transform: uppercase;
+        white-space:normal;
+       
+    }
+    
+    .Menu {
+        color: black;
+        text-decoration: none;
+        background-color: white;
+        font-family: Georgia, serif;white-space: normal;
+    }
+    .MenuItem{
+    font-size: 10px;white-space: normal;
+    }
+    
+    .dashLink {
+        text-decoration: none;
+        font: bolder;
+        background: rgb(255, 255, 255);
+        color: #949393;
+        font-size: 13px;
+        display: block;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 600;
+        text-transform: uppercase;
+        white-space: normal;
+    }
+  }
+  
+  /* Medium devices (desktops) */
+  @media only screen and (min-width: 768px) and (max-width: 991px) {
+    /* Styles for desktops */
+    .sidenav {
+        height: 88vh;
+        font: bolder;
+        background: rgb(255, 255, 255);
+        color: #949393;
+        font-size: 13px;
+        display: block;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 600;
+        text-transform: uppercase;
+        white-space:normal;
+       
+    }
+    
+    .Menu {
+        color: black;
+        text-decoration: none;
+        background-color: white;
+        font-family: Georgia, serif;white-space: normal;
+    }
+    .MenuItem{
+    font-size: 10px;white-space: normal;
+    }
+    
+    .dashLink {
+        text-decoration: none;
+        font: bolder;
+        background: rgb(255, 255, 255);
+        color: #949393;
+        font-size: 13px;
+        display: block;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 600;
+        text-transform: uppercase;
+        white-space: normal;
+    }
+  }
+  
+  /* Large devices (large desktops) */
+  @media only screen and (min-width: 992px) {
+    /* Styles for large desktops */
+    .sidenav {
+        height: 88vh;
+        font: bolder;
+        background: rgb(255, 255, 255);
+        color: #949393;
+        font-size: 13px;
+        display: block;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 600;
+        text-transform: uppercase;
+        white-space:normal;
+       
+    }
+    
+    .Menu {
+        color: black;
+        text-decoration: none;
+        background-color: white;
+        font-family: Georgia, serif;white-space: normal;
+    }
+    .MenuItem{
+    font-size: 10px;white-space: normal;
+    }
+    
+    .dashLink {
+        text-decoration: none;
+        font: bolder;
+        background: rgb(255, 255, 255);
+        color: #949393;
+        font-size: 13px;
+        display: block;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 600;
+        text-transform: uppercase;
+        white-space: normal;
+    }
+  }
+  
