@@ -80,7 +80,7 @@ const Sidebar = ({ children }) => {
                                 <button className={SidebarStyles.sidesubmenu}>Payroll ytd upload</button>
                             </Link>
 
-                            <Link href="">
+                            <Link href="/Payroll/executedInitialpayrollruns">
                                 <button className={SidebarStyles.sidesubmenu}>initial payroll</button>
                             </Link>
 
