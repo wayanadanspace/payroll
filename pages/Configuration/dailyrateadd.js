@@ -53,10 +53,10 @@ function dailyrateadd() {
 
         let details = {
             "ID": dailyrate ? dailyrate.id : "",
-            "StaffID": dailyrate ? dailyrate.StaffID : "",
-            "Working_Days_Year": dailyrate ? dailyrate.Working_Days_Year : "",
-            "Working_Days_Month": dailyrate ? dailyrate.Working_Days_Month : "",
-            "Working_Hours_Day": dailyrate ? dailyrate.Working_Hours_Day : "",
+            "StaffID": dailyrate ? dailyrate.staffid : "",
+            "Working_Days_Year": dailyrate ? dailyrate.working_Days_Year : "",
+            "Working_Days_Month": dailyrate ? dailyrate.working_Days_Month : "",
+            "Working_Hours_Day": dailyrate ? dailyrate.working_Hours_Day : "",
 
         }
 
@@ -77,7 +77,7 @@ function dailyrateadd() {
             }
         }
         getdailyrateByID();
-    }, []);
+    }, [1]);
 
     return (
         <div>
@@ -91,26 +91,70 @@ function dailyrateadd() {
 
 
                             <label>Staffid <span id={Styles.span}>*</span></label>
-                            <input name="lowLimit" type="text"{...register('StaffID')} className={`form-control mt-2`} />
+                            <input name="lowLimit" type="text"{...register('StaffID', {
+
+                                required: "Please add a StaffID ", pattern: {
+
+                                    value: '^[A-Za-z0-9 ]+$',
+
+                                    message: "Please enter a valid StaffID "
+
+                                }
+                            })} className={`form-control mt-2`} />
+                            {errors.StaffID && <p className="error-message" style={{ color: "red" }}>{errors.StaffID.message}</p>}
                             {/* <div className="invalid-feedback">{errors.lowLimit?.message}</div> */}
 
                         </div>
                         <div className='col-lg-2'>
 
                             <label>Working_Days_Year <span id={Styles.span}>*</span></label>
-                            <input name="highLimit" type="text" {...register('Working_Days_Year')} className={`form-control mt-2`} />
+                            <input name="highLimit" type="text" {...register('Working_Days_Year', {
+
+                                required: "Please add Working Year", pattern: {
+
+                                    value: '^[A-Za-z0-9 ]+$',
+
+                                    message: "Please enter a valid working Year "
+
+                                }
+
+                            })} className={`form-control mt-2`} />
+                            {errors.Working_Days_Year && <p className="error-message" style={{ color: "red" }}>{errors.Working_Days_Year.message}</p>}
+
                             {/* <div className="invalid-feedback">{errors.highLimit?.message}</div> */}
                         </div>
                         <div className='col-lg-2'>
 
                             <label>Working_Days_Month <span id={Styles.span}>*</span></label>
-                            <input name="Philhealth" type="text" {...register('Working_Days_Month')} className={`form-control mt-2 `} />
+                            <input name="Philhealth" type="text" {...register('Working_Days_Month', {
+
+                                required: "Please add Working Month", pattern: {
+
+                                    value: '^[A-Za-z0-9 ]+$',
+
+                                    message: "Please enter a valid working Month "
+
+                                }
+                            })} className={`form-control mt-2 `} />
+                            {errors.Working_Days_Month && <p className="error-message" style={{ color: "red" }}>{errors.Working_Days_Month.message}</p>}
+
                             {/* <div className="invalid-feedback">{errors.Philhealth?.message}</div> */}
                         </div>
                         <div className='col-lg-2'>
 
                             <label>Working_Hours_Day <span id={Styles.span}>*</span></label>
-                            <input name="Philhealth" type="text" {...register('Working_Hours_Day')} className={`form-control mt-2 `} />
+                            <input name="Philhealth" type="text" {...register('Working_Hours_Day', {
+
+                                required: "Please add Working days", pattern: {
+
+                                    value: '^[A-Za-z0-9 ]+$',
+
+                                    message: "Please enter a valid working day "
+
+                                }
+                            })} className={`form-control mt-2 `} />
+                            {errors.Working_Hours_Day && <p className="error-message" style={{ color: "red" }}>{errors.Working_Hours_Day.message}</p>}
+
                             {/* <div className="invalid-feedback">{errors.Philhealth?.message}</div> */}
                         </div>
                     </div>

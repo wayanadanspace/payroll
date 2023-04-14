@@ -2,40 +2,30 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Styles from '../../styles/dailyrate.module.css'
 import axios from 'axios'
+import Swal from 'sweetalert2'
+import Layout from "@/Components/layout";
+
 function dailyrate() {
 
     const [dailyRate, setDailyRate] = useState([])
     let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
 
     const getDailyRate = async () => {
+        debugger;
         const { data } = await axios.get(hostURL + "HR/GetDailyrateConfigaration")
         setDailyRate(data)
+        console.log(data)
     }
+    useEffect(() => {
+        getDailyRate();
+    }, [])
     const handleDelete = async (id) => {
         try {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-
-                    const res = axios.get(hostURL + `HR/DeleteDailyrateConfigaration?ID=${id}`);
-                    console.log(res.data);
-                    // alert("Data deleted successfully");
-                    Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                    )
-                } getDepartmentMaster();
-
-            })
-
+            debugger
+            const res = await axios.get(hostURL + `HR/DeleteDailyrateConfigaration?ID=${id}`);
+            console.log(res.data);
+            alert("Data deleted successfully");
+            getDailyRate();
         } catch (error) {
             console.error(error);
             alert("Failed to delete data");
@@ -51,11 +41,9 @@ function dailyrate() {
     }
 
 
-    useEffect(() => {
-        getDailyRate();
-    }, [])
+
     return (
-        <div>
+        <Layout>
             <br />
             <p id={Styles.p}>Daily Rate Configuration</p>
 
@@ -72,7 +60,7 @@ function dailyrate() {
                 <div className='col-lg-11'></div>
                 <div className='col-lg-1'>
 
-                    <Link href="/Configuration/dailyrateadd" id={Styles.addLink} >  onClick={clearFormData.bind(this)}  <button id={Styles.addButton}>  ADD </button></Link>
+                    <Link href="/Configuration/dailyrateadd" id={Styles.addLink} > <button onClick={clearFormData.bind(this)} id={Styles.addButton}>  ADD </button></Link>
 
                 </div>
 
@@ -91,24 +79,27 @@ function dailyrate() {
                 </thead>
                 <tbody>{
                     dailyRate.map((data) => {
-                        <tr key={data.id}>
-                            <td>{data.staffid}</td>
-                            <td>{data.Working_Days_Year}</td>
-                            <td>{data.Working_Days_Month}</td>
-                            <td>{data.Working_Hours_Day}</td>
+                        return (
+                            <tr key={data.id}>
+                                <td>{data.staffid}</td>
+                                <td>{data.working_Days_Year}</td>
+                                <td>{data.working_Days_Month}</td>
+                                <td>{data.working_Hours_Day}</td>
 
-                            <td><button id={Styles.actionButton} className='btn btn-sm' onClick={getData.bind(this, data)}>Edit</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <button id={Styles.actionButton} onClick={handleDelete(data.id)} className='btn btn-sm'>Delete</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                            </td>
-                        </tr>
+                                <td>
+                                    <Link href="/Configuration/dailyrateadd"><button id={Styles.actionButton} className='btn btn-sm' onClick={getData.bind(this, data)}>Edit</button></Link> &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button id={Styles.actionButton} onClick={() => handleDelete(data.id)} className='btn btn-sm'>Delete</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                            </tr>
+                        )
+
                     })
                 }
 
 
                 </tbody>
             </table>
-
-        </div>
+        </Layout >
     )
 }
 
