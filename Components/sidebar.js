@@ -125,7 +125,7 @@ const  Sidebar=({ children }) => {
                                 <button className={SidebarStyles.sidesubmenu}>component master</button>
                             </Link>
 
-                            <Link href="">
+                            <Link href="/Settings/componentmappingdashboard">
                                 <button className={SidebarStyles.sidesubmenu}>component mapping</button>
                             </Link>
 
