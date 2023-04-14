@@ -8,13 +8,8 @@ import Swal from "sweetalert2";
 import Layout from "@/Components/layout";
 
 function philhealthadd() {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    reset,
-    formState: { errors },
-  } = useForm();
+  
+  const { register,handleSubmit,watch,reset,formState: { errors },} = useForm();
   const [actionType, setActionType] = useState("insert");
 
   useEffect(() => {
