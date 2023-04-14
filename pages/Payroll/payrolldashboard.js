@@ -1,5 +1,5 @@
 import React from "react";
-
+import Layout from '@/Components/layout';
 import { useEffect, useRef, useState } from "react";
 import Styles from '../../styles/PayrollDashboard.module.css'
 import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
@@ -11,6 +11,7 @@ const tabsData = [
 
         label: "Normal Payroll",
         content: (
+            <Layout>
             <div>
                 <div className="container-fluid">
                     <table className="table table-sm rounded-3 shadow-lg  text-center " id={Styles.normalPayrollTable}>
@@ -44,14 +45,13 @@ const tabsData = [
                     </table>
                 </div>
             </div>
+            </Layout>
         ),
     },
     {
         label: "Final Payroll",
         content: (
             <div>
-
-
                 <table className="table table-sm rounded-3 shadow-lg text-center" id={Styles.finalPayrollTable} >
                     <thead className="text-white" >
                         <tr id={Styles.tr}>
@@ -67,7 +67,6 @@ const tabsData = [
                     </tbody>
                 </table>
             </div>
-
         ),
     },
 ];
@@ -93,52 +92,54 @@ function PayrollDash() {
 
 
     return (
-        <div>
+        <Layout>
+            <div className="container-fluid">
 
-            <div className="relative">
-                <br />
-                <div className="row">
-                    <div className="col-lg-9"> </div>
-                    <div className="col-lg-2">
-                        <button className="form-control shadow-lg " id={Styles.newPayrollButton}>New Payroll</button>
-                    </div>
-                    <div className="col-lg-1"></div>
-                </div>
-                <div className="row">
-                    <div className="col-lg-9"></div>
-                    <div className="col-lg-2">
-                        <p className="mt-3" id={Styles.p}>Total Payroll Runs: 1</p>
-                    </div>
-                    <div className="col-lg-1"></div>
-                </div>
-
-
-                <p id={Styles.p}>Executed Payroll Runs For Approval</p>
-                <div className="flex space-x-3 border-b">
+                <div className="relative">
+                    <br />
                     <div className="row">
-                        <div className="col-lg-1"></div>
-                        <div className="col-lg-2 ">  {tabsData.map((tab, idx) => {
-                            return (
-
-                                <button
-                                    id={Styles.tabBtn}
-                                    key={idx}
-                                    ref={(el) => (tabsRef.current[idx] = el)}
-                                    className="pt-2 pb-3 "
-                                    onClick={() => setActiveTabIndex(idx)}
-                                >
-                                    {tab.label}
-                                </button>
-                            );
-                        })}
+                        <div className="col-lg-9"> </div>
+                        <div className="col-lg-2">
+                            <button className="form-control shadow-lg " id={Styles.newPayrollButton}>New Payroll</button>
                         </div>
+                        <div className="col-lg-1"></div>
+                    </div>
+                    <div className="row">
                         <div className="col-lg-9"></div>
+                        <div className="col-lg-2">
+                            <p className="mt-3" id={Styles.p}>Total Payroll Runs: 1</p>
+                        </div>
+                        <div className="col-lg-1"></div>
                     </div>
 
+
+                    <p id={Styles.p}>Executed Payroll Runs For Approval</p>
+                    <div className="flex space-x-3 border-b">
+                        <div className="row">
+                            <div className="col-lg-1"></div>
+                            <div className="col-lg-2 ">  {tabsData.map((tab, idx) => {
+                                return (
+
+                                    <button
+                                        id={Styles.tabBtn}
+                                        key={idx}
+                                        ref={(el) => (tabsRef.current[idx] = el)}
+                                        className="pt-2 pb-3 "
+                                        onClick={() => setActiveTabIndex(idx)}
+                                    >
+                                        {tab.label}
+                                    </button>
+                                );
+                            })}
+                            </div>
+                            <div className="col-lg-9"></div>
+                        </div>
+
+                    </div>
                 </div>
+                <div className="py-4">{tabsData[activeTabIndex].content}</div>
             </div>
-            <div className="py-4">{tabsData[activeTabIndex].content}</div>
-        </div>
+        </Layout>
     );
 }
 export default PayrollDash;
