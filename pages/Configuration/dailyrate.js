@@ -19,17 +19,38 @@ function dailyrate() {
     useEffect(() => {
         getDailyRate();
     }, [])
+
     const handleDelete = async (id) => {
-        try {
-            debugger
-            const res = await axios.get(hostURL + `HR/DeleteDailyrateConfigaration?ID=${id}`);
-            console.log(res.data);
-            alert("Data deleted successfully");
-            getDailyRate();
-        } catch (error) {
-            console.error(error);
-            alert("Failed to delete data");
-        }
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const res = axios.get(hostURL + `HR/DeleteDailyrateConfigaration?ID=${id}`);
+
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+                getDailyRate();
+            }
+        })
+        //     try {
+        //         debugger
+        //         const res = await axios.get(hostURL + `HR/DeleteDailyrateConfigaration?ID=${id}`);
+        //         console.log(res.data);
+        //         alert("Data deleted successfully");
+        //         getDailyRate();
+        //     } catch (error) {
+        //         console.error(error);
+        //         alert("Failed to delete data");
+        //     }
     };
     const getData = (data) => {
         sessionStorage.setItem("id", data.id);

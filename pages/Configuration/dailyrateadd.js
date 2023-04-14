@@ -15,8 +15,6 @@ function dailyrateadd() {
         // alert(JSON.stringify(data))
         console.log(data);
         if (actionType == "insert") {
-
-
             await axios.post(hostURL + 'HR/InsertDailyrateConfigaration', data);
             Swal.fire({ icon: "success", text: "Data Successfully added" })
             location.href = ("/Configuration/dailyrate");
@@ -40,6 +38,7 @@ function dailyrateadd() {
                         'Your file has been updated.',
                         'success'
                     )
+                    location.href = ("/Configuration/dailyrate")
                 }
             })
 
