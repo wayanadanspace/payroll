@@ -8,13 +8,8 @@ import Swal from "sweetalert2";
 import Layout from "@/Components/layout";
 
 function philhealthadd() {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    reset,
-    formState: { errors },
-  } = useForm();
+
+  const { register,handleSubmit,watch,reset,formState: { errors },} = useForm();
   const [actionType, setActionType] = useState("insert");
 
   useEffect(() => {
@@ -165,7 +160,8 @@ function philhealthadd() {
                 {/* <button id={Styles.Save}>Save</button> */}
               </div>
               <div className="col-lg-1">
-                {actionType == "insert" && (
+                {
+                actionType == "insert" && (
                   <button
                     type="submit"
                     id={Styles.Save}
@@ -174,7 +170,9 @@ function philhealthadd() {
                     Save
                   </button>
                 )}
-                {actionType == "update" && (
+
+                {
+                actionType == "update" && (
                   <button
                     type="submit"
                     id={Styles.Save}
@@ -182,7 +180,8 @@ function philhealthadd() {
                   >
                     Update
                   </button>
-                )}
+                )
+                }
               </div>
               <div className="col-lg-2 ">
                 {/* <button id='AddButton' className='btn btn-primary'>Submit</button>
