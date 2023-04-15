@@ -1,6 +1,8 @@
 import React from 'react'
 import { useEffect ,useState} from 'react';
+import Layout from '@/Components/layout';
 import { useForm } from 'react-hook-form';
+import Link from 'next/link';
 function addstaffsalaryform() {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const { register, handleSubmit, reset, formState } = useForm();
@@ -57,7 +59,7 @@ let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL
             }
 
     return (
-        <div>
+        <Layout>
            <div class="col-lg-10" >
    <br/>
    
@@ -116,7 +118,7 @@ let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL
                        
                         <div><button class="button">Update</button></div>
                        
-                        <div><button class="button">Cancel</button></div>
+                        <div><Link href="/Payroll/staffsalarycomponent"><button class="button">Cancel</button></Link></div>
                      </div>
                   </div>
                </div>
@@ -126,7 +128,7 @@ let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL
       
   <br/>
 </div>
-                </div>
+                </Layout>
                 )
 }
 
