@@ -264,7 +264,7 @@ const Sidebar = ({ children }) => {
                     <button className={SidebarStyles.sidemenu}>help</button>
                 </Link>
 
-                <Link href="">
+                <Link href="/SupportTickets/supportticketdashboard">
                     <button className={SidebarStyles.sidemenu}>support tickets</button>
                 </Link>
             </div>
