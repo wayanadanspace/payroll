@@ -54,13 +54,14 @@ function Dashboard() {
 
   return (
     <Layout>
-      <input
+      {/* <input
         type="file"
+        accept=".xlsx"
         onChange={(e) => {
           const file = e.target.files[0];
           readExcel(file);
         }}
-      />
+      /> */}
       <div className="container">
         <div className="row">
           <div className="col-md-4">

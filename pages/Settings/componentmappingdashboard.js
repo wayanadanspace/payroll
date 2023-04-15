@@ -4,6 +4,8 @@ import Layout from "@/Components/layout";
 import { useEffect, useState } from 'react';
 import axios from "axios";
 import Swal from "sweetalert2";
+
+
 export default function componentMappingDashboard() {
 
 
@@ -106,11 +108,11 @@ export default function componentMappingDashboard() {
                       <td>{data.componentName}</td>
                       <td>
                         <Link href="/Settings/componentmapping">
-                          <button className={Styles.actionButton} onClick={getData.bind(this, data)} >Edit</button>
+                          <button className="btn btn-primary" onClick={getData.bind(this, data)} >Edit</button>
                         </Link>
                         &nbsp;
 
-                        <button className={Styles.actionButton} onClick={() => handleDelete(data.id)}>Delete</button>
+                        <button className="btn btn-primary" onClick={() => handleDelete(data.id)}>Delete</button>
                       </td>
                     </tr>
                   )
