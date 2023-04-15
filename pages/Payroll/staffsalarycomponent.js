@@ -1,6 +1,25 @@
+import axios from 'axios'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 function StaffSalaryComponent() {
+    let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
+    const [staffSalary, setstaffSalary] = useState([])
+    const getStaffSalary = async () => {
+
+        const {data} = await axios.get(hostURL + "HR/GetAllStaffNew")
+        debugger
+        setstaffSalary(data)
+        console.log(data)
+    }
+    useEffect(() => {
+        getStaffSalary();
+    }, [])
+    // const getdata=(data)=>{
+    //     sessionStorage.setItem("id",data.id);
+        
+
+    // }
+
     return (
         <div>
             <h3 className='text-primary fs-5 mt-3'>Salary Staff Details</h3>
@@ -38,12 +57,48 @@ function StaffSalaryComponent() {
             <div className='row'>
                 <div className='col-lg-8'></div>
                 <div className='col-lg-2 mt-2 text-end'>
-                    <Link href="AddSalaryDetails" id='AddButton' className='btn btn-primary'>Add</Link>
-                    <Link href="/AddSalaryDetails" id='AddButton' className='btn btn-primary'>Add</Link>
+                    <Link href="/Payroll/addstaffsalaryform" id='AddButton' className='btn btn-primary'>Add</Link>
+                   
                 </div>
                 <div className='col-lg-2 mt-2'>
                     <button id='AddButton' className='btn btn-primary'>Upload Salary</button>
                 </div>
+            </div>
+            <div className='row'>
+                <table className='table table-striped'>
+                    <thead>
+                        <tr>
+                            <th>Employee ID</th>
+                            <th>Staff Name</th>
+                            <th>Position</th>
+                            <th>Department</th>
+                            <th>Salary</th>
+                            <th>Working Days In Month	</th>
+                            <th>Working Hours In Day	</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            staffSalary.map((data) => {
+                                return (
+                                    <tr key={data.id}>
+                                        <td>{data.employeID}  </td>
+                                        <td>{data.name} {data.last_Name}</td>
+                                        {/* fullname */}
+                                        <td>{data.role}</td>
+                                        <td>{data.department_name}</td>
+                                        <td>{data.baseSal}</td>
+                                        <td>{data.daysinmonth}</td>
+                                        <td>{data.hoursinday}</td>
+                                        {/* <td><Link href="/Payroll/AddSalaryDetails"><button onClick={getdata.bind(this,data)}>edit</button></Link></td> */}
+                                    </tr>
+                                )
+                            })
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
     )
