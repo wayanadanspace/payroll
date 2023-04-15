@@ -9,6 +9,8 @@ const Sidebar = ({ children }) => {
     let [displaySettings, toggleSettings] = useState(false)
     let [displayConfiguration, toggleConfiguration] = useState(false)
     let [displayMasters, toggleMasters] = useState(false)
+    let [displayRequests, toggleRequests] = useState(false)
+
 
     const toggleAttendenceMenu = () => {
         toggleAttendence(!displayAttendence);
@@ -31,6 +33,9 @@ const Sidebar = ({ children }) => {
     };
     const toggleMastersMenu = () => {
         toggleMasters(!displayMasters);
+    };
+    const togglerequestsMenu = () => {
+        toggleRequests(!displayRequests);
     };
     return (
         <div className='row' style={{ height: "90vh", overflowY: "auto" }}>
@@ -58,6 +63,30 @@ const Sidebar = ({ children }) => {
                         </div>
                     )
                 }
+                <button className={SidebarStyles.sidemenu} onClick={togglerequestsMenu}>Requests</button>
+                {
+
+                    displayRequests && (
+                        < div >
+                            <Link href="/Requests/leavelistdashboard">
+                                <button className={SidebarStyles.sidesubmenu}>Leave Requests</button>
+                            </Link>
+                            <Link href="/Requests/overtimedetails">
+                                <button className={SidebarStyles.sidesubmenu}>OVER TIME DETAILS</button>
+                            </Link>
+                            <Link href="/Requests/appliedloans">
+                                <button className={SidebarStyles.sidesubmenu}>LOAN REQUESTS</button>
+                            </Link>
+                            <Link href="/Requests/timesheet">
+                                <button className={SidebarStyles.sidesubmenu}>TIMESHEET Requests</button>
+                            </Link>
+                            <Link href="/Requests/locatordashboard">
+                                <button className={SidebarStyles.sidesubmenu}>OBASIS REQUESTS</button>
+                            </Link>
+                        </div>
+                    )
+                }
+
 
                 <button className={SidebarStyles.sidemenu} onClick={toggleLoansMenu}>Loans</button>
                 {
@@ -76,7 +105,7 @@ const Sidebar = ({ children }) => {
 
                     displayPayroll && (
                         < div >
-                            <Link href="">
+                            <Link href="/Payroll/employmentjobhistory">
                                 <button className={SidebarStyles.sidesubmenu}>Payroll ytd upload</button>
                             </Link>
 
@@ -104,7 +133,7 @@ const Sidebar = ({ children }) => {
                                 <button className={SidebarStyles.sidesubmenu}>bank advice list</button>
                             </Link>
 
-                            <Link href="">
+                            <Link href="/Payroll/staffsalarycomponent">
                                 <button className={SidebarStyles.sidesubmenu}>staff salary</button>
                             </Link>
 
