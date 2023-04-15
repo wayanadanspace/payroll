@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 import Layout from '../../Components/layout.js';
 
+
 function AttendenceDetails() {
   return (
     <Layout>
