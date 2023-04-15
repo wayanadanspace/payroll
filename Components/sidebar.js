@@ -76,7 +76,7 @@ const Sidebar = ({ children }) => {
 
                     displayPayroll && (
                         < div >
-                            <Link href="">
+                            <Link href="/Payroll/employmentjobhistory">
                                 <button className={SidebarStyles.sidesubmenu}>Payroll ytd upload</button>
                             </Link>
 
