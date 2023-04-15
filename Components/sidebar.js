@@ -133,7 +133,7 @@ const Sidebar = ({ children }) => {
                                 <button className={SidebarStyles.sidesubmenu}>bank advice list</button>
                             </Link>
 
-                            <Link href="">
+                            <Link href="/Payroll/staffsalarycomponent">
                                 <button className={SidebarStyles.sidesubmenu}>staff salary</button>
                             </Link>
 
