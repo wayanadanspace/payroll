@@ -6,21 +6,23 @@ function StaffSalaryComponent() {
     let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
     const [staffSalary, setstaffSalary] = useState([])
     const getStaffSalary = async () => {
-
-        const { data } = await axios.get(hostURL + "HR/GetAllStaffNew")
-
-        debugger
+//get api for staffsalarycomponent//
+        const {data} = await axios.get(hostURL + "HR/GetAllStaffNew")
+        // debugger
         setstaffSalary(data)
         console.log(data)
     }
     useEffect(() => {
         getStaffSalary();
     }, [])
-    const getdata = (data) => {
-        sessionStorage.setItem("id", data.id);
-
-
+     const getdata=(data)=>{
+         sessionStorage.setItem("id",data.id);
+}
+    const removeID = () =>{
+        sessionStorage.setItem("id","")
     }
+
+    // }
 
     return (
         <Layout>
@@ -59,8 +61,8 @@ function StaffSalaryComponent() {
             <div className='row'>
                 <div className='col-lg-8'></div>
                 <div className='col-lg-2 mt-2 text-end'>
-                    <Link href="/Payroll/addstaffsalaryform" id='AddButton' className='btn btn-primary'>Add</Link>
-
+                    <Link href="/Payroll/addstaffsalaryform" ><button onClick={removeID}  className='btn btn-primary AddButton'>Add</button></Link>
+                   
                 </div>
                 <div className='col-lg-2 mt-2'>
                     <button id='AddButton' className='btn btn-primary'>Upload Salary</button>
@@ -94,7 +96,7 @@ function StaffSalaryComponent() {
                                         <td>{data.baseSal}</td>
                                         <td>{data.daysinmonth}</td>
                                         <td>{data.hoursinday}</td>
-                                        <td><Link href="/Payroll/addstaffsalaryform"><button onClick={getdata.bind(this, data)}>edit</button></Link></td>
+                                        <td><Link href="/Payroll/addstaffsalaryform"><button onClick={getdata.bind(this,data)}>edit</button></Link></td> 
                                     </tr>
                                 )
                             })
