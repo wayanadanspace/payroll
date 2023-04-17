@@ -15,11 +15,11 @@ function StateMasterForm() {
 
   async function onSubmit(data) {
     if (actionType == "insert") {
-      await axios.post(hostURL + "Master/InsertStateType", data);
+      await axios.post(hostURL + "Master/InsertStateType", data);  //naveen.th@amazeinc.in, Insert API for State master, to add new data
       Swal.fire("Added succesfullly");
       location.href = "/Masters/statemasterdashboard";
     } else {
-      await axios.post(hostURL + "Master/UpdateStateType", data);
+      await axios.post(hostURL + "Master/UpdateStateType", data); //naveen.th@amazeinc.in, Update API for State master, to update data
       Swal.fire("Updated succesfullly");
       sessionStorage.removeItem("stateID");
       location.href = "/Masters/statemasterdashboard";
@@ -37,13 +37,13 @@ function StateMasterForm() {
   }, []);
 
   const getCountryList= async() =>{
-    let res = await axios.get(hostURL + "Master/GetCountryType");
+    let res = await axios.get(hostURL + "Master/GetCountryType"); //naveen.th@amazeinc.in, Get API for country master, to fetch data
     console.log(res.data);
     setCountryData(res.data);
   }
 
   const getStateMasterByID = async () => {
-    let res = await axios.get(hostURL + "Master/GetStateTypeByID?ID=" + ID);
+    let res = await axios.get(hostURL + "Master/GetStateTypeByID?ID=" + ID); //naveen.th@amazeinc.in, Get by ID API for State master, to fetch  data
     clearForm(res.data[0]);
   };
   function clearForm(existingData = null) {

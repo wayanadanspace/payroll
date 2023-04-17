@@ -19,7 +19,7 @@ function BrandMasterForm() {
       if (id) {
         let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
         let res = await axios.get(
-          hostURL + "Master/GetBrandMasterByID?ID=" + id
+          hostURL + "Master/GetBrandMasterByID?ID=" + id  // this Api is used for get the data by id  for updating exact value
         );
         clearForm(res.data[0]);
       } else {
@@ -47,14 +47,14 @@ function BrandMasterForm() {
     if (actionType == "insert") {
       try {
         
-        await axios.post(hostURL + "Master/InsertBrandMaster", data);
+        await axios.post(hostURL + "Master/InsertBrandMaster", data); // this for insrting the data using inserting Api call 
       } catch (error) {
         
       }
       
      
     } else {
-      await axios.post(hostURL + "Master/UpdateBrandMaster", data);
+      await axios.post(hostURL + "Master/UpdateBrandMaster", data); // this is for updating or Modifiying the data using  Update Api call
       alert("updated");
     }
   }

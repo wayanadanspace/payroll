@@ -19,7 +19,7 @@ function CountryMasterDash() {
   
   async function getData() {
     let res = await axios.get(
-      hostURL +"Master/GetCountryType"
+      hostURL +"Master/GetCountryType"   //naveen.th@amazeinc.in, Get API for Country master, to fetch data
     );
     setCountryData(res.data);
   }
@@ -34,8 +34,8 @@ function CountryMasterDash() {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.get(hostURL + "Master/DeleteCountryType?ID=" + id);
-        getData()
+        axios.get(hostURL + "Master/DeleteCountryType?ID=" + id);   //naveen.th@amazeinc.in, Delete API for Country master, to delete data by ID
+        getData() 
       }
     });
   }

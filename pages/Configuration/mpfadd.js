@@ -13,10 +13,10 @@ function mpfadd() {
 
     useEffect(() => {
         async function getMpfList() {
-            debugger
             const id = sessionStorage.getItem("id");
             if (id) {
                 let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
+                // This API is used to fetch the dashboard data from MPFConfogoration table based on ID
                 const response = await axios.get(hostURL + "HR/GetMPFconfogarationByID?ID=" + id);
                 clearForm(response.data[0])
             }
@@ -28,7 +28,6 @@ function mpfadd() {
     }, [1]);
 
     function clearForm(mpfData = null) {
-        debugger
         let details = {
             "ID": mpfData ? mpfData.id : "",
             "Taxiableincomelowlimit": mpfData ? mpfData.taxiableincomelowlimit : "",
@@ -43,9 +42,9 @@ function mpfadd() {
     }
 
     async function onSubmit(data) {
-        console.log(data)
         let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
         if (actionType == "insert") {
+            // This API is used to insert the data to the MPFConfogoration table
             await axios.post(hostURL + "HR/InsertMPFconfogaration", data);
             Swal.fire({
                 icon: "success",
@@ -54,7 +53,7 @@ function mpfadd() {
             });
         }
         else {
-            debugger;
+            // This API is used to update the data in the MPFConfogoration table
             await axios.post(hostURL + "HR/UpdateMPFconfogaration", data);
             Swal.fire({
                 icon: "success",
