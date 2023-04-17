@@ -12,19 +12,23 @@ export default function LocatorRequestsForm() {
     const { register, handleSubmit, reset, formState } = useForm();
     const { errors } = formState;
     const hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
-
+    const [userID, setUserIDData] = useState("")
+    
+        useEffect(() => {
+            debugger
+            let res = sessionStorage.getItem("userID");
+            setUserIDData(res)
+            
+        }, []);
 
     async function onSubmit(data) {
         debugger
-        await axios.post(hostURL + "Payroll/InsertLocatorTable", data);
+        const formData = { ...data, userID: userID };
+        console.log("form data",formData);
+        await axios.post(hostURL + "Payroll/InsertLocatorTable", formData);
         Swal.fire('Data Inserted successfully')
         console.log("Inserted data:", data);
     }
-
-    useEffect(() => {
-      const userid= sessionStorage.getItem("userID")
-      console.log(userid);
-    }, []);
 
     return (
         <Layout>
