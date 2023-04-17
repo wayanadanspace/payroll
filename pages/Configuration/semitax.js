@@ -8,7 +8,7 @@ function semitax() {
     let [dashboard, setDashboard] = useState([])
     let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
     const getData = async () => {
-        const res = await axios.get(hostURL + "HR/GetTaxconfigarationsemimonth")
+        const res = await axios.get(hostURL + "HR/GetTaxconfigarationsemimonth") //getting semiannual tax data and displaying in table [Shashank]
         console.log(res.data)
         setDashboard(res.data)
     }
@@ -32,7 +32,7 @@ function semitax() {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.get(hostURL + "HR/DeleteTaxconfigarationsemimonth?ID=" + id)
+                axios.get(hostURL + "HR/DeleteTaxconfigarationsemimonth?ID=" + id) //Deleting semiannual tax data based on ID [Shashank]
                 Swal.fire({
                     icon: "success",
                     titleText: "Deleted Successfully"
