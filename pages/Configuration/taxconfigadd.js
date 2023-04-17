@@ -16,11 +16,11 @@ function taxconfigadd() {
     async function onSubmit(data) {
         debugger
         if (actionType == "insert") {
-          await axios.post(hostURL + "HR/InsertTaxconfigaration", data);
+          await axios.post(hostURL + "HR/InsertTaxconfigaration", data); //naveen.th@amazeinc.in, Insert API for tax configuration, to add new data
           Swal.fire("Added succesfullly");
           location.href = "/Configuration/annualtax";
         } else {
-          await axios.post(hostURL + "HR/UpdateTaxconfigaration", data);
+          await axios.post(hostURL + "HR/UpdateTaxconfigaration", data); //naveen.th@amazeinc.in, Update API for tax configuration, to update data
           Swal.fire("Updated succesfullly");
           sessionStorage.removeItem("annualTaxID");
           location.href = "/Configuration/annualtax";
@@ -35,7 +35,7 @@ function taxconfigadd() {
         }
       }, []);
       const getAnnualTaxByID = async () => {
-        let res = await axios.get(hostURL + "HR/GetTaxconfigarationByID?ID=" + ID);
+        let res = await axios.get(hostURL + "HR/GetTaxconfigarationByID?ID=" + ID);  //naveen.th@amazeinc.in, Get by ID API for tax configuration, to fetch data
         clearForm(res.data[0]);
       };
       function clearForm(existingData = null) {
