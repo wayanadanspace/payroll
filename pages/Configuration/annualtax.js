@@ -14,7 +14,7 @@ function Annualtax() {
 
   async function getData() {
     let res = await axios.get(
-      hostURL + "HR/GetTaxconfigaration"
+      hostURL + "HR/GetTaxconfigaration"  //naveen.th@amazeinc.in, Get API for tax configuration, to fetch data
     );
     setannualTaxData(res.data);
   }
@@ -30,7 +30,7 @@ function Annualtax() {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.get(hostURL + "HR/DeleteTaxconfigaration?ID=" + id);
+        axios.get(hostURL + "HR/DeleteTaxconfigaration?ID=" + id); //naveen.th@amazeinc.in, Delete API for tax configuration, to delete data by ID
         getData()
       }
     });
