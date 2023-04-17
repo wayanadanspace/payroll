@@ -4,6 +4,7 @@ import styles from './layout.module.css';
 import Sidebar from './sidebar'
 import Login from './login';
 import Head from 'next/head';
+import Footer from './footer'
 
 
 const Layout = ({ children }) => {
@@ -61,6 +62,7 @@ const Layout = ({ children }) => {
                         </div>
                         <div className='col-lg-10' style={{ height: '90vh', overflowY: 'auto' }}>
                             <main>{children}</main>
+                            <Footer></Footer>
                         </div>
                     </div>
                 </div>
