@@ -11,7 +11,7 @@ function BrandMasterDashboard() {
 
   const getBrandMaster = async () => {
     let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
-    let res = await axios.get(hostURL + "Master/GetBrandMaster");
+    let res = await axios.get(hostURL + "Master/GetBrandMaster"); //This Api is useed for Get the Dashborad data band Master
     setBrandMaster(res.data);
   };
 
@@ -42,7 +42,7 @@ function BrandMasterDashboard() {
         confirmButtonText: "Yes, delete it!",
       }).then((res) => {
         if (res) {
-          axios.get(hostURL + `Master/DeleteBrandMaster?id=${id}`);          
+          axios.get(hostURL + `Master/DeleteBrandMaster?id=${id}`);  // this is for deleting the data for dashborad using delete api call         
         }
         getBrandMaster();
       });
