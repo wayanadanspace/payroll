@@ -39,7 +39,7 @@ export default function locatordashboard() {
             content:
                 <div className="container-fluid mt-4">
                     <div className="row">
-                        <table >
+                        <table className='table  table-striped mt-3 text-center' >
                             <thead>
                                 <tr>
                                     <th>Date</th>
@@ -78,9 +78,9 @@ export default function locatordashboard() {
             content:
                 <div className="container-fluid mt-4">
                     <div className="row">
-                        <table >
+                        <table className='table  table-striped mt-3 text-center' >
                             <thead>
-                            <tr>
+                                <tr>
                                     <th>Date</th>
                                     <th>Destination</th>
                                     <th>TimeOfDeparture</th>
@@ -88,7 +88,6 @@ export default function locatordashboard() {
                                     <th>Purpose</th>
                                     <th>No Of Hours</th>
                                     <th>Status</th>
-                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -102,7 +101,6 @@ export default function locatordashboard() {
                                             <td>{data.purpose}</td>
                                             <td>{data.hourDiff}</td>
                                             <td>{data.status}</td>
-                                            <td><button className="btn btn-primary">Cancel</button></td>
                                         </tr>
                                     )
                                 })
@@ -117,9 +115,9 @@ export default function locatordashboard() {
             content:
                 <div className="container-fluid mt-4">
                     <div className="row">
-                        <table >
+                        <table className='table  table-striped mt-3 text-center' >
                             <thead>
-                            <tr>
+                                <tr>
                                     <th>Date</th>
                                     <th>Destination</th>
                                     <th>TimeOfDeparture</th>
@@ -127,7 +125,6 @@ export default function locatordashboard() {
                                     <th>Purpose</th>
                                     <th>No Of Hours</th>
                                     <th>Status</th>
-                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -141,7 +138,6 @@ export default function locatordashboard() {
                                             <td>{data.purpose}</td>
                                             <td>{data.hourDiff}</td>
                                             <td>{data.status}</td>
-                                            <td><button className="btn btn-primary">Cancel</button></td>
                                         </tr>
                                     )
                                 })
