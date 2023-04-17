@@ -17,7 +17,7 @@ function Otmaster() {
       const id = sessionStorage.getItem("id");
       if (id) {
         let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
-        const response = await axios.get(hostURL + "Master/GetOTRatesByID?ID=" + id);
+        const response = await axios.get(hostURL + "Master/GetOTRatesByID?ID=" + id);// This API is used to fetch the dashboard data from OTRates table based on ID
         clearForm(response.data[0])
       }
       else {
@@ -45,7 +45,7 @@ function Otmaster() {
     console.log(data)
     let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
     if (actionType == "insert") {
-      await axios.post(hostURL + "Master/InsertOTRates", data);
+      await axios.post(hostURL + "Master/InsertOTRates", data);// This API is used to insert the data to the OTRates table
       Swal.fire({
         icon: "success",
         title: "Hurray..",
@@ -54,7 +54,7 @@ function Otmaster() {
     }
     else {
       debugger;
-      await axios.post(hostURL + "Master/UpdateOTRates", data);
+      await axios.post(hostURL + "Master/UpdateOTRates", data);// This API is used to update the data in the OTRates table
       Swal.fire({
         icon: "success",
         title: "Hurray..",

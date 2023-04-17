@@ -15,21 +15,21 @@ function WorkLocationMasterForm() {
 
   async function onSubmit(data) {
     if (actionType == "insert") {
-        await axios.post(hostURL + "Master/InsertWorkingLocationMaster", data);
+        await axios.post(hostURL + "Master/InsertWorkingLocationMaster", data); //naveen.th@amazeinc.in, Insert API for Working location master, to add new data
         Swal.fire(
           'Added succesfullly'
         );
-        location.href = "/Masters/worklocationmasterdashboard";
+        location.href = "/Masters/worklocationmasterdashboard"; 
     }
     else {
-        await axios.post(hostURL + "Master/UpdateWorkingLocationMaster", data);
+        await axios.post(hostURL + "Master/UpdateWorkingLocationMaster", data); //naveen.th@amazeinc.in, Update API for Working location master, to update existing data
         Swal.fire(
           "Updated succesfullly"
         );
         sessionStorage.removeItem("WorkLocationID");
         location.href = "/Masters/worklocationmasterdashboard";
     }
-    await axios.get(hostURL + "Master/GetWorkingLocationMaster" );
+    await axios.get(hostURL + "Master/GetWorkingLocationMaster" ); //naveen.th@amazeinc.in, Get API for Working location master dashboard, to fetch new updated data
   }
 
   useEffect(() => {
@@ -41,7 +41,7 @@ function WorkLocationMasterForm() {
   }, []);
 
   const getWorkLocationMasterByID = async () => {
-    let res = await axios.get(hostURL + "Master/GetWorkingLocationMasterByID?ID=" + ID);
+    let res = await axios.get(hostURL + "Master/GetWorkingLocationMasterByID?ID=" + ID); //naveen.th@amazeinc.in, Get by ID API for Working location master, to fetch data of particular work location
     clearForm(res.data[0]);
 
 }

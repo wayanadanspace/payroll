@@ -8,7 +8,7 @@ import axios from 'axios';
 
 function EmploymentJobHistory() {
   const [ModalIsOpen, setModalIsOpen] = useState(false);
-  const [dashboard,setDashboard] = useState([])
+  const [dashboard, setDashboard] = useState([])
 
   const handleModalOpen = () => {
     setModalIsOpen(true);
@@ -29,6 +29,11 @@ function EmploymentJobHistory() {
 
   const addPayrollYTD = async () => {
     await axios.post(hostURL + "Payroll/InsertPayrollYTD", items)
+  }
+
+  const getPayrollYTD = async () => {
+    const res = await axios.get(hostURL + "Payroll/GetPayrollYTD") //getting payrollYTD data [Shashank]
+    console.log(res)
   }
 
 
@@ -66,14 +71,16 @@ function EmploymentJobHistory() {
 
   };
 
-  const getPayroll = async () =>{
+  const getPayroll = async () => {
     const res = await axios.get(hostURL + "Payroll/GetPayrollYTD")
-    console.log(res)
+    console.log(res.data)
+    setDashboard(res.data)
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     getPayroll();
-  },[])
+    getPayrollYTD();
+  }, [])
 
   return (
     <Layout>
@@ -146,6 +153,25 @@ function EmploymentJobHistory() {
                 <th>Actions</th>
               </tr>
             </thead>
+
+            <tbody>
+              {
+                dashboard.map((data) => {
+                  return (
+                    <tr key={data.id}>
+                      <td>{data.employeID}</td>
+                      <td>{data.name}</td>
+                      <td>{data.department}</td>
+                      <td></td>
+                      <td>{data.emailID}</td>
+                      <td>{data.joiningDate}</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  )
+                })
+              }
+            </tbody>
           </table>
         </div>
       </div>

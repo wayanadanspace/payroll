@@ -15,21 +15,21 @@ function CountryMasterForm() {
 
   async function onSubmit(data) {
     if (actionType == "insert") {
-      await axios.post(hostURL + "Master/InsertCountryType", data);
+      await axios.post(hostURL + "Master/InsertCountryType", data);  //naveen.th@amazeinc.in, Insert API for Country master, to add new data
       Swal.fire(
         'Added succesfullly'
       );
       location.href = "/Masters/countrymasterdashboard";
     }
     else {
-      await axios.post(hostURL + "Master/UpdateCountryType", data);
-      Swal.fire(
-        "Updated succesfullly"
-      );
-      sessionStorage.removeItem("countryID");
-      location.href = "/Masters/countrymasterdashboard";
+        await axios.post(hostURL + "Master/UpdateCountryType", data); //naveen.th@amazeinc.in, Update API for Country master, to update data
+        Swal.fire(
+          "Updated succesfullly"
+        );
+        sessionStorage.removeItem("countryID");
+        location.href = "/Masters/countrymasterdashboard";
     }
-    await axios.get(hostURL + "Master/GetCountryType");
+    await axios.get(hostURL + "Master/GetCountryType" ); //naveen.th@amazeinc.in, Get API for Country master, to fetch updated data 
   }
 
   useEffect(() => {
@@ -40,8 +40,8 @@ function CountryMasterForm() {
     }
   }, []);
 
-  const getWorkLocationMasterByID = async () => {
-    let res = await axios.get(hostURL + "Master/GetCountryTypeByID?ID=" + ID);
+   const getWorkLocationMasterByID = async () => {
+    let res = await axios.get(hostURL + "Master/GetCountryTypeByID?ID=" + ID); //naveen.th@amazeinc.in, Get by ID API for Country master, to fetch data
     clearForm(res.data[0]);
   }
   function clearForm(existingData = null) {
