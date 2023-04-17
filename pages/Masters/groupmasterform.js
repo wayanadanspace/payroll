@@ -14,12 +14,12 @@ function GroupMasterForm() {
     
     async function onSubmit(data) {
         if (actionType == "insert") {
-            await axios.post(hostURL + "Master/InsertGroupMaster", data);
+            await axios.post(hostURL + "Master/InsertGroupMaster", data);   //naveen.th@amazeinc.in, Insert API for group master, to add new data
             Swal.fire('Added Successfully')
             location.href = "/Masters/groupmaster";
         }
         else {
-            await axios.post(hostURL + "Master/UpdateGroupMaster", data);
+            await axios.post(hostURL + "Master/UpdateGroupMaster", data);  //naveen.th@amazeinc.in, Update API for group master, to update existing data
             Swal.fire('Updated Successfully')
             sessionStorage.removeItem("groupMasterID");
             location.href = "/Masters/groupmaster";
@@ -34,7 +34,7 @@ function GroupMasterForm() {
       }, []);
 
       const getGroupMasterByID = async (id) => {
-        let res = await axios.get(hostURL + "Master/GetGroupMasterByID?ID=" + ID);
+        let res = await axios.get(hostURL + "Master/GetGroupMasterByID?ID=" + ID);  //naveen.th@amazeinc.in, Get by ID API for group master, to fetch data
         clearForm(res.data[0]);
     }
 

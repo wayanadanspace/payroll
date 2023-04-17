@@ -5,7 +5,7 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 import Styles from '../../styles/annualtax.module.css'
 
-function annualtax() {
+function Annualtax() {
   const [annualTax, setannualTaxData] = useState([]);
   let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
   useEffect(() => {
@@ -123,4 +123,4 @@ function annualtax() {
   )
 }
 
-export default annualtax
+export default Annualtax
