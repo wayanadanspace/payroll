@@ -1,6 +1,7 @@
 import axios from 'axios'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
+import Layout from '@/Components/layout';
 function StaffSalaryComponent() {
     let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
     const [staffSalary, setstaffSalary] = useState([])
@@ -21,7 +22,7 @@ function StaffSalaryComponent() {
     // }
 
     return (
-        <div>
+        <Layout>
             <h3 className='text-primary fs-5 mt-3'>Salary Staff Details</h3>
             <div className='card p-3 border-0 shadow-lg rounded-3 mt-4'>
                 <div className='row'>
@@ -100,7 +101,7 @@ function StaffSalaryComponent() {
                     </tbody>
                 </table>
             </div>
-        </div>
+        </Layout>
     )
 }
 
