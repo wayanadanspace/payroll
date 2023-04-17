@@ -7,6 +7,7 @@ import axios from 'axios';
 
 
 function EmploymentJobHistory() {
+  const [items, setItems] = useState([]);
   const [ModalIsOpen, setModalIsOpen] = useState(false);
   const [dashboard, setDashboard] = useState([])
 
@@ -28,7 +29,12 @@ function EmploymentJobHistory() {
   };
 
   const addPayrollYTD = async () => {
-    await axios.post(hostURL + "Payroll/InsertPayrollYTD", items)
+    try {
+      // console.log(items);
+      await axios.post(hostURL + "Payroll/InsertPayrollYTD", items)
+    } catch (error) {
+      alert("insert not done")
+    }
   }
 
   const getPayrollYTD = async () => {
@@ -37,7 +43,6 @@ function EmploymentJobHistory() {
   }
 
 
-  const [items, setItems] = useState("");
 
   const readExcel = async (file) => {
     // debugger
@@ -66,9 +71,8 @@ function EmploymentJobHistory() {
     promise.then((d) => {
       // debugger
       setItems(d);
-      console.log(d);
+      // console.log(d);
     });
-
   };
 
   const getPayroll = async () => {
