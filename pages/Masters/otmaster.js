@@ -13,10 +13,10 @@ function Otmaster() {
 
   useEffect(() => {
     async function otList() {
-      debugger
       const id = sessionStorage.getItem("id");
       if (id) {
         let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
+        // This API is used to fetch the dashboard data from OTRates table based on ID
         const response = await axios.get(hostURL + "Master/GetOTRatesByID?ID=" + id);
         clearForm(response.data[0])
       }
@@ -28,7 +28,6 @@ function Otmaster() {
   }, [1]);
 
   function clearForm(otData = null) {
-    debugger
     let details = {
       "ID": otData ? otData.id : "",
       "Day": otData ? otData.day : "",
@@ -42,9 +41,9 @@ function Otmaster() {
   }
 
   async function onSubmit(data) {
-    console.log(data)
     let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
     if (actionType == "insert") {
+      // This API is used to insert the data to the OTRates table
       await axios.post(hostURL + "Master/InsertOTRates", data);
       Swal.fire({
         icon: "success",
@@ -53,7 +52,7 @@ function Otmaster() {
       });
     }
     else {
-      debugger;
+      // This API is used to update the data in the OTRates table
       await axios.post(hostURL + "Master/UpdateOTRates", data);
       Swal.fire({
         icon: "success",
@@ -68,7 +67,7 @@ function Otmaster() {
   return (
     <Layout>
       <div>
-         <p id={Styles.title}>OT Master</p>
+        <p id={Styles.title}>OT Master</p>
         <div className="container-fluid">
           <div className={Styles.rowcss}>
             <div className="col-md-12">
@@ -99,9 +98,10 @@ function Otmaster() {
                     </div>
                     <div className="col-md-4">
                       <label > OT<span style={{ color: "red" }}>*</span></label>
-                      <input type="text" name="ot" className='form-control'  onkeypress='return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 46))' {...register("OT", {
-                        required: "This field is required", pattern: { value: '^[0-9 .]+$', message: "Please enter valid Details"
-                       }
+                      <input type="text" name="ot" className='form-control' onkeypress='return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 46))' {...register("OT", {
+                        required: "This field is required", pattern: {
+                          value: '^[0-9 .]+$', message: "Please enter valid Details"
+                        }
                       })} />
                       {errors.OT && <p className="error-message" style={{ color: "red" }}>{errors.OT.message}</p>}
                     </div>
@@ -115,7 +115,7 @@ function Otmaster() {
                     <div className="col-md-4">
                       <label > NDOT<span style={{ color: "red" }}>*</span></label>
                       <input type="text" name="ndot" className='form-control' {...register("NDOT", {
-                        required: "This field is required", pattern: { value: '^[A-Za-z0-9 ]+$', message: "Please enter valid Details"}
+                        required: "This field is required", pattern: { value: '^[A-Za-z0-9 ]+$', message: "Please enter valid Details" }
                       })} />
                       {errors.NDOT && <p className="error-message" style={{ color: "red" }}>{errors.NDOT.message}</p>}
                     </div>
@@ -154,68 +154,3 @@ function Otmaster() {
 }
 
 export default Otmaster;
-{/* <div className="container-fluid mt-4"> */ }
-{/* <div className="row shadow-lg p-2 rounded-4 p-3 ">
-            <div className="col-lg-1">
-              <b>
-                <p className="mt-2 text-center">
-                  <>
-                  </>
-                  Filter by:
-                </p>
-              </b>
-            </div>
-            <div className="col-lg-5">
-              <input
-                type="search"
-                className=" mt-2 form-control"
-                placeholder="Search "
-              />
-            </div>
-          </div>
-          <div className="row mt-4">
-            <div className="col-lg-10"></div>
-            <div className="col-lg-2">
-              <Link href="/Masters/otratedashboard"><button
-                className="btn btn-primary btn-sm shadow-lg"
-                id={Styles.addNew}
-              > 
-                ADD new
-              </button></Link>
-            </div>
-          </div> */}
-<br />
-{/* <div className="row">
-              <table className={Styles.commonTable}>
-                <thead>
-                  <tr>
-                    <th>Overtime Code</th>
-                    <th> Description</th>
-                    <th> Permanant Employee</th>
-                    <th> Probationary Employee</th>
-  
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-  
-                    <td>
-                      <div className="row">
-                        <div className="col-lg-4">
-                          <button id={Styles.actionBtn}>Edit</button>
-                        </div>
-  
-                        <div className="col-lg-4">
-                          <button id={Styles.actionBtn}>Delete</button>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div> */}

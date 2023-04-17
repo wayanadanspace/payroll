@@ -9,7 +9,7 @@ function LevelTypeDash() {
     let [dashboard, setDashboardData] = useState([])
     let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
     const getLevelType = async () => {
-        const res = await axios.get(hostURL + "Master/GetLevelType")
+        const res = await axios.get(hostURL + "Master/GetLevelType") //getting job level type data and displayed in a table [Shashank]
         console.log(res.data)
         setDashboardData(res.data)
     }
@@ -32,7 +32,7 @@ function LevelTypeDash() {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.get(hostURL + "Master/DeleteLevelType?ID=" + id)
+                axios.get(hostURL + "Master/DeleteLevelType?ID=" + id) // deleting data based on ID [Shashank]
                 Swal.fire({
                     icon: "success",
                     titleText: "Deleted Successfully"

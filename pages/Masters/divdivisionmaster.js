@@ -14,7 +14,7 @@ function DivDivisionMaster() {
     const onSubmit = async (data) => {
         console.log(JSON.stringify(data))
         if (actionType == "insert") {
-            await axios.post(hostURL + "Master/InsertDivisionMaster", data)
+            await axios.post(hostURL + "Master/InsertDivisionMaster", data) // inserting new division master data [Shashank]
             location.href = "/Masters/divisionmasterdashboard"
             Swal.fire({
                 icon: 'success',
@@ -31,7 +31,7 @@ function DivDivisionMaster() {
                 confirmButtonText: 'Yes, update it!'
             }).then((result) => {
                 if (result) {
-                    axios.post(hostURL + "Master/UpdateDivisionMaster", data)
+                    axios.post(hostURL + "Master/UpdateDivisionMaster", data) // updating existing data [Shashank]
                     sessionStorage.removeItem("id")
                     Swal.fire({
                         icon: "success",
@@ -56,7 +56,7 @@ function DivDivisionMaster() {
 
     let ID;
     const getByID = async () => {
-        const res = await axios.get(hostURL + "Master/GetDivisionMasterByID?ID=" + ID)
+        const res = await axios.get(hostURL + "Master/GetDivisionMasterByID?ID=" + ID) //getting division master data based on ID for updating existing details [Shashank]
         clearForm(res.data[0])
     }
 

@@ -11,6 +11,7 @@ function mpf() {
 
     const getMpfdetails = async () => {
         let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
+        // This API is used to fetch the data from MPFConfogaration table
         const res = await axios.get(hostURL + "HR/GetMPFconfogaration");
         setMpfDetails(res.data);
     }
@@ -30,8 +31,8 @@ function mpf() {
     const handleDelete = async (id) => {
         try {
             let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
+            // This API is used to delete the dashboard data based on ID
             const res = await axios.get(hostURL + `HR/DeleteMPFconfogaration?ID=${id}`);
-            console.log(res.data);
             Swal.fire({
                 icon: "success",
                 title: "Hurray..",
