@@ -61,7 +61,6 @@ function LevelTypeForm() {
   let ID;
 
   useEffect(() => {
-    // getLevelType();
     clearForm();
     ID = sessionStorage.getItem("id")
     if (ID) {
