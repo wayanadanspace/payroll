@@ -14,8 +14,8 @@ function SupportTicketDashboard() {
   const [SupportTicketDashboard, setSupportTicketDashboard] = useState([]);
 
    async function getSupportTicketDashboard(){
-    let res = await axios.get(hostURL + "");
-    setSupportTicketDashboard(res.data);
+    // let res = await axios.get(hostURL + "");
+    // setSupportTicketDashboard(res.data);
 
    }
    useEffect(()=>{
@@ -40,8 +40,8 @@ function SupportTicketDashboard() {
 
    async function getSupportTicketDashboardDelete(id){
   
-    let res = await axios.get(hostURL + "" +id);
-    getSupportTicketDashboard();
+    // let res = await axios.get(hostURL + "" +id);
+    // getSupportTicketDashboard();
 
 
   }
