@@ -50,7 +50,7 @@ function StaffSalaryComponent() {
 
                     <div className='col-lg-2'></div>
                     <div className='col-lg-1 text-primary'>
-                        <p>Count :</p>
+                        <p>Count : {staffSalary.length}</p>
                     </div>
                 </div>
 
