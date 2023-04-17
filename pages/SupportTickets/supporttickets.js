@@ -1,8 +1,10 @@
 import React from 'react'
 import Link from 'next/link'
-import Styles from '../styles/SupportTickets.module.css'
+// import Styles from '../styles/SupportTickets.module.css'
+import Styles from "/styles/SupportTickets.module.css"
 import { useCallback } from 'react'
-import { useDropzone } from 'react-dropzone'
+import { useDropzone } from "react-dropzone"
+import Layout from '@/Components/layout'
 
 function SupportTickets() {
     const onDrop = useCallback(acceptedFiles => {
@@ -11,6 +13,7 @@ function SupportTickets() {
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
     return (
+        <Layout>
         <div>
             <p id={Styles.p}>Support Tickets</p>
             <div id={Styles.card} className='card p-3 shadow-lg'>
@@ -67,13 +70,14 @@ function SupportTickets() {
                     <div className='col-lg-2'>
                         <button id={Styles.SaveButton}>Save</button></div>
                     <div className='col-lg-2'>
-                        <Link href='SupportTickets/supportticketdashboard' > <button id={Styles.CancelButton}>Cancel</button></Link>
+                        <Link href="/SupportTickets/supportticketdashboard"> <button id={Styles.CancelButton}>Cancel</button></Link>
                     </div>
                 </div>
 
             </div>
 
         </div>
+        </Layout>
     )
 }
 

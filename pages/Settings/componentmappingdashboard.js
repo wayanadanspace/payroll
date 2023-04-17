@@ -15,7 +15,7 @@ export default function componentMappingDashboard() {
   const [componentMapping, setcomponentMapping] = useState([]);
 
   const getcomponentMapping = async () => {
-    let res = await axios.get(hostURL + "Payroll/GetComponentMapping");
+    let res = await axios.get(hostURL + "Payroll/GetComponentMapping"); //This Api is useed for Get the Dashborad data band Master
     setcomponentMapping(res.data);
   }
 
@@ -35,7 +35,7 @@ export default function componentMappingDashboard() {
 
   const handleDelete = async (id) => {
     try {
-      let res = await axios.get(hostURL + `Payroll/DeleteComponentMapping?id=${id}`);
+      let res = await axios.get(hostURL + `Payroll/DeleteComponentMapping?id=${id}`); // this is for deleting the data for dashborad using delete api call 
       console.log(res.data);
       Swal.fire('Data deleted successfully')
       getcomponentMapping();
@@ -79,8 +79,7 @@ export default function componentMappingDashboard() {
 
               <Link href="/Settings/componentmapping"><button className="btn btn-primary btn-sm shadow-lg"
                 id={Styles.addNew} onClick={clearData.bind(this)} > ADD new</button>
-                {/* // onClick={() => setModalOpen(!modalOpen)}
->   */}
+                {/* // onClick={() => setModalOpen(!modalOpen)}>   */}
                 {/* <AiOutlinePlusCircle /> */}
 
               </Link>
