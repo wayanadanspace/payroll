@@ -6,16 +6,15 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import Layout from '@/Components/layout';
+import Swal from 'sweetalert2';
 
 function Runpayroll() {
     const [collapseOpen, setCollapseOpen] = React.useState(false);
     const [paycode, setPayCode] = useState([]);
-    const [paycodeSelected, setPayCodeSelected] = useState("");
     const [position, setPosition] = useState([]);
     const [department, setDepartment] = useState([]);
     const [dashboard, setDashboardData] = useState([]);
     const { register, handleSubmit, watch, reset, formState } = useForm();
-    const watchFields = watch(["PayCode", "text"]);
 
     useEffect(() => {
         async function getData() {
@@ -30,12 +29,6 @@ function Runpayroll() {
         getData()
     }, [1]);
 
-    // useEffect(() => {
-    //     // const subscription = watch((value, { name, type }) => console.log(value, name, type));
-    //     // return () => subscription.unsubscribe();
-    // }, [watch]);
-
-
     const handleButtonClick = async (payCode) => {
         console.log('Button clicked!');
         let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
@@ -44,7 +37,11 @@ function Runpayroll() {
             setDashboardData(res.data);
         }
         else {
-            alert("select ")
+            Swal.fire({
+                icon: "error",
+                title: "Oops..",
+                text: "Please select paycode...!",
+            });
         }
     };
 
@@ -66,7 +63,7 @@ function Runpayroll() {
                                         {
                                             paycode.map((data, index) => {
                                                 return (
-                                                    <option value={data.payCode}>{data.payCode}</option>
+                                                    <option value={data.payCode} key={data.id}>{data.payCode}</option>
                                                 )
                                             })
                                         }
@@ -106,7 +103,7 @@ function Runpayroll() {
                                         {
                                             position.map((data, index) => {
                                                 return (
-                                                    <option value={data.id}>{data.short}</option>
+                                                    <option value={data.id} key={data.id}>{data.short}</option>
                                                 )
                                             })
                                         }
@@ -123,7 +120,7 @@ function Runpayroll() {
                                         {
                                             department.map((data, index) => {
                                                 return (
-                                                    <option value={data.id}>{data.department_name}</option>
+                                                    <option value={data.id} key={data.id}>{data.department_name}</option>
                                                 )
                                             })
                                         }
@@ -177,6 +174,7 @@ function Runpayroll() {
                                     dashboard.map((data, index) => {
                                         return (
                                             <tr className="text-dark" key={index}>
+                                                <td></td>
                                                 <td>{data.payCode}</td>
                                                 <td>{data.payPeriod}</td>
                                                 <td>{data.comments}</td>
