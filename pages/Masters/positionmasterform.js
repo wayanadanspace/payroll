@@ -31,11 +31,11 @@ function PositionMasterDetails() {
 
 
     async function onSubmit(data) {
-        // alert(JSON.stringify(data))
+
         console.log(data);
         if (actionType == "insert") {
             try {
-                await axios.post(hostURL + 'Master/InsertRoleType', data);
+                await axios.post(hostURL + 'Master/InsertRoleType', data); //api call to insert the data
                 location.href = ("/Masters/positionmasterdashboard");
             }
             catch (error) {
@@ -43,7 +43,7 @@ function PositionMasterDetails() {
             }
         }
         else {
-            await axios.post(hostURL + 'Master/UpdateRoleType', data);
+            await axios.post(hostURL + 'Master/UpdateRoleType', data); //update api call
             alert("updated");
         }
 
@@ -53,7 +53,7 @@ function PositionMasterDetails() {
             debugger
             const id = sessionStorage.getItem("id");
             if (id) {
-                const response = await axios.get(hostURL + 'Master/GetRoleTypeByID?ID=' + id);
+                const response = await axios.get(hostURL + 'Master/GetRoleTypeByID?ID=' + id); //getByID api call
                 clearForm(response.data[0])
             }
             else {
