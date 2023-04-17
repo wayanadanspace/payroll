@@ -14,7 +14,6 @@ function taxconfigadd() {
     let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
     
     async function onSubmit(data) {
-        debugger
         if (actionType == "insert") {
           await axios.post(hostURL + "HR/InsertTaxconfigaration", data); //naveen.th@amazeinc.in, Insert API for tax configuration, to add new data
           Swal.fire("Added succesfullly");
