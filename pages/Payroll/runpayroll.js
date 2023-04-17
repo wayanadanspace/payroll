@@ -19,21 +19,24 @@ function Runpayroll() {
     useEffect(() => {
         async function getData() {
             let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
-            let res = await axios.get(hostURL + "HR/GetPayPeriodSetting"); // This API is used for fetch the Payperiod data for Dropdown
+            // This API is used for fetch the Payperiod data for Dropdown
+            let res = await axios.get(hostURL + "HR/GetPayPeriodSetting");
             setPayCode(res.data);
-            res = await axios.get(hostURL + "Master/GetRoleType"); // This API is used for fetch the Roletype data for Dropdown
+            // This API is used for fetch the Roletype data for Dropdown
+            res = await axios.get(hostURL + "Master/GetRoleType");
             setPosition(res.data);
-            res = await axios.get(hostURL + "Master/GetDepartmentMaster"); // This API is used for fetch the departmentMaster data for Dropdown
+            // This API is used for fetch the departmentMaster data for Dropdown
+            res = await axios.get(hostURL + "Master/GetDepartmentMaster");
             setDepartment(res.data);
         }
         getData()
     }, []);
 
     const handleButtonClick = async (payCode) => {
-        console.log('Button clicked!');
         let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
         if (watch("PayCode")) {
-            let res = await axios.get(hostURL + `Payroll/GetPayPeriodSettingByPaycode?PayCode=${watch("PayCode")}`);// This API is used for fetch the data based on Parameter(paycode)
+            // This API is used for fetch the data based on Parameter(paycode)
+            let res = await axios.get(hostURL + `Payroll/GetPayPeriodSettingByPaycode?PayCode=${watch("PayCode")}`);
             setDashboardData(res.data);
         }
         else {

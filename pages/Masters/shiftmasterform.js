@@ -13,11 +13,11 @@ function ShiftMasterForm() {
 
    useEffect(() => {
       async function getShiftList() {
-         debugger
          const id = sessionStorage.getItem("id");
          if (id) {
             let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
-            const response = await axios.get(hostURL + "Master/GetShiftMasterByID?ID=" + id); // This API is used to fetch the dashboard data from ShiftMaster table based on ID
+             // This API is used to fetch the dashboard data from ShiftMaster table based on ID
+            const response = await axios.get(hostURL + "Master/GetShiftMasterByID?ID=" + id);
             clearForm(response.data[0])
          }
          else {
@@ -29,7 +29,6 @@ function ShiftMasterForm() {
 
 
    function clearForm(otData = null) {
-      debugger
       let details = {
          "ID": otData ? otData.id : "",
          "Short": otData ? otData.short : "",
@@ -43,26 +42,26 @@ function ShiftMasterForm() {
    }
 
    async function onSubmit(data) {
-      console.log(data)
       let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
       if (actionType == "insert") {
-        await axios.post(hostURL + "Master/InsertShiftMaster", data); // This API is used to insert the data to the ShiftMaster table
-        Swal.fire({
-          icon: "success",
-          title: "Hurray..",
-          text: "Data was inserted...!",
-        });
+         // This API is used to insert the data to the ShiftMaster table
+         await axios.post(hostURL + "Master/InsertShiftMaster", data);
+         Swal.fire({
+            icon: "success",
+            title: "Hurray..",
+            text: "Data was inserted...!",
+         });
       }
       else {
-        debugger;
-        await axios.post(hostURL + "Master/UpdateShiftMaster", data); // This API is used to update the data in the ShiftMaster table
-        Swal.fire({
-          icon: "success",
-          title: "Hurray..",
-          text: "Data was updated...!",
-        });  
+          // This API is used to update the data in the ShiftMaster table
+         await axios.post(hostURL + "Master/UpdateShiftMaster", data);
+         Swal.fire({
+            icon: "success",
+            title: "Hurray..",
+            text: "Data was updated...!",
+         });
       }
-    }
+   }
    return (
       <Layout>
          <div className="container-fluid">
