@@ -27,7 +27,7 @@ function Runpayroll() {
             setDepartment(res.data);
         }
         getData()
-    }, [1]);
+    }, []);
 
     const handleButtonClick = async (payCode) => {
         console.log('Button clicked!');
