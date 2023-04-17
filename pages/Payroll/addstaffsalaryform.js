@@ -8,7 +8,8 @@ import Swal from 'sweetalert2';
 function addstaffsalaryform() {
    // eslint-disable-next-line react-hooks/rules-of-hooks
    const { register, handleSubmit, reset, formState } = useForm();
-
+   // eslint-disable-next-line react-hooks/rules-of-hooks
+   const [Staff, setStaff] = useState([]);
    const { errors } = formState;
 
    // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -20,11 +21,11 @@ function addstaffsalaryform() {
 
    async function onSubmit(data) {
       alert(JSON.stringify(data))
-      // debugger
+
       console.log(data);
       if (actionType == "insert") {
-debugger
 
+         //this api is for insert//
          await axios.post(hostURL + 'Payroll/UpdateDe_minimis_Detailsforstaff', data);
          Swal.fire({ icon: "success", text: "Data Successfully added" })
          location.href = ("/Payroll/staffsalarycomponent");
@@ -42,6 +43,7 @@ debugger
          }).then((result) => {
 
             if (result.isConfirmed) {
+               //this api is for update//
                axios.post(hostURL + 'Payroll/UpdateDe_minimis_Detailsforstaff', data);
                sessionStorage.removeItem("id")
                Swal.fire(
@@ -62,11 +64,13 @@ debugger
 
       async function getaddsalaryByID() {
 
-         // debugger
 
+         let res = await axios.get(hostURL + "HR/GetAllStaffNew"); // This API is used for fetch the  data for Dropdown
+         setStaff(res.data);
          const id = sessionStorage.getItem("id");
 
          if (id) {
+            //this api is for get details by id//
             const response = await axios.get(hostURL + 'HR/GetMyDetailsByStaffID?id=' + id);
 
             clearForm(response.data[0])
@@ -133,6 +137,19 @@ debugger
                            </div>
                            <div className="row leavereq">
                               <div className="col-md-2">
+                                 <div className="dropdown">
+                                    <select id="Staff" name="Staff" className="form-control" {...register("Staff", { required: true })}>
+                                       <option value="" disabled="">
+                                          Select staff </option>
+                                       {
+                                          Staff.map((data, index) => {
+                                             return (
+                                                <option value={data.id} key={data.id}>{data.name}</option>
+                                             )
+                                          })
+                                       }
+                                    </select>
+                                 </div>
                               </div>
                               <div className="col-md-3"><input {...register('BaseSal')} type="number" id="BaseSal" name="BaseSal" placeholder="Basic Salary" className="form-control " /></div>
                               <div className="col-md-3"><input {...register('effectivedate')} type="date" id="effectivedate" name="effectivedate" placeholder="New Salary" className="form-control " /></div>
