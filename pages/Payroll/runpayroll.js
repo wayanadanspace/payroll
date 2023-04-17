@@ -15,17 +15,25 @@ function Runpayroll() {
     useEffect(() => {
         async function getData() {
             let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
-            let res = await axios.get(hostURL + "HR/GetPayPeriodSetting");
+            let res = await axios.get(hostURL + "HR/GetPayPeriodSetting"); // This API is used for fetch the Payperiod data for Dropdown
             setPayCode(res.data);
-            res = await axios.get(hostURL + "Master/GetRoleType");
+            res = await axios.get(hostURL + "Master/GetRoleType"); // This API is used for fetch the Roletype data for Dropdown
             setPosition(res.data);
-            res = await axios.get(hostURL + "Master/GetDepartmentMaster");
+            res = await axios.get(hostURL + "Master/GetDepartmentMaster"); // This API is used for fetch the departmentMaster data for Dropdown
             setDepartment(res.data);
-            res = await axios.get(hostURL + "Payroll/Get_Employees_For_Payroll_FromPreliminary?StartDate=2023/04/01&EndDate=2023/04/30");
-            setDashboardData(res.data);
         }
         getData()
     }, [1]);
+
+
+    // const handleButtonClick = () => {
+    //     console.log('Button clicked!');
+    //     let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
+    //     let res = axios.get(hostURL + "Payroll/Get_Employees_For_Payroll_FromPreliminary?StartDate=2023/04/01&EndDate=2023/04/30");// This API is used for fetch the data based on Date
+    //     setDashboardData(res.data);
+    // };
+
+
 
 
     return (
@@ -63,7 +71,8 @@ function Runpayroll() {
                             type="button"
                             id="collapseExample"
                             onClick={() => {
-                                setCollapseOpen(!collapseOpen)
+                                setCollapseOpen(!collapseOpen);
+                                // handleButtonClick();
                             }}
                         >
                             FETCH EMPLOYEES

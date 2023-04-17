@@ -10,7 +10,7 @@ function ShiftMaster() {
 
   const getShiftdetails = async () => {
     let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
-    const res = await axios.get(hostURL + "Master/GetShiftMaster");
+    const res = await axios.get(hostURL + "Master/GetShiftMaster");  // This API is used to fetch the data from ShiftMaster table
     setShiftDetails(res.data);
   }
 
@@ -28,7 +28,7 @@ function ShiftMaster() {
   const handleDelete = async (id) => {
     try {
       let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
-      const res = await axios.get(hostURL + `Master/DeleteShiftMaster?ID=${id}`);
+      const res = await axios.get(hostURL + `Master/DeleteShiftMaster?ID=${id}`); // This API is used to delete the dashboard data based on ID
       console.log(res.data);
       Swal.fire({
         icon: "success",

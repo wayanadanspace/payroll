@@ -17,7 +17,7 @@ function mpfadd() {
             const id = sessionStorage.getItem("id");
             if (id) {
                 let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
-                const response = await axios.get(hostURL + "HR/GetMPFconfogarationByID?ID=" + id);
+                const response = await axios.get(hostURL + "HR/GetMPFconfogarationByID?ID=" + id);// This API is used to fetch the dashboard data from MPFConfogoration table based on ID
                 clearForm(response.data[0])
             }
             else {
@@ -46,7 +46,7 @@ function mpfadd() {
         console.log(data)
         let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
         if (actionType == "insert") {
-            await axios.post(hostURL + "HR/InsertMPFconfogaration", data);
+            await axios.post(hostURL + "HR/InsertMPFconfogaration", data);// This API is used to insert the data to the MPFConfogoration table
             Swal.fire({
                 icon: "success",
                 title: "Hurray..",
@@ -55,7 +55,7 @@ function mpfadd() {
         }
         else {
             debugger;
-            await axios.post(hostURL + "HR/UpdateMPFconfogaration", data);
+            await axios.post(hostURL + "HR/UpdateMPFconfogaration", data);// This API is used to update the data in the MPFConfogoration table
             Swal.fire({
                 icon: "success",
                 title: "Hurray..",
