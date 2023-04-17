@@ -14,7 +14,7 @@ function SemiTaxForm() {
     const onSubmit = async (data) => {
         console.log(JSON.stringify(data))
         if (actionType == "insert") {
-            await axios.post(hostURL + "HR/InsertTaxconfigarationsemimonth", data)
+            await axios.post(hostURL + "HR/InsertTaxconfigarationsemimonth", data) // Inserting new data [Shashank]
             location.href = "/Configuration/semitax";
             Swal.fire({
                 icon: 'success',
@@ -31,7 +31,7 @@ function SemiTaxForm() {
                 confirmButtonText: 'Yes, update it!'
             }).then((result) => {
                 if (result) {
-                    axios.post(hostURL + "HR/UpdateTaxconfigarationsemimonth", data)
+                    axios.post(hostURL + "HR/UpdateTaxconfigarationsemimonth", data) // Updating existing data [Shashank]
                     sessionStorage.removeItem("id")
                     Swal.fire({
                         icon: "success",
@@ -60,7 +60,7 @@ function SemiTaxForm() {
     }
 
     async function getByID() {
-        const res = await axios.get(hostURL + "HR/GetTaxconfigarationsemimonthByID?ID=" + ID)
+        const res = await axios.get(hostURL + "HR/GetTaxconfigarationsemimonthByID?ID=" + ID) //getting semi annual tax data based on ID to update details [Shashank]
         console.log(res.data)
         clearForm(res.data[0])
     }

@@ -4,6 +4,7 @@ import Layout from '@/Components/layout';
 import { useForm } from 'react-hook-form';
 import Link from 'next/link';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 function addstaffsalaryform() {
    // eslint-disable-next-line react-hooks/rules-of-hooks
    const { register, handleSubmit, reset, formState } = useForm();
@@ -18,14 +19,15 @@ function addstaffsalaryform() {
 
 
    async function onSubmit(data) {
-      // alert(JSON.stringify(data))
+      alert(JSON.stringify(data))
+      debugger
       console.log(data);
       if (actionType == "insert") {
 
 
          await axios.post(hostURL + 'Payroll/UpdateDe_minimis_Detailsforstaff', data);
          Swal.fire({ icon: "success", text: "Data Successfully added" })
-         location.href = ("/Masters/staffSalarydashboard");
+         location.href = ("/Payroll/staffsalarycomponent");
 
       }
       else {
@@ -69,11 +71,7 @@ function addstaffsalaryform() {
 
          }
 
-         else {
 
-            clearForm();
-
-         }
 
       }
 
@@ -86,10 +84,10 @@ function addstaffsalaryform() {
 
          "ID": staffSalary ? staffSalary.id : "",
 
-         "baseSal": staffSalary ? staffSalary.baseSal : "",
+         "BaseSal": staffSalary ? staffSalary.baseSal : "",
 
-         "daysemployeIDinmonth": staffSalary ? staffSalary.daysemployeIDinmonth : "",
-         "hoursdaysinmonthinday": staffSalary ? staffSalary.hoursdaysinmonthinday : "",
+         "effectivedate": staffSalary ? staffSalary.daysemployeIDinmonth : "",
+         "daysinmonth": staffSalary ? staffSalary.hoursdaysinmonthinday : "",
          "hoursinday": staffSalary ? staffSalary.hoursinday : "",
 
       }
@@ -150,9 +148,9 @@ function addstaffsalaryform() {
 
                               </div>
 
-                              <div class="col-md-3"><input {...register('baseSal')} type="number" id="BaseSal" name="BaseSal" placeholder="Basic Salary" class="form-control " /></div>
-                              <div class="col-md-3"><input {...register('daysemployeIDinmonth')} type="date" id="effectivedate" name="effectivedate" placeholder="New Salary" class="form-control " /></div>
-                              <div class="col-md-2"><input {...register('hoursdaysinmonthinday')} type="number" id="daysinmonth" name="daysinmonth" placeholder="Working Days In Month" class="form-control " /></div>
+                              <div class="col-md-3"><input {...register('BaseSal')} type="number" id="BaseSal" name="BaseSal" placeholder="Basic Salary" class="form-control " /></div>
+                              <div class="col-md-3"><input {...register('effectivedate')} type="date" id="effectivedate" name="effectivedate" placeholder="New Salary" class="form-control " /></div>
+                              <div class="col-md-2"><input {...register('daysinmonth')} type="number" id="daysinmonth" name="daysinmonth" placeholder="Working Days In Month" class="form-control " /></div>
                               <div class="col-md-2"><input {...register('hoursinday')} type="number" id="hoursinday" name="hoursinday" placeholder="Working Hours In Day" class="form-control " /></div>
                            </div>
                            <div class="row">
