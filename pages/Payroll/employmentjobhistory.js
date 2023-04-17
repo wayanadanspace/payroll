@@ -9,11 +9,16 @@ import axios from 'axios';
 function EmploymentJobHistory() {
   const [items, setItems] = useState([]);
   const [ModalIsOpen, setModalIsOpen] = useState(false);
+  const [PayrollYTD, setPayrollYTD] = useState(false);
   const [dashboard, setDashboard] = useState([])
 
   const handleModalOpen = () => {
     setModalIsOpen(true);
   };
+
+  const handlePayrollYTD = (data) => {
+    setPayrollYTD(true)
+  }
 
   let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
 
@@ -28,6 +33,17 @@ function EmploymentJobHistory() {
     },
   };
 
+  const payrollYTDStyle = {
+    content: {
+      top: '15%',
+      left: '15%',
+      right: '15%',
+      bottom: '40%',
+      // marginRight: '-40%',
+      // transform: 'translate(-50%, -50%)',
+    },
+  };
+
   const addPayrollYTD = async () => {
     try {
       await axios.post(hostURL + "Payroll/InsertPayrollYTD", items)
@@ -35,13 +51,6 @@ function EmploymentJobHistory() {
       alert("insert not done")
     }
   }
-
-  const getPayrollYTD = async () => {
-    const res = await axios.get(hostURL + "Payroll/GetPayrollYTD") //getting payrollYTD data [Shashank]
-    console.log(res)
-  }
-
-
 
   const readExcel = async (file) => {
     const promise = new Promise((resolve, reject) => {
@@ -79,7 +88,6 @@ function EmploymentJobHistory() {
 
   useEffect(() => {
     getPayroll();
-    getPayrollYTD();
   }, [])
 
   return (
@@ -131,6 +139,32 @@ function EmploymentJobHistory() {
             </div>
           </Modal>
 
+
+          <Modal isOpen={PayrollYTD} style={payrollYTDStyle} onRequestClose={()=> setPayrollYTD(false)}>
+
+            <div className='container'>
+              <div className='row'>
+                <table className='table table-hover'>
+                  <thead className='bg-info text-white'>
+                    <tr>
+                      <th>Employee ID</th>
+                      <th>Employee Name</th>
+                      <th>Net Taxable YTD</th>
+                      <th>Taxable YTD</th>
+                      <th>Taxable Bonus YTD</th>
+                      <th>Non Taxable Bonus YTD</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </Modal>
+
           <div className='col-lg-2'>
             <button type='submit' onClick={handleModalOpen} className='btn btn-primary AddButton'>Payroll YTD</button>
           </div>
@@ -150,7 +184,7 @@ function EmploymentJobHistory() {
                 <th>Email</th>
                 <th>Date Of Joining</th>
                 <th>Manager</th>
-                <th>Actions</th>
+                <th colSpan={2} className='text-center'>Actions</th>
               </tr>
             </thead>
 
@@ -166,7 +200,12 @@ function EmploymentJobHistory() {
                       <td>{data.emailID}</td>
                       <td>{data.joiningDate}</td>
                       <td></td>
-                      <td></td>
+                      <td>
+                        <button className='btn btn-primary AddButton'>Payroll History</button>
+                      </td>
+                      <td>
+                        <button onClick={handlePayrollYTD.bind(this,data)} className='btn btn-primary AddButton'>PayrollYTD</button>
+                      </td>
                     </tr>
                   )
                 })
