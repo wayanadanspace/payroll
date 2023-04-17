@@ -5,7 +5,7 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 import Styles from '../../styles/annualtax.module.css'
 
-function annualtax() {
+function Annualtax() {
   const [annualTax, setannualTaxData] = useState([]);
   let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
   useEffect(() => {
@@ -14,7 +14,7 @@ function annualtax() {
 
   async function getData() {
     let res = await axios.get(
-      hostURL + "HR/GetTaxconfigaration"
+      hostURL + "HR/GetTaxconfigaration"  //naveen.th@amazeinc.in, Get API for tax configuration, to fetch data
     );
     setannualTaxData(res.data);
   }
@@ -30,7 +30,7 @@ function annualtax() {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.get(hostURL + "HR/DeleteTaxconfigaration?ID=" + id);
+        axios.get(hostURL + "HR/DeleteTaxconfigaration?ID=" + id); //naveen.th@amazeinc.in, Delete API for tax configuration, to delete data by ID
         getData()
       }
     });
@@ -123,4 +123,4 @@ function annualtax() {
   )
 }
 
-export default annualtax
+export default Annualtax

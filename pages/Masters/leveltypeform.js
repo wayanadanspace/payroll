@@ -17,7 +17,7 @@ function LevelTypeForm() {
     console.log(JSON.stringify(data));
     let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
     if (actionType == "insert") {
-      await axios.post(hostURL + "Master/InsertLevelType", data)
+      await axios.post(hostURL + "Master/InsertLevelType", data) // inserting new job level type data [Shashank]
       location.href = "/Masters/leveltypedashboard";
       Swal.fire({
         icon: 'success',
@@ -34,7 +34,7 @@ function LevelTypeForm() {
         confirmButtonText: 'Yes, update it!'
       }).then((result) => {
         if (result.isConfirmed) {
-          axios.post(hostURL + "Master/UpdateLevelType", data)
+          axios.post(hostURL + "Master/UpdateLevelType", data) // updating existing data [Shashank]
           sessionStorage.removeItem("id");
           Swal.fire({
             icon: "success",
@@ -61,7 +61,6 @@ function LevelTypeForm() {
   let ID;
 
   useEffect(() => {
-    // getLevelType();
     clearForm();
     ID = sessionStorage.getItem("id")
     if (ID) {
@@ -72,7 +71,7 @@ function LevelTypeForm() {
   const getDataByID = async () => {
     console.log(ID)
     let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
-    let res = await axios.get(hostURL + "Master/GetLevelTypeByID?ID=" + ID)
+    let res = await axios.get(hostURL + "Master/GetLevelTypeByID?ID=" + ID) //getting job level type data based on ID for updating existing details [Shashank]
     console.log(res)
     clearForm(res.data[0])
   }

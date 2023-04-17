@@ -4,10 +4,12 @@ import Layout from '@/Components/layout';
 import { useForm } from 'react-hook-form';
 import Link from 'next/link';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 function addstaffsalaryform() {
    // eslint-disable-next-line react-hooks/rules-of-hooks
    const { register, handleSubmit, reset, formState } = useForm();
-
+   // eslint-disable-next-line react-hooks/rules-of-hooks
+   const [Staff, setStaff] = useState([]);
    const { errors } = formState;
 
    // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -18,14 +20,15 @@ function addstaffsalaryform() {
 
 
    async function onSubmit(data) {
-      // alert(JSON.stringify(data))
+      alert(JSON.stringify(data))
+
       console.log(data);
       if (actionType == "insert") {
 
-
+         //this api is for insert//
          await axios.post(hostURL + 'Payroll/UpdateDe_minimis_Detailsforstaff', data);
          Swal.fire({ icon: "success", text: "Data Successfully added" })
-         location.href = ("/Masters/staffSalarydashboard");
+         location.href = ("/Payroll/staffsalarycomponent");
 
       }
       else {
@@ -40,7 +43,9 @@ function addstaffsalaryform() {
          }).then((result) => {
 
             if (result.isConfirmed) {
+               //this api is for update//
                axios.post(hostURL + 'Payroll/UpdateDe_minimis_Detailsforstaff', data);
+               sessionStorage.removeItem("id")
                Swal.fire(
                   'Updated!',
                   'Your file has been updated.',
@@ -54,26 +59,25 @@ function addstaffsalaryform() {
       }
 
    }
+   // eslint-disable-next-line react-hooks/rules-of-hooks
    useEffect(() => {
 
       async function getaddsalaryByID() {
 
-         debugger
 
+         let res = await axios.get(hostURL + "HR/GetAllStaffNew"); // This API is used for fetch the  data for Dropdown
+         setStaff(res.data);
          const id = sessionStorage.getItem("id");
 
          if (id) {
+            //this api is for get details by id//
             const response = await axios.get(hostURL + 'HR/GetMyDetailsByStaffID?id=' + id);
 
             clearForm(response.data[0])
 
          }
 
-         else {
 
-            clearForm();
-
-         }
 
       }
 
@@ -86,10 +90,9 @@ function addstaffsalaryform() {
 
          "ID": staffSalary ? staffSalary.id : "",
 
-         "baseSal": staffSalary ? staffSalary.baseSal : "",
-
-         "daysemployeIDinmonth": staffSalary ? staffSalary.daysemployeIDinmonth : "",
-         "hoursdaysinmonthinday": staffSalary ? staffSalary.hoursdaysinmonthinday : "",
+         "BaseSal": staffSalary ? staffSalary.baseSal : "",
+         "effectivedate": staffSalary ? staffSalary.effectivedate : "",
+         "daysinmonth": staffSalary ? staffSalary.daysinmonth : "",
          "hoursinday": staffSalary ? staffSalary.hoursinday : "",
 
       }
@@ -102,61 +105,59 @@ function addstaffsalaryform() {
 
    return (
       <Layout>
-         <div class="col-lg-10" >
+         <div className="col-lg-10" >
             <br />
             <form onSubmit={handleSubmit(onSubmit)}>
-               <div class="container-fluid">
-                  <div class="row">
-                     <div class="col-md-12">
-                        <div class="row">
-                           <div class="col-lg-8">
-                              <h3 class="Heading">Salary Details</h3>
+               <div className="container-fluid">
+                  <div className="row">
+                     <div className="col-md-12">
+                        <div className="row">
+                           <div className="col-lg-8">
+                              <h3 className="Heading">Salary Details</h3>
                            </div>
-                           <div class="col-lg-1"></div>
-                           <div class="col-lg-2"></div>
+                           <div className="col-lg-1"></div>
+                           <div className="col-lg-2"></div>
                         </div>
                         <br />
-                        <div class="card">
-                           <div class="row leavereq">
-                              <div class="col-md-2"><label>Staff</label></div>
-                              <div class="col-md-3">
+                        <div className="card">
+                           <div className="row leavereq">
+                              <div className="col-md-2"><label>Staff</label></div>
+                              <div className="col-md-3">
                                  <p>Basic Salary.</p>
                               </div>
-                              <div class="col-md-3">
+                              <div className="col-md-3">
                                  <p>Effective Date</p>
                               </div>
-                              <div class="col-md-2">
+                              <div className="col-md-2">
                                  <p>Working Days In Month</p>
                               </div>
-                              <div class="col-md-2">
+                              <div className="col-md-2">
                                  <p>Working Hours In Day</p>
                               </div>
                            </div>
-                           <div class="row leavereq">
-
-                              <div class="col-md-2">
-
-                                 <div tabindex="0" class="multiselect-dropdown">
-                                    <div class="disabled">
-                                       <span tabindex="-1" class="dropdown-btn">
-                                          <span class="selected-item-container"><span class="selected-item"><span >admin s&nbsp;</span><a  >x</a></span></span>
-                                          <span >
-                                             <span class="dropdown-multiselect__caret"></span>
-                                          </span>
-                                       </span>
-                                    </div>
-
+                           <div className="row leavereq">
+                              <div className="col-md-2">
+                                 <div className="dropdown">
+                                    <select id="Staff" name="Staff" className="form-control" {...register("Staff", { required: true })}>
+                                       <option value="" disabled="">
+                                          Select staff </option>
+                                       {
+                                          Staff.map((data, index) => {
+                                             return (
+                                                <option value={data.id} key={data.id}>{data.name}</option>
+                                             )
+                                          })
+                                       }
+                                    </select>
                                  </div>
-
                               </div>
-
-                              <div class="col-md-3"><input {...register('baseSal')} type="number" id="BaseSal" name="BaseSal" placeholder="Basic Salary" class="form-control " /></div>
-                              <div class="col-md-3"><input {...register('daysemployeIDinmonth')} type="date" id="effectivedate" name="effectivedate" placeholder="New Salary" class="form-control " /></div>
-                              <div class="col-md-2"><input {...register('hoursdaysinmonthinday')} type="number" id="daysinmonth" name="daysinmonth" placeholder="Working Days In Month" class="form-control " /></div>
-                              <div class="col-md-2"><input {...register('hoursinday')} type="number" id="hoursinday" name="hoursinday" placeholder="Working Hours In Day" class="form-control " /></div>
+                              <div className="col-md-3"><input {...register('BaseSal')} type="number" id="BaseSal" name="BaseSal" placeholder="Basic Salary" className="form-control " /></div>
+                              <div className="col-md-3"><input {...register('effectivedate')} type="date" id="effectivedate" name="effectivedate" placeholder="New Salary" className="form-control " /></div>
+                              <div className="col-md-2"><input {...register('daysinmonth')} type="number" id="daysinmonth" name="daysinmonth" placeholder="Working Days In Month" className="form-control " /></div>
+                              <div className="col-md-2"><input {...register('hoursinday')} type="number" id="hoursinday" name="hoursinday" placeholder="Working Hours In Day" className="form-control " /></div>
                            </div>
-                           <div class="row">
-                              <div class="col-lg-12">
+                           <div className="row">
+                              <div className="col-lg-12">
 
                                  {actionType == "insert" && (
 
@@ -178,7 +179,7 @@ function addstaffsalaryform() {
 
                                  )}
 
-                                 <div><Link href="/Payroll/staffsalarycomponent"><button class="button">Cancel</button></Link></div>
+                                 <div><Link href="/Payroll/staffsalarycomponent"><button className="button">Cancel</button></Link></div>
                               </div>
                            </div>
                         </div>

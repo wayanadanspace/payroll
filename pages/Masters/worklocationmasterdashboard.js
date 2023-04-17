@@ -17,7 +17,7 @@ let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
 
       async function getData() {
         let res = await axios.get(
-          hostURL +"Master/GetWorkingLocationMaster"
+          hostURL +"Master/GetWorkingLocationMaster"     //naveen.th@amazeinc.in, Get API for Working location master dashboard, to fetch data
         );
         setWorkLocationData(res.data);
       }
@@ -32,7 +32,7 @@ let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
           confirmButtonText: "Yes, delete it!",
         }).then((result) => {
           if (result.isConfirmed) {
-            axios.get(hostURL + "Master/DeleteWorkingLocationMaster?ID=" + id);
+            axios.get(hostURL + "Master/DeleteWorkingLocationMaster?ID=" + id); //naveen.th@amazeinc.in, Delete API for Working location master, to delete data by ID
             getData()
           }
         });
