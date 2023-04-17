@@ -30,7 +30,6 @@ function EmploymentJobHistory() {
 
   const addPayrollYTD = async () => {
     try {
-      // console.log(items);
       await axios.post(hostURL + "Payroll/InsertPayrollYTD", items)
     } catch (error) {
       alert("insert not done")
@@ -45,7 +44,6 @@ function EmploymentJobHistory() {
 
 
   const readExcel = async (file) => {
-    // debugger
     const promise = new Promise((resolve, reject) => {
       const fileReader = new FileReader();
       fileReader.readAsArrayBuffer(file);
@@ -69,9 +67,7 @@ function EmploymentJobHistory() {
       };
     });
     promise.then((d) => {
-      // debugger
       setItems(d);
-      // console.log(d);
     });
   };
 
