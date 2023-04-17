@@ -2,6 +2,7 @@ import React from "react";
 import Styles from "../../styles/BankAdviceList.module.css";
 import { useEffect, useRef, useState } from "react";
 import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
+import Layout from "@/Components/layout";
 
 const tabsData = [
   {
@@ -85,6 +86,7 @@ const tabsData = [
   {
     label: "Final Payroll",
     content: (
+     
       <div>
         <div className="container-fluid mt-4">
           <div className="row shadow-lg p-2 rounded-4 p-3">
@@ -149,6 +151,7 @@ const tabsData = [
           </div>
         </div>
       </div>
+      
     ),
   },
 ];
@@ -171,6 +174,7 @@ function BankAdviceList() {
   }, [activeTabIndex]);
 
   return (
+    <Layout>
     <div>
       <div className="relative">
         <br></br>
@@ -193,6 +197,7 @@ function BankAdviceList() {
       </div>
       <div className="py-4">{tabsData[activeTabIndex].content}</div>
     </div>
+    </Layout>
   );
 }
 export default BankAdviceList;

@@ -21,7 +21,7 @@ function ComponentMappingForm() {
       if (id) {
         let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
         let res = await axios.get(
-          hostURL + "Payroll/GetComponentMappingByID?ID=" + id
+          hostURL + "Payroll/GetComponentMappingByID?ID=" + id  // this Api is used for get the data by id  for updating exact value
         );
         clearForm(res.data[0]);
       } else {
@@ -59,7 +59,7 @@ function ComponentMappingForm() {
     if (actionType == "insert") {
       try {
         debugger;
-        await axios.post(hostURL + "Payroll/InsertComponentMapping", data);
+        await axios.post(hostURL + "Payroll/InsertComponentMapping", data); // this for insrting the data using inserting Api call 
         alert("data inserted")
       } 
      
@@ -68,7 +68,7 @@ function ComponentMappingForm() {
       }
     }
      else {
-      await axios.post(hostURL + "Payroll/UpdateComponentMapping", data);
+      await axios.post(hostURL + "Payroll/UpdateComponentMapping", data); // this is for updating or Modifiying the data using  Update Api call
       alert("updated");
     }
   }

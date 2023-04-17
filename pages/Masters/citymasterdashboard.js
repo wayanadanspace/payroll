@@ -13,7 +13,7 @@ function CityMasterDash() {
 
   const getCityMaster = async () => {
     let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
-    let res = await axios.get(hostURL + "Master/GetCityType");
+    let res = await axios.get(hostURL + "Master/GetCityType"); //This Api is useed for Get the Dashborad data ciyType Master
     setCityMaster(res.data);
   };
 
@@ -61,7 +61,7 @@ function CityMasterDash() {
       let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
       
       const res = await axios.get(
-        hostURL + `Master/DeleteCityType?id=${id}`
+        hostURL + `Master/DeleteCityType?id=${id}` // this is for deleting the data for dashborad using delete api call  
       );
       console.log(res.data);
       Swal.fire({

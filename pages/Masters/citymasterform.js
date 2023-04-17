@@ -22,16 +22,16 @@ function CityMasterForm() {
     async function getDropdownData() {
       let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
 
-      let res = await axios.get(hostURL + "Master/GetCountryType");
+      let res = await axios.get(hostURL + "Master/GetCountryType"); // this api call for master table this is used for DropDown data 
       setCountryData(res.data);
 
-      res = await axios.get(hostURL + "Master/GetStateType");
+      res = await axios.get(hostURL + "Master/GetStateType"); // this api call for master table this is used for DropDown data 
       setProvinceData(res.data);
 
       const id = sessionStorage.getItem("id");
       if (id) {
         const response = await axios.get(
-          hostURL + "Master/GetCityTypeByID?ID=" + id
+          hostURL + "Master/GetCityTypeByID?ID=" + id // this Api is used for get the data by id  for updating exact value
         );
         clearForm(response.data[0]);
       } else {
@@ -61,7 +61,7 @@ function CityMasterForm() {
     let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
     if (actionType == "insert") {
       try {
-        await axios.post(hostURL + "Master/InsertCityType", data);
+        await axios.post(hostURL + "Master/InsertCityType", data); // this for insrting the data using inserting Api call 
         Swal.fire({
           icon: "success",
           title: "Hurray...",
@@ -69,7 +69,7 @@ function CityMasterForm() {
         });
       } catch (error) {}
     } else {
-      await axios.post(hostURL + "Master/UpdateCityType", data);
+      await axios.post(hostURL + "Master/UpdateCityType", data); //  this is for updating or Modifiying the data using  Update Api call
       Swal.fire({
         icon: "success",
         title: "Hurray...",
