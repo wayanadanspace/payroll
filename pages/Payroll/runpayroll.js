@@ -234,4 +234,4 @@ function Runpayroll() {
     )
 }
 
-export default dynamic(() => Promise.resolve(Runpayroll), { ssr: false })
+export default Runpayroll

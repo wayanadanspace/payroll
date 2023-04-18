@@ -140,6 +140,7 @@ function EmploymentJobHistory() {
               <div className='row mt-3'>
                 <div className='col-lg-6'>
                   <input
+                    className='form-control'
                     type="file"
                     accept=".xlsx"
                     onChange={(e) => {
