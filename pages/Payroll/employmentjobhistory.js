@@ -121,7 +121,7 @@ function EmploymentJobHistory() {
 
         <div className='row mt-5 '>
           <div className='col-lg-3'>
-            <p className='text-primary text-uppercase'>Showing Results</p>
+            <p className='text-primary fw-bold'>Showing {dashboard.length} Results</p>
           </div>
 
           <div className='col-lg-5'></div>
@@ -140,6 +140,7 @@ function EmploymentJobHistory() {
               <div className='row mt-3'>
                 <div className='col-lg-6'>
                   <input
+                    className='form-control'
                     type="file"
                     accept=".xlsx"
                     onChange={(e) => {
