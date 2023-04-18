@@ -6,20 +6,20 @@ function StaffSalaryComponent() {
     let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
     const [staffSalary, setstaffSalary] = useState([])
     const getStaffSalary = async () => {
-//get api for staffsalarycomponent//
-        const {data} = await axios.get(hostURL + "HR/GetAllStaffNew")
-        // debugger
+        //get api for staffsalarycomponent//
+        const { data } = await axios.get(hostURL + "HR/GetAllStaffNew")
+
         setstaffSalary(data)
         console.log(data)
     }
     useEffect(() => {
         getStaffSalary();
     }, [])
-     const getdata=(data)=>{
-         sessionStorage.setItem("id",data.id);
-}
-    const removeID = () =>{
-        sessionStorage.setItem("id","")
+    const getdata = (data) => {
+        sessionStorage.setItem("id", data.id);
+    }
+    const removeID = () => {
+        sessionStorage.setItem("id", "")
     }
 
     // }
@@ -61,8 +61,8 @@ function StaffSalaryComponent() {
             <div className='row'>
                 <div className='col-lg-8'></div>
                 <div className='col-lg-2 mt-2 text-end'>
-                    <Link href="/Payroll/addstaffsalaryform" ><button onClick={removeID}  className='btn btn-primary AddButton'>Add</button></Link>
-                   
+                    <Link href="/Payroll/addstaffsalaryform" ><button onClick={removeID} className='btn btn-primary AddButton'>Add</button></Link>
+
                 </div>
                 <div className='col-lg-2 mt-2'>
                     <button id='AddButton' className='btn btn-primary'>Upload Salary</button>
@@ -96,7 +96,17 @@ function StaffSalaryComponent() {
                                         <td>{data.baseSal}</td>
                                         <td>{data.daysinmonth}</td>
                                         <td>{data.hoursinday}</td>
-                                        <td><Link href="/Payroll/addstaffsalaryform"><button onClick={getdata.bind(this,data)}>edit</button></Link></td> 
+                                        <td><Link href="/Payroll/addstaffsalaryform"><button onClick={getdata.bind(this, data)} style={{
+                                            textShadow: "none",
+                                            letterSpacing: ".5px",
+                                            borderRadius: "5px",
+                                            border: "none",
+                                            padding: "5px",
+                                            backgroundColor: "#3247d5",
+                                            color: "#fff",
+                                            fontWeight: "700",
+                                            width: "100px",
+                                        }}>edit</button></Link></td>
                                     </tr>
                                 )
                             })
