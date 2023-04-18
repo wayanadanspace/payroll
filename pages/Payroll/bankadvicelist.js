@@ -4,6 +4,19 @@ import { useEffect, useRef, useState } from "react";
 import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
 import Layout from "@/Components/layout";
 
+function bankAdviceList() {
+  const [dashboard, setDashboardData] = useState([]);
+
+  useEffect(() => {
+    async function getData() {
+      let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
+      // This API is used for fetch the BankAdviceList data for Dashboard
+      let res = await axios.get(hostURL + "Payroll/GetEmployeeSalary");
+      setDashboardData(res.data);
+    }
+    getData()
+  }, []);
+}
 const tabsData = [
   {
     label: "Normal Payroll",
@@ -23,6 +36,7 @@ const tabsData = [
                   <option value="2020">2020</option>
                   <option value="2021">2021</option>
                   <option value="2022">2022</option>
+                  <option value="2023">2023</option>
                 </select>
               </div>
             </div>
@@ -86,7 +100,7 @@ const tabsData = [
   {
     label: "Final Payroll",
     content: (
-     
+
       <div>
         <div className="container-fluid mt-4">
           <div className="row shadow-lg p-2 rounded-4 p-3">
@@ -102,6 +116,7 @@ const tabsData = [
                   <option value="2020">2020</option>
                   <option value="2021">2021</option>
                   <option value="2022">2022</option>
+                  <option value="2023">2023</option>
                 </select>
               </div>
             </div>
@@ -151,7 +166,7 @@ const tabsData = [
           </div>
         </div>
       </div>
-      
+
     ),
   },
 ];
@@ -175,28 +190,28 @@ function BankAdviceList() {
 
   return (
     <Layout>
-    <div>
-      <div className="relative">
-        <br></br>
-        <br></br>
-        <div className="flex space-x-3 border-b">
-          {tabsData.map((tab, idx) => {
-            return (
-              <button
-                id={Styles.tabBtn}
-                key={idx}
-                ref={(el) => (tabsRef.current[idx] = el)}
-                className="pt-2 pb-3"
-                onClick={() => setActiveTabIndex(idx)}
-              >
-                {tab.label}
-              </button>
-            );
-          })}
+      <div>
+        <div className="relative">
+          <br></br>
+          <br></br>
+          <div className="flex space-x-3 border-b">
+            {tabsData.map((tab, idx) => {
+              return (
+                <button
+                  id={Styles.tabBtn}
+                  key={idx}
+                  ref={(el) => (tabsRef.current[idx] = el)}
+                  className="pt-2 pb-3"
+                  onClick={() => setActiveTabIndex(idx)}
+                >
+                  {tab.label}
+                </button>
+              );
+            })}
+          </div>
         </div>
+        <div className="py-4">{tabsData[activeTabIndex].content}</div>
       </div>
-      <div className="py-4">{tabsData[activeTabIndex].content}</div>
-    </div>
     </Layout>
   );
 }
