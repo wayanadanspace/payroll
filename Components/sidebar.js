@@ -135,7 +135,7 @@ const Sidebar = ({ children }) => {
                                 <button className={SidebarStyles.sidesubmenu}>final payrool details</button>
                             </Link>
 
-                            <Link href="">
+                            <Link href="/Payroll/bankadvicelist">
                                 <button className={SidebarStyles.sidesubmenu}>bank advice list</button>
                             </Link>
 

@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import Layout from '@/Components/layout';
 import Swal from 'sweetalert2';
 
-function Runpayroll() {
+function preliminaryreport() {
     const [collapseOpen, setCollapseOpen] = React.useState(false);
     const [paycode, setPayCode] = useState([]);
     const [position, setPosition] = useState([]);
@@ -61,7 +61,7 @@ function Runpayroll() {
                             <div className="col-lg-3">
                                 <p>Select Paycode </p>
                                 <div className="dropdown">
-                                    <select id="PayCode" name="PayCode" className="form-control" {...register("PayCode", { required: true })}>
+                                    <select id="PayCode" name="PayCode" className="form-select form-select-sm" {...register("PayCode", { required: true })}>
                                         <option value="" disabled="">
                                             Select Paycode </option>
                                         {
@@ -76,7 +76,7 @@ function Runpayroll() {
                             </div>
                             <div className="col-lg-3">
                                 <p >Search <br ></br></p>
-                                <input placeholder="Search" type="text" className="form-control "></input>
+                                <input placeholder="Search" type="text" className="form-control form-control-sm" />
                             </div>
                             <div className='col-lg-1'></div>
                             <div className="col-lg-2 mt-3">
@@ -95,12 +95,12 @@ function Runpayroll() {
                             </div>
                             <div className='col-lg-3'></div>
                         </div>
-                        <div className='row'>
+                        <div className='row mt-3'>
                             <br></br>
                             <div className="col-lg-3">
-                                <p >Select Position </p>
+                                <p > Position </p>
                                 <div className="dropdown">
-                                    <select id="Year" name="Year" className="form-control ">
+                                    <select id="Year" name="Year" className="form-select form-select-sm ">
                                         {/* <br ></br> */}
                                         <option value="Select" style={{ color: "#0C275A" }} disabled="">Select Position
                                         </option>
@@ -114,10 +114,10 @@ function Runpayroll() {
                                     </select>
                                 </div>
                             </div>
-                            <div className="col-lg-3">
-                                <p >Select Department </p>
+                            <div className="col-lg-3 ">
+                                <p >Department </p>
                                 <div className="dropdown">
-                                    <select id="Year" name="Year" className="form-control ">
+                                    <select id="Year" name="Year" className="form-select form-select-sm ">
                                         {/* <br ></br> */}
                                         <option value="Select" style={{ color: " #0C275A" }} disabled="">Select Department
                                         </option>
@@ -131,10 +131,14 @@ function Runpayroll() {
                                     </select>
                                 </div>
                             </div>
+                            <div className='col-lg-5'></div>
+                            <div className='col-lg-1'>
+                                <p>count:{dashboard.length}</p>
+                            </div>
                         </div>
                     </form>
                 </div>
-                <div class="row">
+                {/* <div class="row">
                     <div className="col-lg-2">
                     </div>
                     <div className="col-lg-2">
@@ -144,7 +148,7 @@ function Runpayroll() {
                         <button type="button" id="btn_button" className="form-control CancelBTN" style={{ width: "70%" }}>Run Payroll
                         </button>
                     </div>
-                </div>
+                </div> */}
                 <br ></br>
                 <div className="row">
                     <div className="col-lg-4">
@@ -234,4 +238,4 @@ function Runpayroll() {
     )
 }
 
-export default dynamic(() => Promise.resolve(Runpayroll), { ssr: false })
+export default dynamic(() => Promise.resolve(preliminaryreport), { ssr: false })
