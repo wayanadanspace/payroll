@@ -1,12 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from '@/Components/layout'
 import Link from 'next/link'
+import axios from 'axios';
 
 function compensationtimeout() {
+
+    const hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
 
     const [pending, setPending] = useState(false)
     const [approved, setApproved] = useState(false)
     const [rejected, setRejected] = useState(false)
+
+    // const [pendingDashboard, getPending] = useState([])
 
     const togglePending = () => {
         setPending(true)
@@ -24,6 +29,16 @@ function compensationtimeout() {
         setRejected(true)
         setApproved(false)
     }
+
+    // const getPendingData = async () => {
+    //     const res = await axios.get(hostURL + "Payroll/GetPendingCompensationTimeOutBySupervisor")
+    //     console.log(res)
+    //     // getPending(res)
+    // }
+
+    // useEffect(() => {
+    //     getPendingData()
+    // }, [])
 
     return (
         <Layout>

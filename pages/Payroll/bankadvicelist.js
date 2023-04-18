@@ -177,28 +177,28 @@ import Modal from 'react-modal';
 //   return () => window.removeEventListener("resize", setTabPosition);
 // }, [activeTabIndex]);
 
-{/* <div>
-      <div className="relative">
-        <br></br>
-        <br></br>
-        <div className="flex space-x-3 border-b">
-          {tabsData.map((tab, idx) => {
-            return (
-              <button
-                id={Styles.tabBtn}
-                key={idx}
-                ref={(el) => (tabsRef.current[idx] = el)}
-                className="pt-2 pb-3"
-                onClick={() => setActiveTabIndex(idx)}
-              >
-                {tab.label}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-      <div className="py-4">{tabsData[activeTabIndex].content}</div>
-    </div> */}
+//  <div>
+//       <div className="relative">
+//         <br></br>
+//         <br></br>
+//         <div className="flex space-x-3 border-b">
+//           {tabsData.map((tab, idx) => {
+//             return (
+//               <button
+//                 id={Styles.tabBtn}
+//                 key={idx}
+//                 ref={(el) => (tabsRef.current[idx] = el)}
+//                 className="pt-2 pb-3"
+//                 onClick={() => setActiveTabIndex(idx)}
+//               >
+//                 {tab.label}
+//               </button>
+//             );
+//           })}
+//         </div>
+//       </div>
+//       <div className="py-4">{tabsData[activeTabIndex].content}</div>
+//     </div> 
 
 function BankAdviceList() {
   const [dashboard, setDashboardData] = useState([]);
@@ -206,6 +206,7 @@ function BankAdviceList() {
   useEffect(() => {
     async function getData() {
       let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
+      // This API is used to Fetch the Employee salary  
       let res = await axios.get(hostURL + "Payroll/GetEmployeeSalary");
       setDashboardData(res.data);
     }
@@ -221,14 +222,6 @@ function BankAdviceList() {
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
       width: '60%'
-    },
-    errorMsg: {
-      fontSize: '12px',
-      fontWeight: '500',
-      color: 'red'
-    },
-    inputLabel: {
-      fontSize: '16px'
     }
   };
 
@@ -314,7 +307,7 @@ function BankAdviceList() {
             <div className="col-lg-4"></div>
           </div>
         </div>
-        <Modal isOpen={modalIsOpen} style={customStyles} contentLabel="Example Modal">
+        <Modal isOpen={modalIsOpen} style={customStyles}>
           <div className="row">
             <div className="col-lg-6">
               <h6 style={{ color: '#3247d5', fontWeight: '500' }}>Payroll - Bank Advice List</h6>
@@ -323,9 +316,9 @@ function BankAdviceList() {
           </div>
           <div className='row '>
             <div className='col-lg-12'>
-              <table className='table table-bordered mt-4 text-center table-striped ' id={Styles.table}>
+              <table className='table table-bordered mt-4 text-center table-striped '>
                 <thead>
-                  <tr id={Styles.tr}>
+                  <tr>
                     <th>Gross Salary</th>
                     <th>Address</th>
                     <th>Staff Name</th>
@@ -348,9 +341,9 @@ function BankAdviceList() {
                   </tr>
                 </tbody>
               </table>
-              <div className="row" style={{textAlign:"center"}}>
+              <div className="row" style={{ textAlign: "center" }}>
                 <div className="col-lg-12">
-                <button type='button' className='btn btn-primary' onClick={closeModal}>Close</button>
+                  <button type='button' className="btn" id={Styles.commonBtn} onClick={closeModal}>Close</button>
                 </div>
               </div>
             </div>
