@@ -147,7 +147,6 @@ function EmploymentJobHistory() {
                       readExcel(file);
                     }}
                   />
-                  {errors.PayrollYTd && (<p className='text-danger mt-2'>Please upload valid file</p>)}
                 </div>
               </div>
               <div className='col-lg-4 mb-3'>
