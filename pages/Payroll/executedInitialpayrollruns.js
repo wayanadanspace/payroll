@@ -8,7 +8,7 @@ const tabsData = [
   {
     label: 'Normal Payroll',
     content:
-      <div className="container-fluid mt-4">
+      <div className="container-fluid mt-4">x
         <div className="row">
           <table className={table.commonTable}>
             <thead>
@@ -79,39 +79,38 @@ export default function ExecutedInitialPayrollRuns() {
 
 
   return (
-    <Layout>
-      <div>
-        <div className="relative">
-          <br></br>       
-          <br></br>
-          <div className="row">
-            <div className="col-lg-6">
-              <label id={Styles.title}>Excecuted Initial Payroll Runs</label>
-            </div>
-            <div className="col-lg-3"></div>
-            <div className="col-lg-3">
-              <label id={Styles.title}>Total Payroll Runs: 1</label>
-            </div>
+    <div>
+      <div className="relative">
+        <br></br>
+        <br></br>
+
+        <div className="row">
+          <div className="col-lg-6">
+            <label id={Styles.title}>Excecuted Initial Payroll Runs</label>
           </div>
-          <div className="flex space-x-3 border-b">
-            {tabsData.map((tab, idx) => {
-              return (
-                <button id={Styles.tabBtn}
-                  key={idx}
-                  ref={(el) => (tabsRef.current[idx] = el)}
-                  className="pt-2 pb-3"
-                  onClick={() => setActiveTabIndex(idx)}
-                >
-                  {tab.label}
-                </button>
-              );
-            })}
+          <div className="col-lg-3"></div>
+          <div className="col-lg-3">
+            <label id={Styles.title}>Total Payroll Runs: 1</label>
           </div>
         </div>
-        <div className="py-4">
-          {tabsData[activeTabIndex].content}
+        <div className="flex space-x-3 border-b">
+          {tabsData.map((tab, idx) => {
+            return (
+              <button id={Styles.tabBtn}
+                key={idx}
+                ref={(el) => (tabsRef.current[idx] = el)}
+                className="pt-2 pb-3"
+                onClick={() => setActiveTabIndex(idx)}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
         </div>
       </div>
-    </Layout>
+      <div className="py-4">
+        {tabsData[activeTabIndex].content}
+      </div>
+    </div>
   )
 }
