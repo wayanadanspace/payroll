@@ -15,7 +15,7 @@ function GroupMaster() {
 
     async function getData() {
         let res = await axios.get(
-          hostURL +"Master/GetGroupMaster"
+          hostURL +"Master/GetGroupMaster"  //naveen.th@amazeinc.in, Get API for group master dashboard, to fetch data
         );
         setGroupMasterData(res.data);
     }
@@ -31,8 +31,8 @@ function GroupMaster() {
             confirmButtonText: "Yes, delete it!",
           }).then((result) => {
             if (result.isConfirmed) {
-                axios.get(hostURL + "Master/DeleteGroupMaster?ID=" + id);
-                getData();
+                axios.get(hostURL + "Master/DeleteGroupMaster?ID=" + id); //naveen.th@amazeinc.in, Delete API for Group master dashboard, to delete data by ID
+                getData(); 
             }
           });
     }

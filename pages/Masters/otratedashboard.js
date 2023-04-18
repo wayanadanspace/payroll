@@ -11,6 +11,7 @@ function OTRateDash() {
     const [otDetails, setOtDetails] = useState([]);
     const getOtdetails = async () => {
         let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
+        // This API is used to fetch the data from OTRates table
         const res = await axios.get(hostURL + "Master/GetOTRates");
         setOtDetails(res.data);
     }
@@ -30,8 +31,8 @@ function OTRateDash() {
     const handleDelete = async (id) => {
         try {
             let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
+            // This API is used to delete the dashboard data based on ID
             const res = await axios.get(hostURL + `Master/DeleteOTRates?id=${id}`);
-            console.log(res.data);
             Swal.fire({
                 icon: "success",
                 title: "Hurray..",
@@ -47,7 +48,7 @@ function OTRateDash() {
             });
         }
     };
-   
+
 
 
     return (

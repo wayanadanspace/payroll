@@ -11,23 +11,26 @@ const Sss=()=> {
     let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
   const [sssData, SetSssData] = useState([]);
 
-  const getDataByID = (data) => {
-    sessionStorage.setItem("id", data.id);
-  };
-  const clearData = () => {
-    sessionStorage.setItem("id", "");
-  };
   useEffect(() => {
     getData();
   }, [1]);
 
+  const getDataByID = (data) => {
+    sessionStorage.setItem("id", data.id);
+  };
+
+  const clearData = () => {
+    sessionStorage.setItem("id", "");
+  };
+  
+//   Written By:-Gopi  => This API call will load the sss configuration
   const getData= async ()=> {
     let res = await axios.get(hostURL + "HR/GetSSSconfogaration");
     SetSssData(res.data);
   }
 
 
-
+//   Written By:-Gopi  => will Delete data by id using the api 
   const handelDelete = (id) => {
     debugger;
     Swal.fire({

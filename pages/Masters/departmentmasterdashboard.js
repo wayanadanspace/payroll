@@ -11,7 +11,7 @@ function DepartmentMasterDashboard() {
 
   const getDepartmentMaster = async () => {
     let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
-    const { data } = await axios.get(hostURL + "Master/GetDepartmentMaster");
+    const { data } = await axios.get(hostURL + "Master/GetDepartmentMaster"); //gurukiran@amazeinc.in, Api call to fetch the data that is being displayed in table
     setDepartmentMaster(data)
   }
 
@@ -29,7 +29,7 @@ function DepartmentMasterDashboard() {
       }).then((result) => {
         if (result.isConfirmed) {
 
-          const res = axios.get(hostURL + `Master/DeleteDepartmentMaster?ID=${id}`);
+          const res = axios.get(hostURL + `Master/DeleteDepartmentMaster?ID=${id}`); //gurukiran@amazeinc.in, api call to delete the data from the table
           console.log(res.data);
           // alert("Data deleted successfully");
           Swal.fire(

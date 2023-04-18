@@ -3,12 +3,13 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import styles from "./login.module.css";
 import axios from "axios";
-
+import Swal from "sweetalert2";
 import eye from "../public/eye.svg";
 import Loginpage from "../public/images/DigiLogin.png";
 import digiLogo from "../public/images/DigiLogoBlue.png";
 
 const Login = ({ makelogin }) => {
+  let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
   const positionList= [
     { id: 2, short: "Manager" },
     { id: 6, short: "Employee" },
@@ -24,9 +25,21 @@ const Login = ({ makelogin }) => {
 
 
   const [passwordShown, setPasswordShown] = useState("");
+  // const [selectedPosition, setSelectedPosition] = useState("");
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
   };
+
+  const changePosition = async (event) => {
+    debugger
+    console.log(event.target.name);
+        console.log(event.target.value);
+    const selectedPosition = event.target.value;
+    setValue("RoleID", selectedPosition);
+    // setSelectedPosition(event.target.value);
+    console.log(selectedPosition)
+    sessionStorage.setItem("roleType",selectedPosition);
+  }
 
   const {
     register,
@@ -37,19 +50,19 @@ const Login = ({ makelogin }) => {
   // const onSubmit = data => console.log('form submit', data);
 
   const onSubmit = async (data) => {
-    makelogin();
-    // let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
-    // const res = await axios.get(hostURL + `Master/StaffValidateUserLogin?EmailID=${data.username}&Password=${data.password}`);
-
-    // if (res.data[0].status == "Valid") {
-    //     sessionStorage.setItem("userID", res.data[0].id);
-    //     sessionStorage.setItem("userName", res.data[0].name);
-    //     sessionStorage.setItem("roleID", res.data[0].roleID);
-    //     makelogin();
-    // }
-    // else {
-    //     alert("Invalid credentials");
-    // }
+    debugger
+    const res = await axios.get(hostURL +`Master/GetMyDetailsForLogin?EmailID=${data.Username}&Password=${data.Password}&roletype=${data.RoleID}`);
+    
+    if (res.data.length > 0 || res.status === 200 ) {
+      debugger
+        // sessionStorage.setItem("userID", res.data[0].id);
+        // sessionStorage.setItem("userName", res.data[0].name);
+        // sessionStorage.setItem("roleID", res.data[0].roleType);
+        makelogin();
+    }
+    else {
+      Swal.fire("Invalid credentials");
+    }
   };
 
   const customStyles = {
@@ -110,6 +123,7 @@ const Login = ({ makelogin }) => {
               <div>
                 <select
                   className="form-select mt-4"
+                  onChange={changePosition.bind(this)}
                   {...register("RoleID", { required: true })}
                 >
                   <option value="">Select Position</option>

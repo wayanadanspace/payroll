@@ -24,7 +24,7 @@ function DepartmentMasterForm() {
         if (actionType == "insert") {
 
 
-            await axios.post(hostURL + 'Master/InsertDepartmentMaster', data);
+            await axios.post(hostURL + 'Master/InsertDepartmentMaster', data); //gurukiran@amazeinc.in api call for insert of data
             Swal.fire({ icon: "success", text: "Data Successfully added" })
             location.href = ("/Masters/departmentmasterdashboard");
 
@@ -41,7 +41,7 @@ function DepartmentMasterForm() {
             }).then((result) => {
 
                 if (result.isConfirmed) {
-                    axios.post(hostURL + 'Master/UpdateDepartmentMaster', data);
+                    axios.post(hostURL + 'Master/UpdateDepartmentMaster', data); //gurukiran@amazeinc.in api call for updating the data
                     Swal.fire(
                         'Updated!',
                         'Your file has been updated.',
@@ -74,7 +74,7 @@ function DepartmentMasterForm() {
             const id = sessionStorage.getItem("id");
             if (id) {
 
-                const response = await axios.get(hostURL + 'Master/GetDepartmentMasterByID?id=' + id);
+                const response = await axios.get(hostURL + 'Master/GetDepartmentMasterByID?id=' + id); //gurukiran@amazeinc.in getByID api call
                 clearForm(response.data[0])
             }
             else {

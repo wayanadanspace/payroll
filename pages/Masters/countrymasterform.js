@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Styles from "../../styles/CountryMasterForm.module.css";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
@@ -10,51 +10,51 @@ function CountryMasterForm() {
   const [actionType, setActionType] = useState("insert");
   const { register, handleSubmit, reset, formState } = useForm();
   const { errors } = formState;
-  let ID 
+  let ID
   let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
 
   async function onSubmit(data) {
     if (actionType == "insert") {
-        await axios.post(hostURL + "Master/InsertCountryType", data);
-        Swal.fire(
-          'Added succesfullly'
-        );
-        location.href = "/Masters/countrymasterdashboard";
+      await axios.post(hostURL + "Master/InsertCountryType", data);  //naveen.th@amazeinc.in, Insert API for Country master, to add new data
+      Swal.fire(
+        'Added succesfullly'
+      );
+      location.href = "/Masters/countrymasterdashboard";
     }
     else {
-        await axios.post(hostURL + "Master/UpdateCountryType", data);
-        Swal.fire(
-          "Updated succesfullly"
-        );
-        sessionStorage.removeItem("countryID");
-        location.href = "/Masters/countrymasterdashboard";
+      await axios.post(hostURL + "Master/UpdateCountryType", data); //naveen.th@amazeinc.in, Update API for Country master, to update data
+      Swal.fire(
+        "Updated succesfullly"
+      );
+      sessionStorage.removeItem("countryID");
+      location.href = "/Masters/countrymasterdashboard";
     }
-    await axios.get(hostURL + "Master/GetCountryType" );
+    await axios.get(hostURL + "Master/GetCountryType"); //naveen.th@amazeinc.in, Get API for Country master, to fetch updated data 
   }
 
   useEffect(() => {
     clearForm();
     ID = sessionStorage.getItem("countryID");
-        if(ID){
-          getWorkLocationMasterByID(); 
-        }
-   }, []);
+    if (ID) {
+      getWorkLocationMasterByID();
+    }
+  }, []);
 
-   const getWorkLocationMasterByID = async () => {
-    let res = await axios.get(hostURL + "Master/GetCountryTypeByID?ID=" + ID);
+  const getWorkLocationMasterByID = async () => {
+    let res = await axios.get(hostURL + "Master/GetCountryTypeByID?ID=" + ID); //naveen.th@amazeinc.in, Get by ID API for Country master, to fetch data
     clearForm(res.data[0]);
   }
-   function clearForm(existingData = null) {
+  function clearForm(existingData = null) {
     let etty = {
-        "ID": existingData ? existingData.id : "",  
-        "Short": existingData ? existingData.short : "",
-        "Description": existingData ? existingData.description : "",
+      "ID": existingData ? existingData.id : "",
+      "Short": existingData ? existingData.short : "",
+      "Description": existingData ? existingData.description : "",
     }
     reset(etty);
     setActionType(existingData ? "update" : 'insert');
-}
-const customStyles = {
-  content: {
+  }
+  const customStyles = {
+    content: {
       top: '50%',
       left: '50%',
       right: 'auto',
@@ -62,16 +62,16 @@ const customStyles = {
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
       width: '60%'
-  },
-  errorMsg: {
+    },
+    errorMsg: {
       fontSize: '12px',
       fontWeight: '500',
       color: 'red'
-  },
-  inputLabel: {
+    },
+    inputLabel: {
       fontSize: '16px'
-  }
-}; 
+    }
+  };
   return (
     <Layout>
       <div>
@@ -90,34 +90,34 @@ const customStyles = {
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="row ">
                 <div className="col-lg-4">
-                  <input name="Country" type="text" {...register("Short", { required: true })} 
+                  <input name="Country" type="text" {...register("Short", { required: true })}
                     placeholder="Country Name" className="form-control"
                   />
                   <div>{errors.Short && <span style={customStyles.errorMsg}>Please enter country name</span>}</div>
                 </div>
                 <div className="col-lg-4">
-                  <textarea name="Description" className="form-control" {...register("Description", { required: true })} placeholder="Description"/>
-                  <div>{errors.Description && <span style={customStyles.errorMsg} >Please enter description</span>}</div>  
+                  <textarea name="Description" className="form-control" {...register("Description", { required: true })} placeholder="Description" />
+                  <div>{errors.Description && <span style={customStyles.errorMsg} >Please enter description</span>}</div>
                 </div>
               </div>
               <br></br>
               <div className="row ">
                 <div className="col-lg-6"></div>
                 <div className="col-lg-6">
-                      <Link href='/Masters/countrymasterdashboard'>
-                        <button type='button' className='btn common-edit' id={Styles.btn}>Close</button></Link>
-                                
-                                {
-                                    actionType == "insert" && (
-                                        <button type='submit' className='btn' id={Styles.btn}>Save</button>
-                                    )
-                                }
-                                {
-                                    actionType == "update" && (
-                                        <button type='submit' className='btn' id={Styles.btn} >Update</button>
-                                    )
-                                }
-                                
+                  <Link href='/Masters/countrymasterdashboard'>
+                    <button type='button' className='btn common-edit' id={Styles.btn}>Close</button></Link>
+
+                  {
+                    actionType == "insert" && (
+                      <button type='submit' className='btn' id={Styles.btn}>Save</button>
+                    )
+                  }
+                  {
+                    actionType == "update" && (
+                      <button type='submit' className='btn' id={Styles.btn} >Update</button>
+                    )
+                  }
+
                 </div>
               </div>
             </form>

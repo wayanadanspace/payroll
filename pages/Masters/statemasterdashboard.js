@@ -17,17 +17,16 @@ function StateMasterDashboard() {
 
     async function getData() {
         let res = await axios.get(
-          hostURL +"Master/GetStateType"
+          hostURL +"Master/GetStateType"  //naveen.th@amazeinc.in, Get API for State master, to fetch data
         );
         setStateData(res.data);
         let res1 = await axios.get(
-            hostURL +"Master/GetCountryType"
+            hostURL +"Master/GetCountryType" //naveen.th@amazeinc.in, Get API for Country master, to fetch data
           );
           setCountryData(res1.data);
     }
 
-    const deleteState = async (id) =>{
-        debugger
+    const deleteState = async (id) =>{        
         Swal.fire({
           title: "Are you sure?",
           text: "You won't be able to revert this!",
@@ -38,7 +37,7 @@ function StateMasterDashboard() {
           confirmButtonText: "Yes, delete it!",
         }).then((result) => {
           if (result.isConfirmed) {
-            axios.get(hostURL + "Master/DeleteStateType?ID=" + id);
+            axios.get(hostURL + "Master/DeleteStateType?ID=" + id); //naveen.th@amazeinc.in, Delete API for State master, to delete data
             getData()
           }
         });

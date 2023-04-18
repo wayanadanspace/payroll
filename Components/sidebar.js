@@ -3,12 +3,17 @@ import React, { useState } from 'react'
 import SidebarStyles from './layout.module.css'
 
 const Sidebar = ({ children }) => {
+    let roleID;
     let [displayAttendence, toggleAttendence] = useState(false)
     let [displayLoans, toggleLoans] = useState(false)
     let [displayPayroll, togglePayRoll] = useState(false)
     let [displaySettings, toggleSettings] = useState(false)
     let [displayConfiguration, toggleConfiguration] = useState(false)
     let [displayMasters, toggleMasters] = useState(false)
+    let [displayRequests, toggleRequests] = useState(false)
+    let [displayHolidays, toggleHolidays] = useState(false)
+    sessionStorage.setItem("roleID", roleID);
+
 
     const toggleAttendenceMenu = () => {
         toggleAttendence(!displayAttendence);
@@ -31,6 +36,12 @@ const Sidebar = ({ children }) => {
     };
     const toggleMastersMenu = () => {
         toggleMasters(!displayMasters);
+    };
+    const togglerequestsMenu = () => {
+        toggleRequests(!displayRequests);
+    };
+    const toggleHolidaysMenu = () => {
+        toggleHolidays(!displayHolidays);
     };
     return (
         <div className='row' style={{ height: "90vh", overflowY: "auto" }}>
@@ -58,6 +69,30 @@ const Sidebar = ({ children }) => {
                         </div>
                     )
                 }
+                <button className={SidebarStyles.sidemenu} onClick={togglerequestsMenu}>Requests</button>
+                {
+
+                    displayRequests && (
+                        < div >
+                            <Link href="/Requests/leavelistdashboard">
+                                <button className={SidebarStyles.sidesubmenu}>Leave Requests</button>
+                            </Link>
+                            <Link href="/Requests/overtimedetails">
+                                <button className={SidebarStyles.sidesubmenu}>OVER TIME DETAILS</button>
+                            </Link>
+                            <Link href="/Requests/appliedloans">
+                                <button className={SidebarStyles.sidesubmenu}>LOAN REQUESTS</button>
+                            </Link>
+                            <Link href="/Requests/timesheet">
+                                <button className={SidebarStyles.sidesubmenu}>TIMESHEET Requests</button>
+                            </Link>
+                            <Link href="/Requests/locatordashboard">
+                                <button className={SidebarStyles.sidesubmenu}>OBASIS REQUESTS</button>
+                            </Link>
+                        </div>
+                    )
+                }
+
 
                 <button className={SidebarStyles.sidemenu} onClick={toggleLoansMenu}>Loans</button>
                 {
@@ -76,7 +111,7 @@ const Sidebar = ({ children }) => {
 
                     displayPayroll && (
                         < div >
-                            <Link href="">
+                            <Link href="/Payroll/employmentjobhistory">
                                 <button className={SidebarStyles.sidesubmenu}>Payroll ytd upload</button>
                             </Link>
 
@@ -88,7 +123,7 @@ const Sidebar = ({ children }) => {
                                 <button className={SidebarStyles.sidesubmenu}>initial payroll details</button>
                             </Link>
 
-                            <Link href="">
+                            <Link href="/Payroll/runpayroll">
                                 <button className={SidebarStyles.sidesubmenu}>run final payroll</button>
                             </Link>
 
@@ -96,15 +131,15 @@ const Sidebar = ({ children }) => {
                                 <button className={SidebarStyles.sidesubmenu}>final payroll approval</button>
                             </Link>
 
-                            <Link href="">
+                            <Link href="/Payroll/finalpayrolldetails">
                                 <button className={SidebarStyles.sidesubmenu}>final payrool details</button>
                             </Link>
 
-                            <Link href="">
+                            <Link href="/Payroll/bankadvicelist">
                                 <button className={SidebarStyles.sidesubmenu}>bank advice list</button>
                             </Link>
 
-                            <Link href="">
+                            <Link href="/Payroll/staffsalarycomponent">
                                 <button className={SidebarStyles.sidesubmenu}>staff salary</button>
                             </Link>
 
@@ -174,7 +209,7 @@ const Sidebar = ({ children }) => {
                                 <button className={SidebarStyles.sidesubmenu}>pagibig</button>
                             </Link>
 
-                            <Link href="">
+                            <Link href="/Configuration/dailyrate">
                                 <button className={SidebarStyles.sidesubmenu}>daily rate</button>
                             </Link>
 
@@ -257,6 +292,7 @@ const Sidebar = ({ children }) => {
                                 <button className={SidebarStyles.sidesubmenu}>sub-section master</button>
                             </Link>
                         </div>
+
                     )
                 }
 
@@ -264,9 +300,13 @@ const Sidebar = ({ children }) => {
                     <button className={SidebarStyles.sidemenu}>help</button>
                 </Link>
 
-                <Link href="">
+                <Link href="/SupportTickets/supportticketdashboard">
                     <button className={SidebarStyles.sidemenu}>support tickets</button>
                 </Link>
+                {
+                    <Link href="/Holidays/Holidaysdash" ><button className={SidebarStyles.sidemenu}>Holidays</button>
+                    </Link>
+                }
             </div>
         </div >
     )
