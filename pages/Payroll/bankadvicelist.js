@@ -177,28 +177,28 @@ import Modal from 'react-modal';
 //   return () => window.removeEventListener("resize", setTabPosition);
 // }, [activeTabIndex]);
 
-{/* <div>
-      <div className="relative">
-        <br></br>
-        <br></br>
-        <div className="flex space-x-3 border-b">
-          {tabsData.map((tab, idx) => {
-            return (
-              <button
-                id={Styles.tabBtn}
-                key={idx}
-                ref={(el) => (tabsRef.current[idx] = el)}
-                className="pt-2 pb-3"
-                onClick={() => setActiveTabIndex(idx)}
-              >
-                {tab.label}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-      <div className="py-4">{tabsData[activeTabIndex].content}</div>
-    </div> */}
+//  <div>
+//       <div className="relative">
+//         <br></br>
+//         <br></br>
+//         <div className="flex space-x-3 border-b">
+//           {tabsData.map((tab, idx) => {
+//             return (
+//               <button
+//                 id={Styles.tabBtn}
+//                 key={idx}
+//                 ref={(el) => (tabsRef.current[idx] = el)}
+//                 className="pt-2 pb-3"
+//                 onClick={() => setActiveTabIndex(idx)}
+//               >
+//                 {tab.label}
+//               </button>
+//             );
+//           })}
+//         </div>
+//       </div>
+//       <div className="py-4">{tabsData[activeTabIndex].content}</div>
+//     </div> 
 
 function BankAdviceList() {
   const [dashboard, setDashboardData] = useState([]);
@@ -206,6 +206,7 @@ function BankAdviceList() {
   useEffect(() => {
     async function getData() {
       let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
+      // This API is used to Fetch the Employee salary  
       let res = await axios.get(hostURL + "Payroll/GetEmployeeSalary");
       setDashboardData(res.data);
     }
@@ -340,9 +341,9 @@ function BankAdviceList() {
                   </tr>
                 </tbody>
               </table>
-              <div className="row" style={{textAlign:"center"}}>
+              <div className="row" style={{ textAlign: "center" }}>
                 <div className="col-lg-12">
-                <button type='button' className='btn btn-primary' onClick={closeModal}>Close</button>
+                  <button type='button' className="btn" id={Styles.commonBtn} onClick={closeModal}>Close</button>
                 </div>
               </div>
             </div>
