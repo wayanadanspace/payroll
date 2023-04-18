@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import SidebarStyles from './layout.module.css'
 
 const Sidebar = ({ children }) => {
+    let roleID;
     let [displayAttendence, toggleAttendence] = useState(false)
     let [displayLoans, toggleLoans] = useState(false)
     let [displayPayroll, togglePayRoll] = useState(false)
@@ -10,6 +11,8 @@ const Sidebar = ({ children }) => {
     let [displayConfiguration, toggleConfiguration] = useState(false)
     let [displayMasters, toggleMasters] = useState(false)
     let [displayRequests, toggleRequests] = useState(false)
+    let [displayHolidays, toggleHolidays] = useState(false)
+    sessionStorage.setItem("roleID", roleID);
 
 
     const toggleAttendenceMenu = () => {
@@ -36,6 +39,9 @@ const Sidebar = ({ children }) => {
     };
     const togglerequestsMenu = () => {
         toggleRequests(!displayRequests);
+    };
+    const toggleHolidaysMenu = () => {
+        toggleHolidays(!displayHolidays);
     };
     return (
         <div className='row' style={{ height: "90vh", overflowY: "auto" }}>
@@ -285,7 +291,8 @@ const Sidebar = ({ children }) => {
                             <Link href="/Masters/subsectionmaster">
                                 <button className={SidebarStyles.sidesubmenu}>sub-section master</button>
                             </Link>
-                        </div>
+                        </div>  
+
                     )
                 }
 
@@ -296,6 +303,10 @@ const Sidebar = ({ children }) => {
                 <Link href="/SupportTickets/supportticketdashboard">
                     <button className={SidebarStyles.sidemenu}>support tickets</button>
                 </Link>
+                {
+                    <Link href="/Holidays/Holidaysdash" ><button className={SidebarStyles.sidemenu}>Holidays</button>    
+                    </Link>
+                }                
             </div>
         </div >
     )

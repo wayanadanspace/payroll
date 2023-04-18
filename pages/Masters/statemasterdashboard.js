@@ -26,8 +26,7 @@ function StateMasterDashboard() {
           setCountryData(res1.data);
     }
 
-    const deleteState = async (id) =>{
-        debugger
+    const deleteState = async (id) =>{        
         Swal.fire({
           title: "Are you sure?",
           text: "You won't be able to revert this!",

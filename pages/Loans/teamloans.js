@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from "react";
 import Styles from "../../styles/TeamLoans.module.css";
-import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
+// import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
+import Modal from 'react-modal';
 import { useRef } from "react";
 import Layout from "@/Components/layout";
 import Link from "next/link";
@@ -8,7 +9,7 @@ import axios from "axios";
 import Swal from 'sweetalert2';
 
 import * as XLSX from "xlsx";
-
+// Modal.setAppElement('#modelContent');
 const TeamLoans=() => {
   let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
   const [loansData, setLoansData] = useState([]);
@@ -17,35 +18,56 @@ const TeamLoans=() => {
   const [modalOpen, setModalOpen] = useState(false);
   
   const [items, setItems] = useState([]);
+
+ const  openEditModal=()=>{
+    setModalOpen(true)
+  }
+  const closeModal=()=> {
+    setModalOpen(false)
+  }
   
+  const customStyles = {
+    content: {
+        top: '20%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        width: '30%'
+    },
+    errorMsg: {
+        fontSize: '12px',
+        fontWeight: '500',
+        color: 'red'
+    },
+    inputLabel: {
+        fontSize: '16px'
+    }
+}
   
   useEffect(() => {
    const roleType = sessionStorage.getItem("roleID");
     getData();
   }, []);   
   
+//   Written By:-Gopi  => We are making an API To Get All EmployeLoans
   const getData= async()=> {
     let res = await axios.get(hostURL +"Payroll/GetEmployeeLoans");
     setLoansData(res.data);
   }
 
+//   Written By:-Gopi  => Read the uploaded excel file and convert that into array - used "XLSX" package
   const incomingfile = async (file) => {
-    debugger;
     const promise = new Promise((resolve, reject) => {
       const fileReader = new FileReader();
       fileReader.readAsArrayBuffer(file);
-
       fileReader.onload = (e) => {
         const bufferArray = e.target.result;
-
         const wb = XLSX.read(bufferArray, { type: "buffer" });
-
         const wsname = wb.SheetNames[0];
-
         const ws = wb.Sheets[wsname];
-
         const data = XLSX.utils.sheet_to_json(ws);
-
         resolve(data);
       };
 
@@ -54,37 +76,45 @@ const TeamLoans=() => {
       };
     });
     promise.then((d) => {
-      debugger;
       setItems(d);
-      console.log(d);
     });
-  };
+};
 
-  const uploadLoan = async() => {
-    const transformedLoans = async (items) => {
+
+//   Written By:-Gopi  => The data in excel file is transfered to required feild to the backend API
+ const transformedLoans = async (items) => {
+        console.log(items);
         const loans = await Promise.all(
-          items.map(async (loan) => {
-            const res = await axios.get(hostURL + "Payroll/GetStaffByEmployeeID?ID=" + loan.EmployeeID);
-            const staffData = res.data;
+            items && items.length > 0 ? items.map(async (loan) => {
+            const res = await axios.get(hostURL + "Payroll/GetStaffByEmployeeID?EmployeID=" + loan.EmployeeID);
+            const staffData = res.data[0];
             return {
-              StaffID: staffData.ID,
+              StaffID: staffData.id,
               LoanType: loan.LoanType,
               LoanAmount: loan.LoanAmount,
               EMIAmount: loan.SemiMonthlyAmmortization,
               Period: loan.Period,
               Category: "NA",
+              Status:"Manager Approved",
+              Attachment:"NA",
               Comments: loan.Comments
             };
-          })
+          }): []
         );
         return loans;
       };
-if (transformedLoans.length>0) {
-    await axios.post(hostURL + "Payroll/InsertEmployeeLoans", transformedLoans);
+
+//   Written By:-Gopi  => The data in excel file is uploaded to the backend API
+  const uploadLoan = async() => {
+      const transformedData = await transformedLoans(items); 
+if (transformedData.length>0) {
+    await axios.post(hostURL + "Payroll/InsertEmployeeLoans", transformedData);
         Swal.fire(" Employe Loans Uploaded succefully!");
 } else {
-    Swal.fire(" Employe Loans Uploaded succefully!");
+    Swal.fire(" No Employe Loans Uploaded!");
 }
+setModalOpen(false);
+getData();
    }
   return (
     <Layout>
@@ -106,32 +136,34 @@ if (transformedLoans.length>0) {
               />
             </div>
             <div className="col-lg-4">
-              <Button
+              <button
                 id={Styles.UploadLoansButton}
                 color="primary"
                 type="button"
-                onClick={() => setModalOpen(!modalOpen)}
+                onClick={openEditModal}
               >
                 UPLOAD LOANS
-              </Button>
-              <Modal toggle={() => setModalOpen(!modalOpen)} isOpen={modalOpen}>
+              </button>
+              </div>
+              <div >
+                  <Modal isOpen={modalOpen} style={customStyles} contentLabel="Example Modal">
                 <div className=" modal-header">
                   <h5 className=" modal-title" id="exampleModalLabel">
-                    Upload Loans{" "}
+                    Upload Loans
                   </h5>
                   <button
                     aria-label="Close"
-                    className=" close"
+                    className={Styles.close}
                     type="button"
-                    onClick={() => setModalOpen(!modalOpen)}
-                  >
-                    <span aria-hidden={true}>×</span>
+                    onClick={closeModal}
+                    >X
+                     {/* <i onClick={closeModal} class="mdi mdi-close"></i> */}
+                    {/* <span aria-hidden={true}>×</span> */}
                   </button>
                 </div>
-                <ModalBody>
+                    <hr></hr>
                   <div className="row">
-                    <div className="col-lg-8">
-                      {/* <input type="file" id={Styles.input} /> */}
+                    <div className="col-lg-7">
                       <input
                         type="file"
                         accept=".xls,.xlsx"
@@ -148,14 +180,14 @@ if (transformedLoans.length>0) {
                         <span
                           style={{ color: "navy", textDecoration: "underline" }}
                         >
-                          Template.XLSX
+                          UploadLoanTemplate.XLSX
                         </span>
                       </Link>
                     </div>
                     <div className="row">
                       {/* <ModalFooter> */}
                       <div className="col-lg-6">
-                        <Button
+                        <button
                           className="mt-4"
                           id={Styles.UploadStaffButton}
                           onClick={() => uploadLoan()}
@@ -163,15 +195,14 @@ if (transformedLoans.length>0) {
                           type="button"
                         >
                           Upload Loans
-                        </Button>
+                        </button>
                       </div>
                       <div className="col-lg-6"></div>
-                      {/* </ModalFooter> */}
                     </div>
                     <div className="col-lg-6"></div>
                   </div>
-                </ModalBody>
               </Modal>
+              </div>
             </div>
           </div>
         </div>
@@ -194,20 +225,25 @@ if (transformedLoans.length>0) {
               </tr>
             </thead>
             <tbody>
-              <tr>
+            {loansData.map((data, index) => {
+                return (
+                  <tr className="text-dark" key={index}>
+                    <td>{data.staffID}</td>
+                    <td>{data.name}</td>
+                    <td>{data.loanType}</td>
+                    <td>{data.category}</td>
+                    <td>{data.loanAmount}</td>
+                    <td>{data.emiAmount}</td>
+                    <td>{data.period}</td>
+                    <td>{data.comments}</td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+                </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
-      </div>
     </Layout>
   );
 }
