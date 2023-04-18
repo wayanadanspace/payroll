@@ -39,7 +39,7 @@ export default function locatordashboard() {
             content:
                 <div className="container-fluid mt-4">
                     <div className="row">
-                        <table className='table  table-striped mt-3 text-center'  id={Styles.table} >
+                        <table className='table  table-striped mt-3 text-center' id={Styles.table} >
                             <thead>
                                 <tr id={Styles.tr}>
                                     <th>Date</th>
@@ -62,7 +62,12 @@ export default function locatordashboard() {
                                             <td>{data.timeOfReturn}</td>
                                             <td>{data.purpose}</td>
                                             <td>{data.hourDiff}</td>
-                                            <td>{data.status}</td>
+                                            <td>{
+                                                <b>{data.statusID === 0 ? 'Manager Pending' :
+                                                    data.statusID === 1 ? 'Manager approved' :
+                                                        data.statusID === 2 ? 'Manager Rejected' : ' '}</b>
+                                            }
+                                            </td>
                                             <td><button className="btn btn-primary">Cancel</button></td>
                                         </tr>
                                     )
@@ -100,7 +105,7 @@ export default function locatordashboard() {
                                             <td>{data.timeOfReturn}</td>
                                             <td>{data.purpose}</td>
                                             <td>{data.hourDiff}</td>
-                                            <td>{data.status}</td>
+                                            <td>{data.statusID}</td>
                                         </tr>
                                     )
                                 })
@@ -115,7 +120,7 @@ export default function locatordashboard() {
             content:
                 <div className="container-fluid mt-4">
                     <div className="row">
-                        <table className='table  table-striped mt-3 text-center'  id={Styles.table} >
+                        <table className='table  table-striped mt-3 text-center' id={Styles.table} >
                             <thead>
                                 <tr id={Styles.tr}>
                                     <th>Date</th>
@@ -137,7 +142,7 @@ export default function locatordashboard() {
                                             <td>{data.timeOfReturn}</td>
                                             <td>{data.purpose}</td>
                                             <td>{data.hourDiff}</td>
-                                            <td>{data.status}</td>
+                                            <td>{data.statusID}</td>
                                         </tr>
                                     )
                                 })
@@ -201,7 +206,7 @@ export default function locatordashboard() {
                     <div className="flex ">
                         {tabsData.map((tab, idx) => {
                             return (
-                                <button key={idx} ref={(el) => (tabsRef.current[idx] = el)} className="btn btn-primary" style={{marginLeft:"2px"}} onClick={() => setActiveTabIndex(idx)} >
+                                <button key={idx} ref={(el) => (tabsRef.current[idx] = el)} className="btn btn-primary" style={{ marginLeft: "2px" }} onClick={() => setActiveTabIndex(idx)} >
                                     {tab.label}
                                 </button>
                             );
