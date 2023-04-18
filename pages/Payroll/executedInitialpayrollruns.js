@@ -2,11 +2,13 @@ import React from "react";
 import Styles from "../../styles/ExecutedInitialPayrollRuns.module.css";
 import { useEffect, useRef, useState } from 'react';
 import table from "../../styles/table.module.css";
+import Layout from '@/Components/layout';
+import Link from "next/link";
 
 const tabsData = [
-    {
-      label: 'Normal Payroll',
-      content:
+  {
+    label: 'Normal Payroll',
+    content:
       <div className="container-fluid mt-4">
         <div className="row">
           <table className={table.commonTable}>
@@ -32,12 +34,12 @@ const tabsData = [
             </tbody>
           </table>
         </div>
-        </div>,
-    },
-    {
-        label: 'Final Payroll',
-        content:
-        <div className="container-fluid mt-4">
+      </div>,
+  },
+  {
+    label: 'Final Payroll',
+    content:
+      <div className="container-fluid mt-4">
         <div className="row">
           <table className={table.commonTable}>
             <thead>
@@ -56,42 +58,52 @@ const tabsData = [
             </tbody>
           </table>
         </div>
-        </div>,
-      }
+      </div>,
+  }
 ]
-export default function ExecutedInitialPayrollRuns(){
+export default function ExecutedInitialPayrollRuns() {
 
-    const [activeTabIndex, setActiveTabIndex] = useState(0);
-  
-    const tabsRef = useRef([]);
-  
-    useEffect(() => {
-      function setTabPosition() {
-        const currentTab = tabsRef.current[activeTabIndex];
-      }
-  
-      setTabPosition();
-      window.addEventListener('resize', setTabPosition);
-  
-      return () => window.removeEventListener('resize', setTabPosition);
-    }, [activeTabIndex]);
+  const [activeTabIndex, setActiveTabIndex] = useState(0);
+
+  const tabsRef = useRef([]);
+
+  useEffect(() => {
+    function setTabPosition() {
+      const currentTab = tabsRef.current[activeTabIndex];
+    }
+
+    setTabPosition();
+    window.addEventListener('resize', setTabPosition);
+
+    return () => window.removeEventListener('resize', setTabPosition);
+  }, [activeTabIndex]);
 
 
-return(
-    <div>
+  return (
+    <Layout>
+      <div>
         <div className="relative">
-            <br></br>
-            <br></br>
-
-            <div className="row">
-                <div className="col-lg-6">
-                    <label id={Styles.title}>Excecuted Initial Payroll Runs</label>
-                </div>
-                <div className="col-lg-3"></div>
-                <div className="col-lg-3">
-                    <label id={Styles.title}>Total Payroll Runs: 1</label>
-                </div>
+          <br></br>
+          <div className="row">
+            <div className="col-lg-4"></div>
+            <div className="col-lg-6"></div>
+            <div className="col-lg-2">
+              <Link href="/Payroll/runpayroll">
+                <button id={Styles.tabBtn}>New Payroll</button>
+              </Link>
             </div>
+          </div>
+
+          <br></br>
+          <div className="row">
+            <div className="col-lg-6">
+              <label id={Styles.title}>Excecuted Initial Payroll Runs</label>
+            </div>
+            <div className="col-lg-3"></div>
+            <div className="col-lg-3">
+              <label id={Styles.title}>Total Payroll Runs: 1</label>
+            </div>
+          </div>
           <div className="flex space-x-3 border-b">
             {tabsData.map((tab, idx) => {
               return (
@@ -111,5 +123,6 @@ return(
           {tabsData[activeTabIndex].content}
         </div>
       </div>
-)
+    </Layout>
+  )
 }
