@@ -93,6 +93,9 @@ const Sidebar = ({ children }) => {
                             <Link href="/Requests/locatordashboard">
                                 <button className={SidebarStyles.sidesubmenu}>OBASIS REQUESTS</button>
                             </Link>
+                            <Link href="/Requests/compensationtimeout">
+                                <button className={SidebarStyles.sidesubmenu}>compensation Requests</button>
+                            </Link>
                         </div>
                     )
                 }

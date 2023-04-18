@@ -59,7 +59,7 @@ function CityMasterDash() {
     debugger;
     try {
       let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
-      
+
       const res = await axios.get(
         hostURL + `Master/DeleteCityType?id=${id}` // this is for deleting the data for dashborad using delete api call  
       );
@@ -70,7 +70,7 @@ function CityMasterDash() {
         text: "Data was deleted..!",
       });
       getCityMaster();
-    } 
+    }
     catch (error) {
       console.error(error);
       Swal.fire({
@@ -157,22 +157,22 @@ function CityMasterDash() {
             </thead>
             <tbody>
               {
-              CityMaster.map((data) => {
-                return (
-                  <tr key={data.id}>
-                    <td>{data.country}</td>
-                    <td>{data.state}</td>
-                    <td>{data.short}</td>
-                    <td>{data.description}</td>
-                    <td>
-                      <Link href="/Masters/citymasterform">
-                        <button className="btn btn-primary"onClick={getCityMasterData.bind(this, data)}>Edit</button></Link>
-                      &nbsp;
-                      <button className="btn btn-primary" onClick={() => DeleteCityMaster(data.id)}>Delete{" "}</button>
-                    </td>
-                  </tr>
-                );
-              })}
+                CityMaster.map((data) => {
+                  return (
+                    <tr key={data.id}>
+                      <td>{data.country}</td>
+                      <td>{data.state}</td>
+                      <td>{data.short}</td>
+                      <td>{data.description}</td>
+                      <td>
+                        <Link href="/Masters/citymasterform">
+                          <button className="btn btn-primary" onClick={getCityMasterData.bind(this, data)}>Edit</button></Link>
+                        &nbsp;
+                        <button className="btn btn-primary" onClick={() => DeleteCityMaster(data.id)}>Delete{" "}</button>
+                      </td>
+                    </tr>
+                  );
+                })}
             </tbody>
           </table>
         </div>
@@ -181,4 +181,4 @@ function CityMasterDash() {
   );
 }
 
-export default dynamic(() => Promise.resolve(CityMasterDash), { ssr: false });
+export default CityMasterDash;
