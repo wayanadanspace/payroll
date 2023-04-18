@@ -11,8 +11,7 @@ function dailyrate() {
     let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
 
     const getDailyRate = async () => {
-        debugger;
-        const { data } = await axios.get(hostURL + "HR/GetDailyrateConfigaration")
+        const { data } = await axios.get(hostURL + "HR/GetDailyrateConfigaration") //gurukiran@amazeinc.in, api call to fetch the data into the table
         setDailyRate(data)
         console.log(data)
     }
@@ -31,7 +30,7 @@ function dailyrate() {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                const res = axios.get(hostURL + `HR/DeleteDailyrateConfigaration?ID=${id}`);
+                const res = axios.get(hostURL + `HR/DeleteDailyrateConfigaration?ID=${id}`); //gurukiran@amazeinc.in, delete api call(to delete the particular data based on its id)
 
                 Swal.fire(
                     'Deleted!',
@@ -41,16 +40,7 @@ function dailyrate() {
                 getDailyRate();
             }
         })
-        //     try {
-        //         debugger
-        //         const res = await axios.get(hostURL + `HR/DeleteDailyrateConfigaration?ID=${id}`);
-        //         console.log(res.data);
-        //         alert("Data deleted successfully");
-        //         getDailyRate();
-        //     } catch (error) {
-        //         console.error(error);
-        //         alert("Failed to delete data");
-        //     }
+
     };
     const getData = (data) => {
         sessionStorage.setItem("id", data.id);
