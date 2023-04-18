@@ -9,70 +9,6 @@ import Index from "..";
 
 
 
-const tabsData = [
-    {
-
-        label: "Normal Payroll",
-        content: (
-            <Layout>
-                <div>
-                    <div className="container-fluid">
-                        <table className="table table-sm rounded-3 shadow-lg  text-center " id={Styles.normalPayrollTable}>
-                            <thead className="text-white">
-                                <tr id={Styles.tr} >
-                                    <th>Year</th>
-                                    <th>Month</th>
-                                    <th>Period</th>
-                                    <th>Payroll Run Type	</th>
-                                    <th>Description</th>
-                                    <th>Execution Date	</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>2022</td>
-                                    <td>11</td>
-                                    <td>2</td>
-                                    <td>Normal</td>
-                                    <td>Payroll For Nov 16, 2022 - Nov 30, 2022	</td>
-                                    <td>Mar 17, 2023</td>
-
-                                    <td>Finalization Approved   </td>
-
-
-                                    <td>2022</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </Layout>
-        ),
-    },
-    {
-        label: "Final Payroll",
-        content: (
-            <div>
-                <table className="table table-sm rounded-3 shadow-lg text-center" id={Styles.finalPayrollTable} >
-                    <thead className="text-white" >
-                        <tr id={Styles.tr}>
-                            <th>Name</th>
-                            <th >Role</th>
-                            <th>Payroll Run Type</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <td></td>
-                        <td></td>
-                        <td>Final Payroll</td>
-                    </tbody>
-                </table>
-            </div>
-        ),
-    },
-];
 
 function PayrollDash() {
     const [activeTabIndex, setActiveTabIndex] = useState(0);
@@ -92,6 +28,71 @@ function PayrollDash() {
     }, [activeTabIndex]);
 
     const [payroll, getPayroll] = useState("")
+
+    const tabsData = [
+        {
+
+            label: "Normal Payroll",
+            content: (
+                <Layout>
+                    <div>
+                        <div className="container-fluid">
+                            <table className="table table-sm rounded-3 shadow-lg  text-center " id={Styles.normalPayrollTable}>
+                                <thead className="text-white">
+                                    <tr id={Styles.tr} >
+                                        <th>Year</th>
+                                        <th>Month</th>
+                                        <th>Period</th>
+                                        <th>Payroll Run Type	</th>
+                                        <th>Description</th>
+                                        <th>Execution Date	</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2022</td>
+                                        <td>11</td>
+                                        <td>2</td>
+                                        <td>Normal</td>
+                                        <td>Payroll For Nov 16, 2022 - Nov 30, 2022	</td>
+                                        <td>Mar 17, 2023</td>
+
+                                        <td>Finalization Approved   </td>
+
+
+                                        <td>2022</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </Layout>
+            ),
+        },
+        {
+            label: "Final Payroll",
+            content: (
+                <div>
+                    <table className="table table-sm rounded-3 shadow-lg text-center" id={Styles.finalPayrollTable} >
+                        <thead className="text-white" >
+                            <tr id={Styles.tr}>
+                                <th>Name</th>
+                                <th >Role</th>
+                                <th>Payroll Run Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <td></td>
+                            <td></td>
+                            <td>Final Payroll</td>
+                        </tbody>
+                    </table>
+                </div>
+            ),
+        },
+    ];
 
 
     return (
