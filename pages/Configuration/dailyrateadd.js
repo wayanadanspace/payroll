@@ -15,7 +15,7 @@ function dailyrateadd() {
         // alert(JSON.stringify(data))
         console.log(data);
         if (actionType == "insert") {
-            await axios.post(hostURL + 'HR/InsertDailyrateConfigaration', data);
+            await axios.post(hostURL + 'HR/InsertDailyrateConfigaration', data); //gurukiran@amazeinc.in, api call to insert the data into the table
             Swal.fire({ icon: "success", text: "Data Successfully added" })
             location.href = ("/Configuration/dailyrate");
 
@@ -32,7 +32,7 @@ function dailyrateadd() {
             }).then((result) => {
 
                 if (result.isConfirmed) {
-                    axios.post(hostURL + 'HR/UpdateDailyrateConfigaration', data);
+                    axios.post(hostURL + 'HR/UpdateDailyrateConfigaration', data); //gurukiran@amazeinc.in, api call to update a particular data
                     Swal.fire(
                         'Updated!',
                         'Your file has been updated.',
@@ -68,7 +68,7 @@ function dailyrateadd() {
             const id = sessionStorage.getItem("id");
             if (id) {
 
-                const response = await axios.get(hostURL + 'HR/GetDailyrateConfigarationByID?id=' + id);
+                const response = await axios.get(hostURL + 'HR/GetDailyrateConfigarationByID?id=' + id); //gurukiran@amazeinc.in, getByID api call
                 clearForm(response.data[0])
             }
             else {
@@ -101,7 +101,6 @@ function dailyrateadd() {
                                 }
                             })} className={`form-control mt-2`} />
                             {errors.StaffID && <p className="error-message" style={{ color: "red" }}>{errors.StaffID.message}</p>}
-                            {/* <div className="invalid-feedback">{errors.lowLimit?.message}</div> */}
 
                         </div>
                         <div className='col-lg-2'>
@@ -120,7 +119,6 @@ function dailyrateadd() {
                             })} className={`form-control mt-2`} />
                             {errors.Working_Days_Year && <p className="error-message" style={{ color: "red" }}>{errors.Working_Days_Year.message}</p>}
 
-                            {/* <div className="invalid-feedback">{errors.highLimit?.message}</div> */}
                         </div>
                         <div className='col-lg-2'>
 
@@ -135,9 +133,8 @@ function dailyrateadd() {
 
                                 }
                             })} className={`form-control mt-2 `} />
-                            {errors.Working_Days_Month && <p className="error-message" style={{ color: "red" }}>{errors.Working_Days_Month.message}</p>}
+                            {errors.Working_Days_Month && <p className="error-message text-danger">{errors.Working_Days_Month.message}</p>}
 
-                            {/* <div className="invalid-feedback">{errors.Philhealth?.message}</div> */}
                         </div>
                         <div className='col-lg-2'>
 
@@ -152,9 +149,8 @@ function dailyrateadd() {
 
                                 }
                             })} className={`form-control mt-2 `} />
-                            {errors.Working_Hours_Day && <p className="error-message" style={{ color: "red" }}>{errors.Working_Hours_Day.message}</p>}
+                            {errors.Working_Hours_Day && <p className="error-message text-danger" >{errors.Working_Hours_Day.message}</p>}
 
-                            {/* <div className="invalid-feedback">{errors.Philhealth?.message}</div> */}
                         </div>
                     </div>
                     <div className='row'>
@@ -179,7 +175,6 @@ function dailyrateadd() {
                                 </button>
 
                             )}
-                            {/* <button id={Styles.Save}>Save</button> */}
                         </div>
                         <div className='col-lg-1'>
                             <Link href='/Configuration/dailyrate'><button id={Styles.Cancel}>Cancel</button></Link>

@@ -35,7 +35,7 @@ function PositionMasterDetails() {
         console.log(data);
         if (actionType == "insert") {
             try {
-                await axios.post(hostURL + 'Master/InsertRoleType', data); //api call to insert the data
+                await axios.post(hostURL + 'Master/InsertRoleType', data); //gurukiran@amazeinc.in, api call to insert the data
                 location.href = ("/Masters/positionmasterdashboard");
             }
             catch (error) {
@@ -43,7 +43,7 @@ function PositionMasterDetails() {
             }
         }
         else {
-            await axios.post(hostURL + 'Master/UpdateRoleType', data); //update api call
+            await axios.post(hostURL + 'Master/UpdateRoleType', data); //gurukiran@amazeinc.in, update api call 
             alert("updated");
         }
 
