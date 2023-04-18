@@ -221,14 +221,6 @@ function BankAdviceList() {
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
       width: '60%'
-    },
-    errorMsg: {
-      fontSize: '12px',
-      fontWeight: '500',
-      color: 'red'
-    },
-    inputLabel: {
-      fontSize: '16px'
     }
   };
 
@@ -314,7 +306,7 @@ function BankAdviceList() {
             <div className="col-lg-4"></div>
           </div>
         </div>
-        <Modal isOpen={modalIsOpen} style={customStyles} contentLabel="Example Modal">
+        <Modal isOpen={modalIsOpen} style={customStyles}>
           <div className="row">
             <div className="col-lg-6">
               <h6 style={{ color: '#3247d5', fontWeight: '500' }}>Payroll - Bank Advice List</h6>
@@ -323,9 +315,9 @@ function BankAdviceList() {
           </div>
           <div className='row '>
             <div className='col-lg-12'>
-              <table className='table table-bordered mt-4 text-center table-striped ' id={Styles.table}>
+              <table className='table table-bordered mt-4 text-center table-striped '>
                 <thead>
-                  <tr id={Styles.tr}>
+                  <tr>
                     <th>Gross Salary</th>
                     <th>Address</th>
                     <th>Staff Name</th>
