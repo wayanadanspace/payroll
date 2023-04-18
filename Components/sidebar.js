@@ -126,7 +126,7 @@ const Sidebar = ({ children }) => {
                                 <button className={SidebarStyles.sidesubmenu}>initial payroll details</button>
                             </Link>
 
-                            <Link href="">
+                            <Link href="/Payroll/runpayroll">
                                 <button className={SidebarStyles.sidesubmenu}>run final payroll</button>
                             </Link>
 
@@ -134,7 +134,7 @@ const Sidebar = ({ children }) => {
                                 <button className={SidebarStyles.sidesubmenu}>final payroll approval</button>
                             </Link>
 
-                            <Link href="">
+                            <Link href="/Payroll/finalpayrolldetails">
                                 <button className={SidebarStyles.sidesubmenu}>final payrool details</button>
                             </Link>
 
@@ -212,7 +212,7 @@ const Sidebar = ({ children }) => {
                                 <button className={SidebarStyles.sidesubmenu}>pagibig</button>
                             </Link>
 
-                            <Link href="">
+                            <Link href="/Configuration/dailyrate">
                                 <button className={SidebarStyles.sidesubmenu}>daily rate</button>
                             </Link>
 
@@ -294,7 +294,7 @@ const Sidebar = ({ children }) => {
                             <Link href="/Masters/subsectionmaster">
                                 <button className={SidebarStyles.sidesubmenu}>sub-section master</button>
                             </Link>
-                        </div>  
+                        </div>
 
                     )
                 }
@@ -307,9 +307,9 @@ const Sidebar = ({ children }) => {
                     <button className={SidebarStyles.sidemenu}>support tickets</button>
                 </Link>
                 {
-                    <Link href="/Holidays/Holidaysdash" ><button className={SidebarStyles.sidemenu}>Holidays</button>    
+                    <Link href="/Holidays/Holidaysdash" ><button className={SidebarStyles.sidemenu}>Holidays</button>
                     </Link>
-                }                
+                }
             </div>
         </div >
     )

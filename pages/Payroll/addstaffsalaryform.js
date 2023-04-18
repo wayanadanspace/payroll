@@ -119,7 +119,7 @@ function addstaffsalaryform() {
                            <div className="col-lg-2"></div>
                         </div>
                         <br />
-                        <div className="card">
+                        <div className="card shadow-lg p-4">
                            <div className="row leavereq">
                               <div className="col-md-2"><label>Staff</label></div>
                               <div className="col-md-3">

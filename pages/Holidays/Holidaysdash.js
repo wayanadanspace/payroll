@@ -1,5 +1,5 @@
 import React from 'react'
-import Styles from "../../styles/employmentJobHistory.module.css";
+import Styles from "../../styles/HolidayDash.module.css";
 import Layout from '@/Components/layout';
 import Link from 'next/link';
 import { useState,useEffect } from 'react';
@@ -15,7 +15,7 @@ export default function Holidaysdash() {
 
 
     const getHoliday = async () => {
-        let res = await axios.get(hostURL + "Payroll/GetHolidays"); //This Api is useed for Get the Dashborad data band Master
+        let res = await axios.get(hostURL + "HR/GetHolidays"); //This Api is useed for Get the Dashborad data band Master
         setHoliday(res.data);
       }
     
@@ -35,7 +35,7 @@ export default function Holidaysdash() {
     
       const handleDelete = async (id) => {
         try {
-          let res = await axios.get(hostURL + `Payroll/DeleteHolidays?id=${id}`); // this is for deleting the data for dashborad using delete api call 
+          let res = await axios.get(hostURL + `HR/DeleteHolidays?id=${id}`); // this is for deleting the data for dashborad using delete api call 
           console.log(res.data);
           Swal.fire('Data deleted successfully')
           getHoliday();
@@ -79,7 +79,7 @@ export default function Holidaysdash() {
               <div className="col-lg-2">
   
   
-                <Link href="/Settings/componentmapping"><button className="btn btn-primary btn-sm shadow-lg"
+                <Link href="/Holidays/Holidayform"><button className="btn btn-primary btn-sm shadow-lg"
                   id={Styles.addNew} onClick={clearData.bind(this)} > ADD new</button>
                   {/* // onClick={() => setModalOpen(!modalOpen)}>   */}
                   {/* <AiOutlinePlusCircle /> */}
@@ -110,7 +110,7 @@ export default function Holidaysdash() {
                         <td>{data.holidayDate}</td>
                         <td>{data.attachment}</td>
                         <td>
-                          <Link href="/Settings/componentmapping">
+                          <Link href="/Holidays/Holidayform">
                             <button className="btn btn-primary" onClick={getData.bind(this, data)} >Edit</button>
                           </Link>
                           &nbsp;

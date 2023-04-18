@@ -1,36 +1,29 @@
-import Layout from "@/Components/layout";
-import Link from "next/link";
+import React from 'react'
+import Layout from '@/Components/layout'
+import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react';
-import axios from "axios";
+import axios from 'axios';
 import Styles from "../../styles/Requests/locatordashboard.module.css";
 
-export default function locatordashboard() {
-
+export default function myteamlocatordetails() {
 
     const hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
-    const [locator, setlocator] = useState([]);
-    const [Approvedlocatorrequests, setApprovedlocatorrequests] = useState([]);
-    const [RejectedlocatorRequests, setRejectedlocatorRequests] = useState([]);
+    const [Stafflocator, setStafflocator] = useState([]);
+    const [ApprovedStafflocatorrequests, setApprovedStafflocatorrequests] = useState([]);
+    const [RejectedStafflocatorRequests, setRejectedStafflocatorRequests] = useState([]);
 
-
-
-    const getlocator = async () => {
-        let res = await axios.get(hostURL + "Payroll/GetLocatorRequests");
-        setlocator(res.data);
-        res = await axios.get(hostURL + "Payroll/GetApprovedLocatorRequest");
-        setApprovedlocatorrequests(res.data);
-        res = await axios.get(hostURL + "Payroll/GetRejectedLocatorRequest");
-        setRejectedlocatorRequests(res.data);
+    const getStafflocator = async () => {
+        let res = await axios.get(hostURL + "Payroll/GetPendingStaffLocatorRequests");
+        setStafflocator(res.data);
+        res = await axios.get(hostURL + "Payroll/GetApprovedStaffLocatorRequests");
+        setApprovedStafflocatorrequests(res.data);
+        res = await axios.get(hostURL + "Payroll/GetRejectStaffLocatorRequests");
+        setRejectedStafflocatorRequests(res.data);
     }
 
     useEffect(() => {
-        getlocator()
+        getStafflocator()
     }, [1])
-
-
-    const clearData = () => {
-        sessionStorage.setItem("id", "");
-    }
 
 
     const tabsData = [
@@ -39,7 +32,7 @@ export default function locatordashboard() {
             content:
                 <div className="container-fluid mt-4">
                     <div className="row">
-                        <table className='table  table-striped mt-3 text-center'  id={Styles.table} >
+                        <table className='table  table-striped mt-3 text-center' id={Styles.table} >
                             <thead>
                                 <tr id={Styles.tr}>
                                     <th>Date</th>
@@ -53,7 +46,7 @@ export default function locatordashboard() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {locator.map((data, index) => {
+                                {Stafflocator.map((data, index) => {
                                     return (
                                         <tr className="text-dark" key={index}>
                                             <td>{data.date}</td>
@@ -78,7 +71,7 @@ export default function locatordashboard() {
             content:
                 <div className="container-fluid mt-4">
                     <div className="row">
-                        <table className='table  table-striped mt-3 text-center' id={Styles.table} >
+                        <table className='table  table-striped mt-3 text-center' id={Styles.table}>
                             <thead>
                                 <tr id={Styles.tr}>
                                     <th>Date</th>
@@ -91,7 +84,7 @@ export default function locatordashboard() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {Approvedlocatorrequests.map((data, index) => {
+                                {ApprovedStafflocatorrequests.map((data, index) => {
                                     return (
                                         <tr className="text-dark" key={index}>
                                             <td>{data.date}</td>
@@ -115,7 +108,7 @@ export default function locatordashboard() {
             content:
                 <div className="container-fluid mt-4">
                     <div className="row">
-                        <table className='table  table-striped mt-3 text-center'  id={Styles.table} >
+                        <table className='table  table-striped mt-3 text-center' id={Styles.table}>
                             <thead>
                                 <tr id={Styles.tr}>
                                     <th>Date</th>
@@ -128,7 +121,7 @@ export default function locatordashboard() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {RejectedlocatorRequests.map((data, index) => {
+                                {RejectedStafflocatorRequests.map((data, index) => {
                                     return (
                                         <tr className="text-dark" key={index}>
                                             <td>{data.date}</td>
@@ -162,8 +155,8 @@ export default function locatordashboard() {
 
         return () => window.removeEventListener('resize', setTabPosition);
     }, [activeTabIndex]);
-    return (
 
+    return (
         <Layout>
 
             <div className='row mt-3'>
@@ -201,25 +194,21 @@ export default function locatordashboard() {
                     <div className="flex ">
                         {tabsData.map((tab, idx) => {
                             return (
-                                <button key={idx} ref={(el) => (tabsRef.current[idx] = el)} className="btn btn-primary" style={{marginLeft:"2px"}} onClick={() => setActiveTabIndex(idx)} >
+                                <button key={idx} ref={(el) => (tabsRef.current[idx] = el)} className="btn btn-primary" style={{ marginLeft: "3px" }} onClick={() => setActiveTabIndex(idx)} >
                                     {tab.label}
                                 </button>
                             );
                         })}
                     </div>
                 </div>
-                <div className="col-lg-4">
-                    <Link href="/Requests/locatorrequestsform"><button onClick={clearData.bind(this)} className="btn btn-primary" >New Requests </button></Link>
 
-                </div>
                 <div className="py-4">
                     {tabsData[activeTabIndex].content}
                 </div>
             </div>
 
 
-        </Layout >
-
-
-    );
+        </Layout>
+    )
 }
+

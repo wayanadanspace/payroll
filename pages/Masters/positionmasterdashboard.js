@@ -11,7 +11,7 @@ function PositionMasterDash() {
 
   const getPositionMaster = async () => {
     let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
-    const { data } = await axios.get(hostURL + "Master/GetRoleType"); //api call to fetch the data that is being displayed onto the table
+    const { data } = await axios.get(hostURL + "Master/GetRoleType"); //gurukiran@amazeinc.in, api call to fetch the data that is being displayed onto the table
     setPositionMaster(data)
   }
   useEffect(() => {
@@ -22,7 +22,7 @@ function PositionMasterDash() {
   const handleDelete = async (id) => {
     try {
       let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
-      const res = await axios.get(hostURL + `Master/DeleteRoleType?ID=${id}`); //api call to delete the data from the table
+      const res = await axios.get(hostURL + `Master/DeleteRoleType?ID=${id}`); //gurukiran@amazeinc.in, api call to delete the data from the table
       console.log(res.data);
       alert("Data deleted successfully");
       getPositionMaster();
