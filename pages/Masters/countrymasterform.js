@@ -22,14 +22,14 @@ function CountryMasterForm() {
       location.href = "/Masters/countrymasterdashboard";
     }
     else {
-        await axios.post(hostURL + "Master/UpdateCountryType", data); //naveen.th@amazeinc.in, Update API for Country master, to update data
-        Swal.fire(
-          "Updated succesfullly"
-        );
-        sessionStorage.removeItem("countryID");
-        location.href = "/Masters/countrymasterdashboard";
+      await axios.post(hostURL + "Master/UpdateCountryType", data); //naveen.th@amazeinc.in, Update API for Country master, to update data
+      Swal.fire(
+        "Updated succesfullly"
+      );
+      sessionStorage.removeItem("countryID");
+      location.href = "/Masters/countrymasterdashboard";
     }
-    await axios.get(hostURL + "Master/GetCountryType" ); //naveen.th@amazeinc.in, Get API for Country master, to fetch updated data 
+    await axios.get(hostURL + "Master/GetCountryType"); //naveen.th@amazeinc.in, Get API for Country master, to fetch updated data 
   }
 
   useEffect(() => {
@@ -40,7 +40,7 @@ function CountryMasterForm() {
     }
   }, []);
 
-   const getWorkLocationMasterByID = async () => {
+  const getWorkLocationMasterByID = async () => {
     let res = await axios.get(hostURL + "Master/GetCountryTypeByID?ID=" + ID); //naveen.th@amazeinc.in, Get by ID API for Country master, to fetch data
     clearForm(res.data[0]);
   }
