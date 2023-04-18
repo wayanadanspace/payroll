@@ -1,115 +1,64 @@
-import React from "react";
-import Styles from "../../styles/ExecutedInitialPayrollRuns.module.css";
-import { useEffect, useRef, useState } from 'react';
-import table from "../../styles/table.module.css";
+import Layout from '@/Components/layout'
+import React, { useEffect, useState } from 'react'
+import Link from 'next/link'
+import axios from 'axios'
 
-const tabsData = [
-    {
-      label: 'Normal Payroll',
-      content:
-      <div className="container-fluid mt-4">
-        <div className="row">
-          <table className={table.commonTable}>
-            <thead>
-              <tr>
-                <th>Year</th>
-                <th>Month</th>
-                <th>Period</th>
-                <th>Payroll Run Type</th>
-                <th>Description</th>
-                <th>Execution Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>2023</td>
-                <td>2</td>
-                <td>1</td>
-                <td>Normal</td>
-                <td>Payroll For Feb 1, 2023 - Feb 15, 2023</td>
-                <td>Mar 21, 2023</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        </div>,
-    },
-    {
-        label: 'Final Payroll',
-        content:
-        <div className="container-fluid mt-4">
-        <div className="row">
-          <table className={table.commonTable}>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Role</th>
-                <th>Payroll Run Type</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>test</td>
-                <td>2</td>
-                <td>Final Payroll</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        </div>,
-      }
-]
-export default function ExecutedInitialPayrollRuns(){
+function executedInitialpayrollruns() {
+  let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL
 
-    const [activeTabIndex, setActiveTabIndex] = useState(0);
-  
-    const tabsRef = useRef([]);
-  
-    useEffect(() => {
-      function setTabPosition() {
-        const currentTab = tabsRef.current[activeTabIndex];
-      }
-  
-      setTabPosition();
-      window.addEventListener('resize', setTabPosition);
-  
-      return () => window.removeEventListener('resize', setTabPosition);
-    }, [activeTabIndex]);
+  const [intialPayroll, setInitialPayroll] = useState([]);
 
-
-return(
-    <div>
-        <div className="relative">
-            <br></br>
-            <br></br>
-
-            <div className="row">
-                <div className="col-lg-6">
-                    <label id={Styles.title}>Excecuted Initial Payroll Runs</label>
-                </div>
-                <div className="col-lg-3"></div>
-                <div className="col-lg-3">
-                    <label id={Styles.title}>Total Payroll Runs: 1</label>
-                </div>
-            </div>
-          <div className="flex space-x-3 border-b">
-            {tabsData.map((tab, idx) => {
-              return (
-                <button id={Styles.tabBtn}
-                  key={idx}
-                  ref={(el) => (tabsRef.current[idx] = el)}
-                  className="pt-2 pb-3"
-                  onClick={() => setActiveTabIndex(idx)}
-                >
-                  {tab.label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-        <div className="py-4">
-          {tabsData[activeTabIndex].content}
+  const getInitialPayroll = async () => {
+    const { data } = await axios.get(hostURL + "Payroll/GetPreliminarySalary")
+    setInitialPayroll(data);
+  }
+  useEffect(() => {
+    getInitialPayroll();
+  }, [])
+  return (
+    <Layout>
+      <div className='row'>
+        <div className='col-lg-10'></div>
+        <div className='col-lg-2'>
+          <Link href="/Payroll/preliminaryreport"><button>New Payroll</button></Link>
         </div>
       </div>
-)
+      <div className='row'>
+        <p>Executed Initial Payroll Runs</p>
+      </div>
+      <div className='row'>
+        <table className='table table-striped'>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Month</th>
+              <th>Period</th>
+              <th>Payroll Run Type	</th>
+              <th>Description	</th>
+              <th>Execution Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+
+              intialPayroll.map((data) => {
+                return (
+                  <tr key={data.id}>
+                    <td>{data.endyear}</td>
+                    <td>{data.month}</td>
+                    <td>{data.payrolltype}</td>
+                    <td>{data.ded_type}</td>
+                    <td>{data.componentName}</td>
+                    <td>{data.enddate}</td>
+                  </tr>
+                )
+              })
+            }
+          </tbody>
+        </table>
+      </div>
+    </Layout>
+  )
 }
+
+export default executedInitialpayrollruns
