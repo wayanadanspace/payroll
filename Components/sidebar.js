@@ -67,7 +67,7 @@ const Sidebar = ({ children }) => {
                                 <button className={SidebarStyles.sidesubmenu}>Overtime units upload</button>
                             </Link>
 
-                            <Link href="/Attendence/AttendanceCorrection">
+                            <Link href="/Attendence/AttendanceCorrectionDash">
                                 <button className={SidebarStyles.sidesubmenu}>AttendanceCorrection</button>
                             </Link>
                         </div>
