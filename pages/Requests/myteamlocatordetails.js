@@ -4,6 +4,10 @@ import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import Styles from "../../styles/Requests/locatordashboard.module.css";
+import { BsCheckCircleFill } from 'react-icons/bs'
+import { RxCrossCircled } from 'react-icons/rx'
+import Swal from 'sweetalert2';
+
 
 export default function myteamlocatordetails() {
 
@@ -13,7 +17,7 @@ export default function myteamlocatordetails() {
     const [RejectedStafflocatorRequests, setRejectedStafflocatorRequests] = useState([]);
 
     const getStafflocator = async () => {
-        let res = await axios.get(hostURL + "Payroll/GetPendingStaffLocatorRequests");
+        let res = await axios.get(hostURL + "Payroll/GetLocatorRequests");
         setStafflocator(res.data);
         res = await axios.get(hostURL + "Payroll/GetApprovedStaffLocatorRequests");
         setApprovedStafflocatorrequests(res.data);
@@ -25,8 +29,54 @@ export default function myteamlocatordetails() {
         getStafflocator()
     }, [1])
 
-
+    const approvRequest = async (id) => {
+        debugger
+        await axios.get(hostURL + "Payroll/UpdateLocatorStatus" + id)
+        Swal.fire(" Locator Details Approved")
+        getStafflocator()
+    }
     const tabsData = [
+        // Hr login pending tab
+        // {
+        //     label: 'Pending',
+        //     content:
+        //         <div className="container-fluid mt-4">
+        //             <div className="row">
+        //                 <table className='table  table-striped mt-3 text-center' id={Styles.table} >
+        //                     <thead>
+        //                         <tr id={Styles.tr}>
+        //                             <th>Date</th>
+        //                             <th>Destination</th>
+        //                             <th>TimeOfDeparture</th>
+        //                             <th>Time of Return	</th>
+        //                             <th>Purpose</th>
+        //                             <th>No Of Hours</th>
+        //                             <th>Status</th>
+        //                             <th>Action</th>
+        //                         </tr>
+        //                     </thead>
+        //                     <tbody>
+        //                         {Stafflocator.map((data, index) => {
+        //                             return (
+        //                                 <tr className="text-dark" key={index}>
+        //                                     <td>{data.date}</td>
+        //                                     <td>{data.destination}</td>
+        //                                     <td>{data.timeOfDeparture}</td>
+        //                                     <td>{data.timeOfReturn}</td>
+        //                                     <td>{data.purpose}</td>
+        //                                     <td>{data.hourDiff}</td>
+        //                                     <td>{data.status}</td>
+        //                                     <td><button className="btn btn-primary">Cancel</button></td>
+        //                                 </tr>
+        //                             )
+        //                         })
+        //                         }
+        //                     </tbody>
+        //                 </table>
+        //             </div>
+        //         </div>,
+        // },
+        // Manager login tab
         {
             label: 'Pending',
             content:
@@ -35,13 +85,13 @@ export default function myteamlocatordetails() {
                         <table className='table  table-striped mt-3 text-center' id={Styles.table} >
                             <thead>
                                 <tr id={Styles.tr}>
+                                    <th>Select ALL <input type="checkbox" /></th>
                                     <th>Date</th>
                                     <th>Destination</th>
                                     <th>TimeOfDeparture</th>
                                     <th>Time of Return	</th>
                                     <th>Purpose</th>
                                     <th>No Of Hours</th>
-                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -49,14 +99,16 @@ export default function myteamlocatordetails() {
                                 {Stafflocator.map((data, index) => {
                                     return (
                                         <tr className="text-dark" key={index}>
+                                            <td><input type="checkbox" /></td>
                                             <td>{data.date}</td>
                                             <td>{data.destination}</td>
                                             <td>{data.timeOfDeparture}</td>
                                             <td>{data.timeOfReturn}</td>
                                             <td>{data.purpose}</td>
                                             <td>{data.hourDiff}</td>
-                                            <td>{data.status}</td>
-                                            <td><button className="btn btn-primary">Cancel</button></td>
+                                            <td> <span onClick={() => approvRequest(data.id)}> <BsCheckCircleFill size={25} />
+                                            </span> <RxCrossCircled size={30} /></td>
+
                                         </tr>
                                     )
                                 })
@@ -93,7 +145,7 @@ export default function myteamlocatordetails() {
                                             <td>{data.timeOfReturn}</td>
                                             <td>{data.purpose}</td>
                                             <td>{data.hourDiff}</td>
-                                            <td>{data.status}</td>
+                                            <td>{data.statusID}</td>
                                         </tr>
                                     )
                                 })
@@ -130,7 +182,7 @@ export default function myteamlocatordetails() {
                                             <td>{data.timeOfReturn}</td>
                                             <td>{data.purpose}</td>
                                             <td>{data.hourDiff}</td>
-                                            <td>{data.status}</td>
+                                            <td>{data.statusID}</td>
                                         </tr>
                                     )
                                 })
