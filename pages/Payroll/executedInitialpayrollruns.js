@@ -2,7 +2,6 @@ import React from "react";
 import Styles from "../../styles/ExecutedInitialPayrollRuns.module.css";
 import { useEffect, useRef, useState } from 'react';
 import table from "../../styles/table.module.css";
-import Layout from '@/Components/layout';
 import Link from "next/link";
 
 const tabsData = [
@@ -83,17 +82,7 @@ export default function ExecutedInitialPayrollRuns() {
     <Layout>
       <div>
         <div className="relative">
-          <br></br>
-          <div className="row">
-            <div className="col-lg-4"></div>
-            <div className="col-lg-6"></div>
-            <div className="col-lg-2">
-              <Link href="/Payroll/runpayroll">
-                <button id={Styles.tabBtn}>New Payroll</button>
-              </Link>
-            </div>
-          </div>
-
+          <br></br>       
           <br></br>
           <div className="row">
             <div className="col-lg-6">
