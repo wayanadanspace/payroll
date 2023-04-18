@@ -8,7 +8,7 @@ import Styles from "../../styles/initialpayrolldetails.module.css";
 function initialpayrolldetails() {
     return (
         <Layout>
-            <h3 className='text-primary fs-5 mt-3'>Salary Staff Details</h3>
+            <h3 className='text-primary fs-5 mt-3'>Initial Payroll Details</h3>
             <div className='card p-3 border-0 shadow-lg rounded-3 mt-4'>
                 <div className='row'>
                     <div className='col-lg-1'>
