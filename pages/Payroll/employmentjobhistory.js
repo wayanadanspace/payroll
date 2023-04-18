@@ -4,6 +4,7 @@ import Modal from 'react-modal';
 import { AiOutlineClose } from 'react-icons/ai'
 import * as XLSX from "xlsx";
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 
 function EmploymentJobHistory() {
@@ -11,12 +12,16 @@ function EmploymentJobHistory() {
   const [ModalIsOpen, setModalIsOpen] = useState(false);
   const [PayrollYTD, setPayrollYTD] = useState(false);
   const [dashboard, setDashboard] = useState([])
+  const [YTDlist, setYTDlist] = useState([])
+
 
   const handleModalOpen = () => {
     setModalIsOpen(true);
   };
 
   const handlePayrollYTD = (data) => {
+    const payrollytdlist = dashboard.filter(x => x.id === data.id);
+    setYTDlist(payrollytdlist);
     setPayrollYTD(true)
   }
 
@@ -38,17 +43,28 @@ function EmploymentJobHistory() {
       top: '15%',
       left: '15%',
       right: '15%',
-      bottom: '40%',
+      bottom: '65%',
       // marginRight: '-40%',
       // transform: 'translate(-50%, -50%)',
     },
   };
 
   const addPayrollYTD = async () => {
-    try {
+
+    if (items == "") {
+      Swal.fire({
+        icon: "danger",
+        titleText: "Invalid file",
+        text: "Please Select Valid File"
+      })
+    }
+    else {
       await axios.post(hostURL + "Payroll/InsertPayrollYTD", items)
-    } catch (error) {
-      alert("insert not done")
+      Swal.fire({
+        icon: "success",
+        text: "Uploaded Successfully"
+      })
+      location.href = "/Payroll/employmentjobhistory"
     }
   }
 
@@ -140,7 +156,7 @@ function EmploymentJobHistory() {
           </Modal>
 
 
-          <Modal isOpen={PayrollYTD} style={payrollYTDStyle} onRequestClose={()=> setPayrollYTD(false)}>
+          <Modal isOpen={PayrollYTD} style={payrollYTDStyle} onRequestClose={() => setPayrollYTD(false)}>
 
             <div className='container'>
               <div className='row'>
@@ -157,7 +173,20 @@ function EmploymentJobHistory() {
                   </thead>
 
                   <tbody>
-                    
+                    {
+                      YTDlist.map((YTD) => {
+                        return (
+                          <tr key={YTD.id}>
+                            <td>{YTD.employeID}</td>
+                            <td>{YTD.firstAndLastName}</td>
+                            <td>{YTD.nettaxableYTD}</td>
+                            <td>{YTD.taxYTD}</td>
+                            <td>{YTD.taxableBonusYTD}</td>
+                            <td>{YTD.nonTaxableBonusYTD}</td>
+                          </tr>
+                        )
+                      })
+                    }
                   </tbody>
                 </table>
               </div>
@@ -204,7 +233,7 @@ function EmploymentJobHistory() {
                         <button className='btn btn-primary AddButton'>Payroll History</button>
                       </td>
                       <td>
-                        <button onClick={handlePayrollYTD.bind(this,data)} className='btn btn-primary AddButton'>PayrollYTD</button>
+                        <button onClick={handlePayrollYTD.bind(this, data)} className='btn btn-primary AddButton'>PayrollYTD</button>
                       </td>
                     </tr>
                   )
