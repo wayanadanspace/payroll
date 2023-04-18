@@ -1,4 +1,4 @@
-#commonBtn{
+#commonBtn {
     box-sizing: border-box;
     color: #fff;
     background: #3247d5;
@@ -7,7 +7,8 @@
     width: 130px;
     height: 40px;
 }
-#title{
+
+#title {
     padding-left: 5px;
     font-size: 20px;
     font-weight: 600;
@@ -16,7 +17,8 @@
     margin-top: 0;
     margin-bottom: 1rem;
 }
-#tabBtn{
+
+#tabBtn {
     color: #3247d5;
     background: #fff;
     font-size: 13px;
@@ -26,4 +28,43 @@
     border: 2px solid #3247d5;
     width: 175px;
     height: 40px;
+}
+
+#newPayrollBtn {
+    display: block;
+    width: 100%;
+    padding: 6px 20px 6px 20px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    line-height: 14px;
+
+
+}
+
+#newPayrollLink {
+    text-decoration: none;
+}
+
+#p {
+    font-family: Poppins;
+    font-weight: 700;
+    padding-left: 5px;
+    color: #3247d5;
+    margin-left: 20px;
+    font-size: 21px;
+}
+
+#table {
+    border-radius: 10px;
+    overflow: hidden;
+    width: 98%;
+    margin-left: 11px;
+    font-family: Poppins;
+
 }
