@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from '@/Components/layout'
 import { useForm } from 'react-hook-form'
+import Link from 'next/link';
 
 function compensationtimeoutform() {
 
@@ -19,28 +20,28 @@ function compensationtimeoutform() {
                             <div className='col-lg-3'>
                                 <p>Date Request <i className='text-danger'>*</i></p>
                                 <input type='date' className='form-control' {...register('dateRequest', { required: true })} />
-                                {errors.dateRequest && (<span className='text-danger mt-2'>Select Valid Date</span>)}
+                                {errors.dateRequest && (<p className='text-danger mt-2'>Select Valid Date</p>)}
                             </div>
                             <div className='col-lg-3'>
                                 <p>Start Date <i className='text-danger'>*</i></p>
                                 <input type='time' className='form-control' {...register('startTime', { required: true })} />
-                                {errors.startTime && (<span className='text-danger mt-2'>Select Valid Start Time</span>)}
+                                {errors.startTime && (<p className='text-danger mt-2'>Select Valid Start Time</p>)}
                             </div>
                             <div className='col-lg-3'>
                                 <p>End Date <i className='text-danger'>*</i></p>
                                 <input type='time' className='form-control' {...register('endTime', { required: true })} />
-                                {errors.endTime && (<span className='text-danger mt-2'>Select Valid End Time</span>)}
+                                {errors.endTime && (<p className='text-danger mt-2'>Select Valid End Time</p>)}
                             </div>
                             <div className='col-lg-3'>
                                 <p>Comments <i className='text-danger'>*</i></p>
                                 <textarea rows={6} className='form-control' {...register('comments', { required: true })}></textarea>
-                                {errors.comments && (<span className='text-danger mt-2'>Select Valid End Time</span>)}
+                                {errors.comments && (<p className='text-danger mt-2'>Please Enter Comments</p>)}
                             </div>
                         </div>
                         <div className='row mt-5'>
                             <div className='col-lg-8'></div>
                             <div className='col-lg-2'>
-                                <button type='submit' className='close-button'>Cancel</button>
+                                <Link href="/Requests/compensationtimeout"><button className='close-button'>Cancel</button></Link>
                             </div>
                             <div className='col-lg-2'>
                                 <button type='submit' className=' submit-button'>Submit</button>
