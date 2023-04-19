@@ -66,6 +66,10 @@ const Sidebar = ({ children }) => {
                             <Link href="/Attendence/myteamovertimedetails">
                                 <button className={SidebarStyles.sidesubmenu}>Overtime units upload</button>
                             </Link>
+
+                            <Link href="/Attendence/AttendanceCorrectionDash">
+                                <button className={SidebarStyles.sidesubmenu}>AttendanceCorrection</button>
+                            </Link>
                         </div>
                     )
                 }
@@ -88,6 +92,9 @@ const Sidebar = ({ children }) => {
                             </Link>
                             <Link href="/Requests/locatordashboard">
                                 <button className={SidebarStyles.sidesubmenu}>OBASIS REQUESTS</button>
+                            </Link>
+                            <Link href="/Requests/compensationtimeout">
+                                <button className={SidebarStyles.sidesubmenu}>compensation Requests</button>
                             </Link>
                         </div>
                     )
@@ -119,7 +126,7 @@ const Sidebar = ({ children }) => {
                                 <button className={SidebarStyles.sidesubmenu}>initial payroll</button>
                             </Link>
 
-                            <Link href="">
+                            <Link href="/Payroll/initialpayrolldetails">
                                 <button className={SidebarStyles.sidesubmenu}>initial payroll details</button>
                             </Link>
 

@@ -16,7 +16,7 @@ function PayrollComponentBulkUpload() {
                 <div className="row">
                     <h3 className="text-primary fs-5 mt-3">Payroll Components</h3>
                 </div>
-                <br/>
+                <br />
                 <div className="row FilterclassName">
                     <br ></br>
                     <div className="col-lg-1">
@@ -158,59 +158,59 @@ function PayrollComponentBulkUpload() {
                         </select>
                     </div>
                     <div className="col-md-2"><br ></br><p></p>
-                      
-                                            <Button className={bulk.button}
-                                                color="primary"
-                                                type="button"
-                                                onClick={() => setModalOpen(!modalOpen)}
-                                            >
-                                                Upload
-                                            </Button>
-                                            <Modal toggle={() => setModalOpen(!modalOpen)} isOpen={modalOpen}>
-                                                <div className=" modal-header">
-                                                    <h5 className=" modal-title" id="exampleModalLabel">
-                                                        Upload Staff                    </h5>
-                                                    <button
-                                                        aria-label="Close"
-                                                        className=" close"
-                                                        type="button"
-                                                        onClick={() => setModalOpen(!modalOpen)}
-                                                    >
-                                                        <span aria-hidden={true}>×</span>
-                                                    </button>
-                                                </div>
-                                                <ModalBody >
-                                                    <div className='row'>
-                                                        <div className='col-lg-6'>
-                                                            <input type="file" id={bulk.input} />
-                                                            <div className='row'>
-                                                                <ModalFooter>
 
-                                                                    <Button className='mt-2' id={bulk.UploadStaffButton} color="primary" type="button">
-                                                                        Upload Staff
-                                                                    </Button>
-                                                                </ModalFooter>
-                                                            </div>
-                                                        </div>
-                                                        <div className='col-lg-6'>
-                                                            <div>
-                                                                <DownloadTableExcel
-                                                                    filename="UploadLoanTemplate"
-                                                                    sheet="users"
-                                                                    currentTableRef={tableRef.current}
-                                                                >    <a id={bulk.a} href>Template.XLSX</a>
-                                                                </DownloadTableExcel>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </ModalBody>
+                        <Button className={bulk.button}
+                            color="primary"
+                            type="button"
+                            onClick={() => setModalOpen(!modalOpen)}
+                        >
+                            Upload
+                        </Button>
+                        <Modal toggle={() => setModalOpen(!modalOpen)} isOpen={modalOpen}>
+                            <div className=" modal-header">
+                                <h5 className=" modal-title" id="exampleModalLabel">
+                                    Upload Staff                    </h5>
+                                <button
+                                    aria-label="Close"
+                                    className=" close"
+                                    type="button"
+                                    onClick={() => setModalOpen(!modalOpen)}
+                                >
+                                    <span aria-hidden={true}>×</span>
+                                </button>
+                            </div>
+                            <ModalBody >
+                                <div className='row'>
+                                    <div className='col-lg-6'>
+                                        <input type="file" id={bulk.input} />
+                                        <div className='row'>
+                                            <ModalFooter>
 
-                                            </Modal>                    </div>
+                                                <Button className='mt-2' id={bulk.UploadStaffButton} color="primary" type="button">
+                                                    Upload Staff
+                                                </Button>
+                                            </ModalFooter>
+                                        </div>
+                                    </div>
+                                    <div className='col-lg-6'>
+                                        <div>
+                                            <DownloadTableExcel
+                                                filename="UploadLoanTemplate"
+                                                sheet="users"
+                                                currentTableRef={tableRef.current}
+                                            >    <a id={bulk.a} href>Template.XLSX</a>
+                                            </DownloadTableExcel>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-           
-            
+                            </ModalBody>
+
+                        </Modal>                    </div>
+                </div>
+            </div>
+        </div>
+
+
     )
 }
 

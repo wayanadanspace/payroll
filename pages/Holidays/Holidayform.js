@@ -33,7 +33,7 @@ export default function Holidayform() {
   function clearForm(HolidaysData = null) {
     debugger;
     let details = {
-      // "ID": HolidaysData ? HolidaysData.id : "",
+      "ID": HolidaysData ? HolidaysData.id : "",
       "Holiday": HolidaysData ? HolidaysData.holiday : "",
       "HolidayDescription": HolidaysData ? HolidaysData.holidayDescription : "",
       "HolidayDate": HolidaysData ? HolidaysData.holidayDate : "",
@@ -48,12 +48,13 @@ export default function Holidayform() {
 
 
   async function onSubmit(data) {
+    
     console.log(data);
     let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
     if (actionType == "insert") {
       try {
 
-        await axios.post(hostURL + "HR/InsertHolidays", data); // this for insrting the data using inserting Api call 
+        await axios.post(hostURL +"HR/InsertHolidays", data); // this for insrting the data using inserting Api call 
         alert("Data inserted")
       } catch (error) {
         alert("data not inserted")
@@ -143,6 +144,7 @@ export default function Holidayform() {
                 {/* <button id='AddButton' className='btn btn-primary'>Submit</button>
                  */}
                 {actionType == "insert" && (
+
                   <button type="submit" id='AddButton' className="btn btn-primary">
                     Save
                   </button>

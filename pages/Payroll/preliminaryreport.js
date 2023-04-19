@@ -20,13 +20,13 @@ function preliminaryreport() {
     useEffect(() => {
         async function getData() {
             let hostURL = process.env.NEXT_PUBLIC_API_HOST_URL;
-            // This API is used for fetch the Payperiod data for Dropdown
+            //gurukiran@amazeinc.in, This API is used for fetch the Paycode data for Dropdown
             let res = await axios.get(hostURL + "HR/GetPayPeriodSetting");
             setPayCode(res.data);
-            // This API is used for fetch the Roletype data for Dropdown
+            //gurukiran@amazeinc.in, This API is used for fetch the Position data for Dropdown
             res = await axios.get(hostURL + "Master/GetRoleType");
             setPosition(res.data);
-            // This API is used for fetch the departmentMaster data for Dropdown
+            //gurukiran@amazeinc.in, This API is used for fetch the department data for Dropdown
             res = await axios.get(hostURL + "Master/GetDepartmentMaster");
             setDepartment(res.data);
         }
@@ -238,4 +238,4 @@ function preliminaryreport() {
     )
 }
 
-export default dynamic(() => Promise.resolve(preliminaryreport), { ssr: false })
+export default preliminaryreport

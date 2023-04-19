@@ -9,7 +9,7 @@ function executedInitialpayrollruns() {
   const [intialPayroll, setInitialPayroll] = useState([]);
 
   const getInitialPayroll = async () => {
-    const { data } = await axios.get(hostURL + "Payroll/GetPreliminarySalary")
+    const { data } = await axios.get(hostURL + "Payroll/GetPreliminarySalary") //gurukiran@amazeinc.in, this API is to fetch the data into the table
     setInitialPayroll(data);
   }
   useEffect(() => {
